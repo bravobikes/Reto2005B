@@ -10,7 +10,7 @@ export const Logo = () => {
       height="100%"
       viewBox="0 0 24 24"
       width="100%"
-      xmlns="/Users/caroramirez/Documents/GitHub/dashboard/public/terniumLogo.png"
+      xmlns="terniumLogo.png"
     >
       <path
         //opacity={0.16}

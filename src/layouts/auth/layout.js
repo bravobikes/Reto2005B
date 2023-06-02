@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import NextLink from 'next/link';
 import { Box, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { Logo } from 'src/components/logo';
+import bgImage1 from 'public/assets/devias-kit-pro.png';
 
 // TODO: Change subtitle text
 
@@ -24,7 +25,8 @@ export const Layout = (props) => {
           xs={12}
           lg={6}
           sx={{
-            backgroundColor: 'background.paper',
+            backgroundImage: 'url(${bgImage1})',
+            backgroundRepeat: 'no-repeat',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative'
