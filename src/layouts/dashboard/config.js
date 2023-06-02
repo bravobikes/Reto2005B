@@ -20,7 +20,7 @@ export const items = [
   },
   {
     title: 'Courses',
-    path: '/courses',
+    path: '/customers',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -29,7 +29,7 @@ export const items = [
   },
   {
     title: 'Videogame',
-    path: '/videogame',
+    path: '/companies',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -38,7 +38,7 @@ export const items = [
   },
   {
     title: 'Profile',
-    path: '/profile',
+    path: '/account',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
