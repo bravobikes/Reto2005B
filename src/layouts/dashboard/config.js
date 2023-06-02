@@ -28,6 +28,16 @@ export const items = [
     )
   },
   {
+    // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
+    title: 'Administracion',
+    path: '/courses',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ShoppingBagIcon />
+      </SvgIcon>
+    )
+  },
+  {
     title: 'Videogame',
     path: '/companies',
     icon: (

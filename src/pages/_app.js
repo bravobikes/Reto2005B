@@ -15,6 +15,7 @@ const clientSideEmotionCache = createEmotionCache();
 const SplashScreen = () => null;
 
 const App = (props) => {
+  
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   useNProgress();
@@ -26,6 +27,7 @@ const App = (props) => {
   return (
     <CacheProvider value={emotionCache}>
       <Head>
+        <link rel="stylesheet" href="styles/Ver.css" />
         <title>
           Portal Ternium
         </title>

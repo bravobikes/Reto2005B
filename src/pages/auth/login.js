@@ -19,7 +19,7 @@ import {
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
 
-import logoImageUrl from 'public/assets/terniumLogo.png';
+
 
 const Page = () => {
   const router = useRouter();
@@ -179,7 +179,7 @@ const Page = () => {
             zIndex: 1,
           }}
         >
-          <img src={logoImageUrl} alt="Logo" style={{ maxWidth: '100%' }} />
+          <img src="/assets/terniumLogo.png" alt="Logo" style={{ maxWidth: '100%' }} />
         </Box>
       </Box>
     </>
