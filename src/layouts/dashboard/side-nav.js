@@ -130,18 +130,6 @@ export const SideNav = (props) => {
             py: 3
           }}
         >
-          <Typography
-            color="neutral.100"
-            variant="subtitle2"
-          >
-            Need more features?
-          </Typography>
-          <Typography
-            color="neutral.500"
-            variant="body2"
-          >
-            Check out our Pro solution template.
-          </Typography>
           <Box
             sx={{
               display: 'flex',
