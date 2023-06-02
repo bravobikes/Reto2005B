@@ -1,13 +1,36 @@
 import PropTypes from 'prop-types';
+import React, { useState, useEffect } from 'react';
 import NextLink from 'next/link';
 import { Box, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { Logo } from 'src/components/logo';
-import bgImage1 from 'public/assets/devias-kit-pro.png';
 
-// TODO: Change subtitle text
+const imageUrls = [
+  '/assets/Centro-Industrial-Ternium-1.jpg',
+  '/assets/ternium_madeofsteel_empaque-01-1.png',
+  '/assets/Ternium-640x360.jpg',
+  // Add more image URLs as needed
+];
 
 export const Layout = (props) => {
   const { children } = props;
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fadeIn, setFadeIn] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFadeIn(false);
+      setTimeout(() => {
+        setCurrentImageIndex((prevIndex) => (prevIndex + 1) % imageUrls.length);
+        setFadeIn(true);
+      }, 500);
+    }, 3000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
+  const currentImageUrl = imageUrls[currentImageIndex];
 
   return (
     <Box
@@ -25,8 +48,6 @@ export const Layout = (props) => {
           xs={12}
           lg={6}
           sx={{
-            backgroundImage: 'url(${bgImage1})',
-            backgroundRepeat: 'no-repeat',
             display: 'flex',
             flexDirection: 'column',
             position: 'relative'
@@ -60,22 +81,32 @@ export const Layout = (props) => {
           xs={12}
           lg={6}
           sx={{
+            position: 'relative',
             alignItems: 'center',
-            background: 'radial-gradient(50% 50% at 50% 50%, #122647 0%, #090E23 100%)',
             color: 'white',
             display: 'flex',
             justifyContent: 'center',
-            '& img': {
-              maxWidth: '100%'
-            }
           }}
         >
+          <div
+            className="image-container"
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+              backgroundImage: `url(${currentImageUrl})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              transition: 'opacity 0.5s ease-in-out',
+              opacity: fadeIn ? 1 : 0,
+            }}
+          />
         </Grid>
       </Grid>
     </Box>
   );
 };
 
-Layout.prototypes = {
+Layout.propTypes = {
   children: PropTypes.node
 };
