@@ -8,7 +8,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Account | Ternium
+        Profile | Portal Ternium
       </title>
     </Head>
     <Box

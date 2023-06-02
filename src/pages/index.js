@@ -17,7 +17,7 @@ const Page = () => (
   <>
     <Head>
       <title>
-        Overview | Ternium
+        Dashboard | Portal Ternium
       </title>
     </Head>
     <Box

@@ -199,7 +199,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Customers | Devias Kit
+          Courses | Portal Ternium
         </title>
       </Head>
       <Box

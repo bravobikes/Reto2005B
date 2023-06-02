@@ -70,25 +70,6 @@ export const SettingsNotifications = () => {
               sm={6}
               xs={12}
             >
-              <Stack spacing={1}>
-                <Typography variant="h6">
-                  Messages
-                </Typography>
-                <Stack>
-                  <FormControlLabel
-                    control={<Checkbox defaultChecked />}
-                    label="Email"
-                  />
-                  <FormControlLabel
-                    control={<Checkbox />}
-                    label="Push Notifications"
-                  />
-                  <FormControlLabel
-                    control={<Checkbox defaultChecked />}
-                    label="Phone calls"
-                  />
-                </Stack>
-              </Stack>
             </Grid>
           </Grid>
         </CardContent>
