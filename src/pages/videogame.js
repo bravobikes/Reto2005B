@@ -3,10 +3,10 @@ import { Unity, useUnityContext } from "react-unity-webgl";
 
 export default function Videogame() {
   const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
-    loaderUrl: "temp/Build/temp.loader.js",
-    dataUrl: "temp/Build/temp.data",
-    frameworkUrl: "temp/Build/temp.framework.js",
-    codeUrl: "temp/Build/temp.wasm",
+    loaderUrl: "Juego/Build/Juego.loader.js",
+    dataUrl: "Juego/Build/Juego.data",
+    frameworkUrl: "Juego/Build/Juego.framework.js",
+    codeUrl: "Juego/Build/Juego.wasm",
   });
 
   // We'll use a state to store the device pixel ratio.
@@ -44,7 +44,7 @@ export default function Videogame() {
     )}
     <Unity
       unityProvider={unityProvider}
-      style={{ width: 1920, height: 1080 }}
+      style={{ width: 2160, height: 1080 }}
       devicePixelRatio={devicePixelRatio}
     />
     </>
