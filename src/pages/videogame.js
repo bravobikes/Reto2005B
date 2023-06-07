@@ -1,12 +1,12 @@
-import React, { useState, useEffect, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
 
 export default function Videogame() {
   const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
-    loaderUrl: "build/myunityapp.loader.js",
-    dataUrl: "build/myunityapp.data",
-    frameworkUrl: "build/myunityapp.framework.js",
-    codeUrl: "build/myunityapp.wasm",
+    loaderUrl: "temp/Build/temp.loader.js",
+    dataUrl: "temp/Build/temp.data",
+    frameworkUrl: "temp/Build/temp.framework.js",
+    codeUrl: "temp/Build/temp.wasm",
   });
 
   // We'll use a state to store the device pixel ratio.

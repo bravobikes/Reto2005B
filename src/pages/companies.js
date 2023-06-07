@@ -2,6 +2,7 @@ import Head from 'next/head';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
+import Frame from './frame.js';
 import {
   Box,
   Button,
@@ -52,6 +53,7 @@ const Page = () => (
           </Stack>
         </Stack>
       </Container>
+      <Frame/>
     </Box>
   </>
 );
