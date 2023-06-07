@@ -38,10 +38,15 @@ export default function Videogame() {
   );
 
   return (
+    <>
+    {!isLoaded && (
+      <p>Loading Application... {Math.round(loadingProgression * 100)}%</p>
+    )}
     <Unity
       unityProvider={unityProvider}
-      style={{ width: 800, height: 600 }}
+      style={{ width: 1920, height: 1080 }}
       devicePixelRatio={devicePixelRatio}
     />
+    </>
   );
 }

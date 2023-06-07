@@ -51,9 +51,10 @@ const Page = () => (
               </Stack>
             </Stack>
           </Stack>
+          <Frame/>
         </Stack>
       </Container>
-      <Frame/>
+      
     </Box>
   </>
 );
