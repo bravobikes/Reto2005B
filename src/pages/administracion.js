@@ -110,6 +110,8 @@ const Page = () => {
     setShow(!show);
   }
 
+  // La info nomas se muestra si se hace un cambio por alguna razon
+
   useEffect(() => {
     
     
