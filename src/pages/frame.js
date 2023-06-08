@@ -6,7 +6,7 @@ export default function Frame() {
                 transformOrigin: "top left",
                 border: 0,
                 borderRadius: "2em"
-            }} width="1920px" height="1080px" className="frame" src="http://localhost:3000/videogame"></iframe>
+            }} width="1920px" height="1080px" className="frame" src="http://localhost:5173/videogame"></iframe>
         </div>
     )
 }
