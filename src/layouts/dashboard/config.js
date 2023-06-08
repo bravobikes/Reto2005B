@@ -20,7 +20,7 @@ export const items = [
   },
   {
     title: 'Courses',
-    path: '/customers',
+    path: '/courses',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -30,7 +30,7 @@ export const items = [
   {
     // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
     title: 'Administracion',
-    path: '/courses',
+    path: '/administracion',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />

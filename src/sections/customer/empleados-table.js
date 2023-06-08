@@ -81,13 +81,13 @@ export const EmpleadosTable = (props) => {
             <TableBody>
                 {/* items es el arreglo de objetos customer */}
               {items.map((customer, index) => {
-                const isSelected = selected.includes(customer.id);
+                const isSelected = selected.includes(customer.Id);
                 // const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
                     hover
-                    key={customer.id}
+                    key={customer.Id}
                     selected={isSelected}
                   >
                     {/* cambiar esto para el tipo de objeto que yo quiero */}
@@ -98,27 +98,32 @@ export const EmpleadosTable = (props) => {
                         spacing={2}
                       >
                         <Avatar src={customer.avatar}>
-                          {getInitials(customer.nomAp)}
+                          {/* {getInitials(customer.nomAp)} */}
+                          {getInitials(customer.Name)}
                         </Avatar>
                         <Typography variant="subtitle2">
-                          {customer.nomAp}
+                          {/* {customer.nomAp} */}
+                          {customer.Name}
                         </Typography>
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.fechNac}
+                      {customer.Id}
                     </TableCell>
                     <TableCell>
-                      {customer.Estado}, {customer.pais}
+                      {/* {customer.City}, {customer.pais} */}
+                      {customer.City}
                     </TableCell>
                     <TableCell>
-                      {customer.user}
+                      {customer.Name}
                     </TableCell>
                     <TableCell>
-                      {customer.cursosTomados}
+                      {/* {customer.cursosTomados} */}
+                      {customer.City}
                     </TableCell>
                     <TableCell>
-                      {customer.Managerial.toString()}
+                      {/* {customer.Managerial.toString()} */}
+                      {customer.City}
                     </TableCell>
                     <TableCell>
                       {/* aqui poner los botones de editar y eso */}

@@ -6,9 +6,9 @@
   "homepage": "https://devias.io",
   "private": false,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev -p 5173",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 5173",
     "export": "next export",
     "lint": "next lint",
     "lint-fix": "next lint --fix"
@@ -24,6 +24,7 @@
     "@mui/system": "5.11.9",
     "@mui/x-date-pickers": "5.0.19",
     "apexcharts": "3.37.0",
+    "axios": "^1.4.0",
     "date-fns": "2.29.3",
     "formik": "2.2.9",
     "next": "13.1.6",
