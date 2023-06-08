@@ -10,6 +10,7 @@ import {
   TextField,
   Unstable_Grid2 as Grid
 } from '@mui/material';
+import axios from 'axios';
 
 const states = [
   {
@@ -31,14 +32,23 @@ const states = [
 ];
 
 export const AccountProfileDetails = () => {
-  const [values, setValues] = useState({
-    firstName: 'Anika',
-    lastName: 'Visser',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'los-angeles',
-    country: 'USA'
-  });
+
+  const registerEmployeeUrl = 'http://localhost:5000/registeremployee';
+
+  // const [values, setValues] = useState({
+  //   firstName: 'Anika',
+  //   lastName: 'Visser',
+  //   email: 'demo@devias.io',
+  //   phone: '',
+  //   state: 'los-angeles',
+  //   country: 'USA'
+  // });
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [city, setCity] = useState('');
+  const [message, setMessage] = useState('');
 
   const handleChange = useCallback(
     (event) => {
@@ -50,15 +60,37 @@ export const AccountProfileDetails = () => {
     []
   );
 
-  const handleSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
-    },
-    []
-  );
+  // const handleSubmit = useCallback(
+  //   (event) => {
+  //     event.preventDefault();
+  //   },
+  //   []
+  // );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // console.log(`username: ${username}, password:${password}`);
+    // console.log(`username: ${username}, password: ${password}, name: ${name}, age: ${age}, city: ${city}`);
+
+    try {
+        // Send a POST request to the server with the registration data
+      const response = await axios.post(registerEmployeeUrl, { username, password, name, age, city });
+      console.log("PostRegister handle submit");
+    // Handle the response
+    if (response.status === 200) {
+      setMessage('Registration successful');
+    } else {
+      setMessage('Registration failed');
+    }
+  } catch (error) {
+    console.error('Error registering user:', error);
+    setMessage('Error registering user');
+  }
+};
 
   return (
-    <form
+    <div>
+      <form
       autoComplete="off"
       noValidate
       onSubmit={handleSubmit}
@@ -75,6 +107,73 @@ export const AccountProfileDetails = () => {
               spacing={3}
             >
               <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  helperText="Please specify the Username"
+                  label="Username"
+                  name="username"
+                  onChange={(e) => setUsername(e.target.value)}
+                  required
+                  value={username}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  label="Password"
+                  name="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  value={password}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  helperText="Please specify the first name"
+                  label="Name"
+                  name="name"
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                  value={name}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  label="Age"
+                  name="age"
+                  onChange={(e) => setAge(e.target.value)}
+                  required
+                  value={age}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  label="City"
+                  name="city"
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                  value={city}
+                />
+              </Grid>
+              {/* <Grid
                 xs={12}
                 md={6}
               >
@@ -163,17 +262,21 @@ export const AccountProfileDetails = () => {
                     </option>
                   ))}
                 </TextField>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button variant="contained">
+          <Button type='submit' variant="contained">
             Save details
           </Button>
         </CardActions>
       </Card>
     </form>
+    {message && <p>{message}</p>}
+    </div>
+    
+    
   );
 };
