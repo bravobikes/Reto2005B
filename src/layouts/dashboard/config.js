@@ -47,8 +47,17 @@ export const items = [
     )
   },
   {
-    title: 'Profile',
-    path: '/account',
+    title: 'Profile-administrator',
+    path: '/profile-asadministrator',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    title: 'Profile-employee',
+    path: '/profile-asemployee',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
