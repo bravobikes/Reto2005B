@@ -15,81 +15,19 @@ import Ver from 'src/sections/customer/Ver';
 import {v4 as uuid} from 'uuid';
 import axios from 'axios';
 
-const now = new Date();
-
-
-const ejemploObjeto = {
-    // aqui item es data, data es el arreglo
-    id: uuid(),
-    // esto no sabria como aplicarlo con la base de datos la vdd por ahora solo lo pondre y ya
-    avatar: '/assets/avatars/avatar-carson-darrin.png',
-    nomAp: "Sebastian Ramirez Cordero",
-    // esto tal vez guardar como tipo de dato date para filtrar y asi
-    fechNac: "08/09/2002",
-    pais: "Mexico",
-    Estado: "Nuevo Leon",
-    lvl: 34,
-    topScore: 250,
-    user: "sebramirez",
-    cursosTomados: 23,
-    Managerial: false,
-    cursos: [
-        {nombreCurso: "Curso1", descripcion: "Es un curso que me invente como ejemplo y asi etc."},
-        {nombreCurso: "Curso2", descripcion: "Es otro curso que me invente como ejemplo y asi etc."}
-    ],
-    unidad: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    div: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    perfil: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    origenCand: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    posIngreso: "Gerente idk",
-    posActiva: "Regional Manager Dunder Mifflin",
-    Clerical: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    escuela: "Tec de Monterrey",
-    descTitulo: "ITC ingeniero bla bla bla",
-    grad: false,
-    esp: "No se que es Type",
-    Estruc3: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    Estruc4: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    Estruc5: "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Mollitia sequi magnam voluptas blanditiis. Rerum hic vitae distinctio dolore quisquam optio id, ea, velit at modi aliquid possimus porro laboriosam iusto.",
-    rot: false,
-    cantRot: 34
-}
-// const data = [];
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-// data.push({...ejemploObjeto, id: uuid()});
-
 
 const useCustomers = (data, page, rowsPerPage) => {
-  return useMemo(
-    () => {
-      return applyPagination(data, page, rowsPerPage);
-    },
-    [page, rowsPerPage]
-  );
+  return useMemo(() => {
+    return applyPagination(data, page, rowsPerPage);
+  }, [data, page, rowsPerPage]);
 };
 
 const useCustomerIds = (customers) => {
-  return useMemo(
-    () => {
-      return customers.map((customer) => customer.id);
-    },
-    [customers]
-  );
+  return useMemo(() => {
+    return customers.map((customer) => customer.id);
+  }, [customers]);
 };
+
 
 const Page = () => {
   const [show, setShow] = useState(false);
@@ -101,6 +39,8 @@ const Page = () => {
   const customersIds = useCustomerIds(customers);
   const customersSelection = useSelection(customersIds);
 
+  const [isLoading, setIsLoading] = useState(true);
+
   const getPeopleUrl = 'http://localhost:5000/getpeople';
   const deleteUrl = 'http://localhost:5000/deletepeople';
 
@@ -110,26 +50,38 @@ const Page = () => {
     setShow(!show);
   }
 
-  // La info nomas se muestra si se hace un cambio por alguna razon
-
   useEffect(() => {
-    
-    
-    axios.get(getPeopleUrl)
-      .then((response) => {
+    // console.log('Before fetch:', data);
+  
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(getPeopleUrl);
+        // console.log('API response:', response);
+        // console.log('API data:', response.data);
+  
         setData(response.data);
-      })
-      .catch((error) => {
+        // console.log('After setData:', data);
+  
+        setIsLoading(false); // Update loading state
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
-
+        setIsLoading(false); // Update loading state even if an error occurs
+      }
+    };
+  
+    fetchData();
   }, []);
+
+  // useEffect(() => {
+  //   console.log('data:', data);
+  // }, [data]);
+  
 
 
   const handlePageChange = useCallback(
     (event, value) => {
-      console.log()
       setPage(value);
+
     },
     []
   );
@@ -220,7 +172,10 @@ const Page = () => {
               </div>
             </Stack>
             <CustomersSearch />
-            <EmpleadosTable 
+            {isLoading ? (
+              <div>Loading...</div> // Replace this with your desired loading indicator
+            ) : (
+              <EmpleadosTable 
                 toggle={renderView}
                 count={data.length}
                 items={customers}
@@ -233,7 +188,8 @@ const Page = () => {
                 page={page}
                 rowsPerPage={rowsPerPage}
                 selected={customersSelection.selected}
-            />
+              />
+            )} 
 
           </Stack>
         </Container>
