@@ -88,11 +88,13 @@ const Page = () => {
       if (response.status === 200) {
         const sessionUserRes = await axios.get(getSessionUser);
         const sessionUser = sessionUserRes.data.user
-        setMessage('Login successful');
+        // setMessage('Login successful');
+        setMessage('Bienvenidx!!');
         router.push('/');
         // navigateTo(`/perfil/${sessionUser}`);
       } else {
-        setMessage('Login failed');
+        // setMessage('Login failed');
+        setMessage('Usuario/contraseña incorrectos');
       }
     } catch (error) {
       console.error('Error logging in:', error);
@@ -223,6 +225,9 @@ const Page = () => {
                 </Button>
               </form>
               {message && <p>{message}</p>}
+              <p>
+                <b>Prueba:</b> Usuario: test contraseña: 123
+              </p>
             {/*  )} */}
           </div>
         </Box>
