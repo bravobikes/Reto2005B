@@ -112,9 +112,9 @@ export const CustomersTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        <Avatar src={customer.avatar}>
+                        {/* <Avatar src={customer.avatar}>
                           {getInitials(customer.name)}
-                        </Avatar>
+                        </Avatar> */}
                         <Typography variant="subtitle2">
                           {customer.name}
                         </Typography>
@@ -124,7 +124,8 @@ export const CustomersTable = (props) => {
                       {customer.email}
                     </TableCell>
                     <TableCell>
-                      {customer.address.city}, {customer.address.state}, {customer.address.country}
+                      {/* {customer.address.city}, {customer.address.state}, {customer.address.country} */}
+                      {customer.address.city}
                     </TableCell>
                     <TableCell>
                       {customer.phone}

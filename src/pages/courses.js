@@ -17,72 +17,72 @@ const data = [
   {
     id: '5e887ac47eed253091be10cb',
     address: {
-      city: 'Cleveland',
-      country: 'USA',
-      state: 'Ohio',
+      city: 'Recursos Humanos',
+      country: '',
+      state: '',
       street: '2849 Fulton Street'
     },
     avatar: '/assets/avatars/avatar-carson-darrin.png',
     createdAt: subDays(subHours(now, 7), 1).getTime(),
     email: 'carson.darrin@devias.io',
-    name: 'Carson Darrin',
-    phone: '304-428-3097'
+    name: 'Healthcare Erbology',
+    phone: '2 hrs'
   },
   {
     id: '5e887b209c28ac3dd97f6db5',
     address: {
-      city: 'Atlanta',
-      country: 'USA',
-      state: 'Georgia',
+      city: 'Integridad',
+      country: '',
+      state: '',
       street: '1865  Pleasant Hill Road'
     },
     avatar: '/assets/avatars/avatar-fran-perez.png',
     createdAt: subDays(subHours(now, 1), 2).getTime(),
     email: 'fran.perez@devias.io',
-    name: 'Fran Perez',
-    phone: '712-351-5711'
+    name: 'Makeup Lancome Rouge',
+    phone: '4 hrs'
   },
   {
     id: '5e887b7602bdbc4dbb234b27',
     address: {
-      city: 'North Canton',
-      country: 'USA',
-      state: 'Ohio',
+      city: 'Ética',
+      country: '',
+      state: '',
       street: '4894  Lakeland Park Drive'
     },
     avatar: '/assets/avatars/avatar-jie-yan-song.png',
     createdAt: subDays(subHours(now, 4), 2).getTime(),
     email: 'jie.yan.song@devias.io',
-    name: 'Jie Yan Song',
-    phone: '770-635-2682'
+    name: 'Skincare Soja CO',
+    phone: '7 hrs'
   },
   {
     id: '5e86809283e28b96d2d38537',
     address: {
-      city: 'Madrid',
-      country: 'Spain',
+      city: 'Portal',
+      country: '',
       name: 'Anika Visser',
       street: '4158  Hedge Street'
     },
     avatar: '/assets/avatars/avatar-anika-visser.png',
     createdAt: subDays(subHours(now, 11), 2).getTime(),
     email: 'anika.visser@devias.io',
-    name: 'Anika Visser',
-    phone: '908-691-3242'
+    name: 'Makeup Lipstick',
+    phone: '1 hr'
   },
   {
     id: '5e86805e2bafd54f66cc95c3',
     address: {
-      city: 'San Diego',
-      country: 'USA',
-      state: 'California',
+      city: 'Recursos humanos',
+      country: '',
+      state: '',
       street: '75247'
     },
     avatar: '/assets/avatars/avatar-miron-vitold.png',
     createdAt: subDays(subHours(now, 7), 3).getTime(),
     email: 'miron.vitold@devias.io',
-    name: 'Miron Vitold',
-    phone: '972-333-4106'
+    name: 'Healthcare Ritual',
+    phone: '2 hrs'
   },
   {
     id: '5e887a1fbefd7938eea9c981',
@@ -95,7 +95,7 @@ const data = [
     avatar: '/assets/avatars/avatar-penjani-inyene.png',
     createdAt: subDays(subHours(now, 5), 4).getTime(),
     email: 'penjani.inyene@devias.io',
-    name: 'Penjani Inyene',
+    name: 'Healthcare Erbology',
     phone: '858-602-3409'
   },
   {
@@ -109,7 +109,7 @@ const data = [
     avatar: '/assets/avatars/avatar-omar-darboe.png',
     createdAt: subDays(subHours(now, 15), 4).getTime(),
     email: 'omar.darobe@devias.io',
-    name: 'Omar Darobe',
+    name: 'Healthcare Erbology',
     phone: '415-907-2647'
   },
   {
@@ -123,7 +123,7 @@ const data = [
     avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
     createdAt: subDays(subHours(now, 2), 5).getTime(),
     email: 'siegbert.gottfried@devias.io',
-    name: 'Siegbert Gottfried',
+    name: 'Healthcare Erbology',
     phone: '702-661-1654'
   },
   {
@@ -137,7 +137,7 @@ const data = [
     avatar: '/assets/avatars/avatar-iulia-albu.png',
     createdAt: subDays(subHours(now, 8), 6).getTime(),
     email: 'iulia.albu@devias.io',
-    name: 'Iulia Albu',
+    name: 'Healthcare Erbology',
     phone: '313-812-8947'
   },
   {
@@ -151,7 +151,7 @@ const data = [
     avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
     createdAt: subDays(subHours(now, 1), 9).getTime(),
     email: 'nasimiyu.danai@devias.io',
-    name: 'Nasimiyu Danai',
+    name: 'Healthcare Erbology',
     phone: '801-301-7894'
   }
 ];

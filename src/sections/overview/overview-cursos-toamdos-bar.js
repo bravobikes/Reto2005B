@@ -72,18 +72,18 @@ const useChartOptions = () => {
         show: true
       },
       categories: [
-        'Jan',
+        'Ene',
         'Feb',
         'Mar',
-        'Apr',
+        'Abr',
         'May',
         'Jun',
         'Jul',
-        'Aug',
+        'Ago',
         'Sep',
         'Oct',
         'Nov',
-        'Dec'
+        'Dic'
       ],
       labels: {
         offsetY: 5,
@@ -94,7 +94,7 @@ const useChartOptions = () => {
     },
     yaxis: {
       labels: {
-        formatter: (value) => (value > 0 ? `${value}K` : `${value}`),
+        formatter: (value) => (value > 0 ? `${value}` : `${value}`),
         offsetX: -10,
         style: {
           colors: theme.palette.text.secondary
@@ -111,20 +111,20 @@ export const OverviewSales = (props) => {
   return (
     <Card sx={sx}>
       <CardHeader
-        action={(
-          <Button
-            color="inherit"
-            size="small"
-            startIcon={(
-              <SvgIcon fontSize="small">
-                <ArrowPathIcon />
-              </SvgIcon>
-            )}
-          >
-            Sync
-          </Button>
-        )}
-        title="Cursos tomados"
+        // action={(
+        //   <Button
+        //     color="inherit"
+        //     size="small"
+        //     startIcon={(
+        //       <SvgIcon fontSize="small">
+        //         <ArrowPathIcon />
+        //       </SvgIcon>
+        //     )}
+        //   >
+        //     Sync
+        //   </Button>
+        // )}
+        title="Cursos tomados con año anterior"
       />
       <CardContent>
         <Chart
