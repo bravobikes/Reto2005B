@@ -16,6 +16,17 @@ import {
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
+import {Button} from '@mui/material';
+import {createTheme} from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+      primary: {
+          main: 'rgb(1,104,138)',
+          contrastText: 'rgb(7,84,110)'
+      }
+  }
+})
 
 export const CustomersTable = (props) => {
   const {
@@ -56,19 +67,19 @@ export const CustomersTable = (props) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
+                  Curso
                 </TableCell>
                 <TableCell>
-                  Email
+                  Contacto
                 </TableCell>
                 <TableCell>
-                  Location
+                  Área
                 </TableCell>
                 <TableCell>
-                  Phone
+                  Duración
                 </TableCell>
                 <TableCell>
-                  Signed Up
+                  Acciones
                 </TableCell>
               </TableRow>
             </TableHead>
@@ -119,7 +130,8 @@ export const CustomersTable = (props) => {
                       {customer.phone}
                     </TableCell>
                     <TableCell>
-                      {createdAt}
+                      {/* aqui poner los botones de editar y eso */}
+                      <Button theme={theme} color="primary" style={{marginRight: "1em", color: 'white', fontWeight:'600', borderRadius:'0.6em', padding:"0.5em", textTransform:"none"}} variant="contained">Más info</Button>
                     </TableCell>
                   </TableRow>
                 );

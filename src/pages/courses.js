@@ -7,7 +7,7 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { CustomersTable } from 'src/sections/customer/customers-table';
+import { CustomersTable } from 'src/sections/customer/tabla_cursos';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
 
@@ -218,7 +218,7 @@ const Page = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h4">
-                  Customers
+                  Cursos
                 </Typography>
                 <Stack
                   alignItems="center"
@@ -233,7 +233,7 @@ const Page = () => {
                       </SvgIcon>
                     )}
                   >
-                    Import
+                    Botón
                   </Button>
                   <Button
                     color="inherit"
@@ -243,7 +243,7 @@ const Page = () => {
                       </SvgIcon>
                     )}
                   >
-                    Export
+                    Botón
                   </Button>
                 </Stack>
               </Stack>
@@ -256,7 +256,7 @@ const Page = () => {
                   )}
                   variant="contained"
                 >
-                  Add
+                  botón
                 </Button>
               </div>
             </Stack>
