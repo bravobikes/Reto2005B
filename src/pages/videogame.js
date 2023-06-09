@@ -44,7 +44,7 @@ export default function Videogame() {
     )}
     <Unity
       unityProvider={unityProvider}
-      style={{ width: 2160, height: 1080 }}
+      style={{ width: "100vw", height: "100vh" }}
       devicePixelRatio={devicePixelRatio}
     />
     </>

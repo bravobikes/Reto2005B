@@ -20,7 +20,7 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 
 const Page = () => (
   <>
-    <Head>
+    {/* <Head>
       <title>
         Videojuego | Portal Ternium
       </title>
@@ -33,6 +33,21 @@ const Page = () => (
       }}
     >
       <Container maxWidth="xl">
+        
+        
+      </Container>
+      
+    </Box>
+    <Frame/> */}
+    <Head>
+      <title>
+        Videojuego | Portal Ternium
+      </title>
+    </Head>
+    <Box
+      component="main"
+      sx={{flexGrow:1, py: 8}}>
+        <Container maxWidth="xl">
         <Stack spacing={3}>
           <Stack
             direction="row"
@@ -48,13 +63,21 @@ const Page = () => (
                 direction="row"
                 spacing={1}
               >
+                
               </Stack>
             </Stack>
+            
           </Stack>
-          <Frame/>
+          
         </Stack>
-      </Container>
-      
+        
+        <Box>
+        
+          <Frame />
+        
+        </Box>
+        </Container>
+
     </Box>
   </>
 );
