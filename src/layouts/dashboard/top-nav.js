@@ -16,6 +16,8 @@ import {
 import { alpha } from '@mui/material/styles';
 import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
+import { useCallback, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
@@ -24,6 +26,35 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const accountPopover = usePopover();
+  const getEmployeeUrl = 'http://localhost:5000/getEmployee/';
+  const deleteUrl = 'http://localhost:5000/deletepeople';
+  const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
+  const [data, setData] = useState([]);
+  // Obtener el id el usuario de la sesion
+  //id = ...
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        // Make a request to the server to fetch the user profile
+        const sessionUserRes = await axios.get(getSessionUserUrl);
+        const sessionUser = sessionUserRes.data.user
+        // console.log(sessionUser);
+        const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
+        const data = response.data;
+
+        console.log(response);
+        // Set the user state with the retrieved profile data
+        setData(data);
+        
+      } catch (error) {
+        console.error('Error fetching user profile:', error);
+      }
+    };
+
+    fetchProfile();
+    console.log(data);
+  }, []);
 
   return (
     <>
@@ -72,6 +103,7 @@ export const TopNav = (props) => {
                 </SvgIcon>
               </IconButton>
             </Tooltip>
+            <h3>{data.Name}</h3>
           </Stack>
           <Stack
             alignItems="center"
