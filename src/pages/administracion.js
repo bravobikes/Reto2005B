@@ -52,7 +52,7 @@ const Page = () => {
     setShow(!show);
   }
   function renderEdit(index = null) {
-    setSelectedUser(data[inde])
+    setSelectedUser(data[index])
     setShowEdit(!showEdit);
   }
 

@@ -1,4 +1,8 @@
 export default function Edit ({user, close}) {
+    const item = [{
+        nombreCurso : 'botanic',
+        descripcion: 'curso de botanic'
+    }]
     return  (
         <div className="Edit">
 
@@ -16,9 +20,10 @@ export default function Edit ({user, close}) {
                 <ul>
                     {/* mappear el array de objetos cursos que quiero tener en el objeto */}
                     {/* para cada uno mostrar nombreCurso, descripcion. */}
-                    {user.cursos.map((item) => (
+                    
+                    {/* {user.cursos.map((item) => (
                         <li>{item.nombreCurso} - {item.descripcion}</li>
-                    ))}
+                    ))} */}
                 </ul>
                 <h2>gameStats</h2>
                 <h3>Nivel(lvl)</h3>
@@ -38,7 +43,7 @@ export default function Edit ({user, close}) {
                 <h3>perfil: </h3>
                 <p>{user.perfil}</p>
                 <h3>Managerial: </h3>
-                <p>{user.Managerial.toString()}</p>
+                {/* <p>{user.Managerial.toString()}</p> */}
                 <h2>Origen </h2>
                 <h3>origen Candidato: </h3>
                 <p>{user.origenCand}</p>
@@ -54,7 +59,7 @@ export default function Edit ({user, close}) {
                 <h3>descripcion del titulo: </h3>
                 <p>{user.descTitulo}</p>
                 <h3>graduado: </h3>
-                <p>{user.grad.toString()}</p>
+                {/* <p>{user.grad.toString()}</p> */}
                 <h3>esp? </h3>
                 <p>{user.esp}</p>
                 <h2>Area</h2>
@@ -66,7 +71,7 @@ export default function Edit ({user, close}) {
                 <p>{user.Estruc5}</p>
                 <h2>Rotacion?</h2>
                 <h3>rot?</h3>
-                <p>{user.rot.toString()}</p>
+                {/* <p>{user.rot.toString()}</p> */}
                 <h3>cantidadRot?</h3>
                 <p>{user.cantRot}</p>
                 <h3>Estruc5?</h3>
