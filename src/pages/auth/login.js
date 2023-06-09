@@ -96,7 +96,8 @@ const Page = () => {
       }
     } catch (error) {
       console.error('Error logging in:', error);
-      setMessage('Error logging in');
+      // setMessage('Error logging in');
+      setMessage('Usuario/contraseña incorrectos');
     }
   };
 
@@ -104,7 +105,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Login | Ternium
+          Inicio de sesión | Ternium
         </title>
       </Head>
       <Box
@@ -140,11 +141,11 @@ const Page = () => {
             </Stack>
             <Tabs
               // onChange={handleMethodChange}
-              sx={{ mb: 3 }}
+              sx={{ mb: 3, mt: 10 }}
               // value={method}
             >
               <Tab
-                label="Login"
+                label="Inicio de sesión"
                 // value="email"
               />
             </Tabs>
@@ -183,7 +184,7 @@ const Page = () => {
                     // error={!!(formik.touched.email && formik.errors.email)}
                     fullWidth
                     // helperText={formik.touched.email && formik.errors.email}
-                    label="Username"
+                    label="Usuario"
                     name="username"
                     // onBlur={formik.handleBlur}
                     onChange={(e) => setUsername(e.target.value)}
@@ -194,7 +195,7 @@ const Page = () => {
                     // error={!!(formik.touched.password && formik.errors.password)}
                     fullWidth
                     // helperText={formik.touched.password && formik.errors.password}
-                    label="Password"
+                    label="Contraseña"
                     name="password"
                     // onBlur={formik.handleBlur}
                     onChange={(e) => setPassword(e.target.value)}
@@ -218,7 +219,7 @@ const Page = () => {
                   type="submit"
                   variant="contained"
                 >
-                  Continue
+                  Ingresar
                 </Button>
               </form>
               {message && <p>{message}</p>}

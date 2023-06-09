@@ -10,7 +10,8 @@ import { SvgIcon } from '@mui/material';
 
 export const items = [
   {
-    title: 'Dashboard',
+    // title: 'Dashboard',
+    title: 'Tablero',
     path: '/',
     icon: (
       <SvgIcon fontSize="small">
@@ -19,7 +20,8 @@ export const items = [
     )
   },
   {
-    title: 'Courses',
+    // title: 'Courses',
+    title: 'Cursos',
     path: '/courses',
     icon: (
       <SvgIcon fontSize="small">
@@ -29,7 +31,8 @@ export const items = [
   },
   {
     // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
-    title: 'Administracion',
+    // title: 'Administración',
+    title: 'Administración',
     path: '/administracion',
     icon: (
       <SvgIcon fontSize="small">
@@ -38,7 +41,8 @@ export const items = [
     )
   },
   {
-    title: 'Videogame',
+    // title: 'Videogame',
+    title: 'Videojuego',
     path: '/companies',
     icon: (
       <SvgIcon fontSize="small">
@@ -47,7 +51,8 @@ export const items = [
     )
   },
   {
-    title: 'Profile-administrator',
+    // title: 'Profile-administrator',
+    title: 'Perfil - Adminstrador',
     path: '/profile-asadministrator',
     icon: (
       <SvgIcon fontSize="small">
@@ -56,7 +61,8 @@ export const items = [
     )
   },
   {
-    title: 'Profile-employee',
+    // title: 'Profile-employee',
+    title: 'Perfil - Empleado',
     path: '/profile-asemployee',
     icon: (
       <SvgIcon fontSize="small">
@@ -65,7 +71,8 @@ export const items = [
     )
   },
   {
-    title: 'Settings',
+    // title: 'Settings',
+    title: 'Ajustes',
     path: '/settings',
     icon: (
       <SvgIcon fontSize="small">
