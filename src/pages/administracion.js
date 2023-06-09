@@ -12,6 +12,7 @@ import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
 import { EmpleadosTable } from 'src/sections/customer/empleados-table';
 import Ver from 'src/sections/customer/Ver';
+import Edit from 'src/sections/customer/Edit';
 import {v4 as uuid} from 'uuid';
 import axios from 'axios';
 
