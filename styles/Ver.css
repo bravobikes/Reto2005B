@@ -24,3 +24,29 @@
 .VerContainer .close-btn {
     float:right;
 }
+.Edit {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.2);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.EditContainer {
+    max-height:80vh;
+    position: relative;
+    overflow-y:scroll;
+    padding: 32px;
+    width: 100%;
+    max-width:640px;
+    background-color:white;
+    border: 1px solid grey;
+    border-radius:1em;
+    
+}
+.EditContainer .close-btn {
+    float:right;
+}

@@ -31,6 +31,7 @@ const useCustomerIds = (customers) => {
 
 const Page = () => {
   const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -48,6 +49,10 @@ const Page = () => {
   function renderView(index = null) {
     setSelectedUser(data[index])
     setShow(!show);
+  }
+  function renderEdit(index = null) {
+    setSelectedUser(data[inde])
+    setShowEdit(!showEdit);
   }
 
   useEffect(() => {
@@ -113,6 +118,7 @@ const Page = () => {
         </title>
       </Head>
       {show && <Ver user={selectedUser} close={renderView} />}
+      {showEdit && <Edit user={selectedUser} close={renderView} />}
       <Box
         component="main"
         sx={{
@@ -177,6 +183,7 @@ const Page = () => {
             ) : (
               <EmpleadosTable 
                 toggle={renderView}
+                toggleEdit={renderEdit}
                 count={data.length}
                 items={customers}
                 onDeselectAll={customersSelection.handleDeselectAll}
