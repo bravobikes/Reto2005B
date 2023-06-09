@@ -71,7 +71,7 @@ const Page = () => (
           
         </Stack>
         
-        <Box>
+        <Box sx={{marginTop:"2.5%"}}>
         
           <Frame />
         

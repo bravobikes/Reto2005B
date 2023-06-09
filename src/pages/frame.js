@@ -1,6 +1,7 @@
 export default function Frame() {
     return (
-        <div className="wrapper" style={{width: "70%", height: "50vh"}}>
+        // height: 66.6666667, original: width: 70%, height: 50vh
+        <div className="wrapper" style={{width: "100%", height: "70vh"}}>
             <iframe style={{
                 transformOrigin: "top left",
                 border: 0,
