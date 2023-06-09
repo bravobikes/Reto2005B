@@ -3,6 +3,7 @@ import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import Frame from './frame.js';
+import Leaderboard from 'src/sections/overview/overview-leaderboard.js';
 import {useEffect, useRef} from 'react';
 import {
   Box,
@@ -41,25 +42,6 @@ const Page = () => {
   }, []);
 
   return(<>
-    {/* <Head>
-      <title>
-        Videojuego | Portal Ternium
-      </title>
-    </Head>
-    <Box
-      component="main"
-      sx={{
-        flexGrow: 1,
-        py: 8
-      }}
-    >
-      <Container maxWidth="xl">
-        
-        
-      </Container>
-      
-    </Box>
-    <Frame/> */}
     <Head>
       <title>
         Videojuego | Portal Ternium
@@ -93,9 +75,10 @@ const Page = () => {
         </Stack>
         
         <Box ref={frameRef} sx={{marginTop:"2.5%"}}>
-        
           <Frame />
-        
+        </Box>
+        <Box>
+          <Leaderboard/>
         </Box>
         </Container>
 

@@ -52,7 +52,7 @@ export const SideNav = (props) => {
               width: 32
             }}
           >
-            <Logo />
+            {/* <Logo /> */}
           </Box>
           <Box
             sx={{
@@ -66,7 +66,10 @@ export const SideNav = (props) => {
               p: '12px'
             }}
           >
-            <div>
+            {/* esto lo acabo de agregar, para regresarlo a como estaba */}
+            {/* Borrar esto y descomentar todo. */}
+            <Logo />
+            {/* <div>
               <Typography
                 color="inherit"
                 variant="subtitle1"
@@ -79,15 +82,16 @@ export const SideNav = (props) => {
               >
                 Production
               </Typography>
-            </div>
-            <SvgIcon
+            </div> */}
+            {/* <SvgIcon
               fontSize="small"
               sx={{ color: 'neutral.500' }}
             >
               <ChevronUpDownIcon />
-            </SvgIcon>
+            </SvgIcon> */}
           </Box>
         </Box>
+        {/* hasta aqui llega lo del logo y eso */}
         <Divider sx={{ borderColor: 'neutral.700' }} />
         <Box
           component="nav"
