@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Box, Container, Stack, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { AccountProfile } from 'src/sections/account/account-profile-asadministrator';
+import { AccountProfile } from 'src/sections/account/account-profile-asemployee';
 import { AccountProfileDetails } from 'src/sections/account/account-profile-details-asadministrator';
 
 const Page = () => (
@@ -22,7 +22,7 @@ const Page = () => (
         <Stack spacing={3}>
           <div>
             <Typography variant="h4">
-              Account
+              Perfil
             </Typography>
           </div>
           <div>

@@ -97,8 +97,8 @@ export const AccountProfileDetails = () => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Create new employee"
+          subheader="Ingrese la información del Trainee"
+          title="Agregar nuevo Trainee"
         />
         <CardContent sx={{ pt: 0 }}>
           <Box sx={{ m: -1.5 }}>
@@ -112,8 +112,8 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  helperText="Please specify the Username"
-                  label="Username"
+                  helperText="Ingrese nombre de usuario"
+                  label="Nombre de usuario"
                   name="username"
                   onChange={(e) => setUsername(e.target.value)}
                   required
@@ -127,7 +127,7 @@ export const AccountProfileDetails = () => {
                 <TextField
                   fullWidth
                   type='password'
-                  label="Password"
+                  label="Contraseña"
                   name="password"
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -140,8 +140,7 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  helperText="Please specify the first name"
-                  label="Name"
+                  label="Nombre"
                   name="name"
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -154,7 +153,7 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  label="Age"
+                  label="Edad"
                   name="age"
                   type='number'
                   onChange={(e) => setAge(e.target.value)}
@@ -168,7 +167,7 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  label="City"
+                  label="Ciudad"
                   name="city"
                   onChange={(e) => setCity(e.target.value)}
                   required

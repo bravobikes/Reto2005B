@@ -55,7 +55,7 @@ export const AccountProfileDetails = () => {
         const sessionUserRes = await axios.get(getSessionUserUrl);
         const sessionUser = sessionUserRes.data.user
         // console.log(sessionUser);
-        const response = await axios.get(getEmployeeUrl + sessionUser);
+        const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
         const data = response.data;
 
         console.log(response);
@@ -95,8 +95,8 @@ export const AccountProfileDetails = () => {
     >
       <Card>
         <CardHeader
-          subheader="The information can be edited"
-          title="Profile"
+          // subheader="The information can be "
+          title="Perfil"
         />
         <CardContent sx={{ pt: 0 }}>
           <Box sx={{ m: -1.5 }}>
