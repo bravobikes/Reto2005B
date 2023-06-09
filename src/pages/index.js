@@ -2,14 +2,14 @@ import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
 import { Box, Container, Unstable_Grid2 as Grid } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { OverviewBudget } from 'src/sections/overview/overview-budget';
-import { OverviewLatestOrders } from 'src/sections/overview/overview-latest-orders';
-import { OverviewLatestProducts } from 'src/sections/overview/overview-latest-products';
-import { OverviewSales } from 'src/sections/overview/overview-sales';
-import { OverviewTasksProgress } from 'src/sections/overview/overview-tasks-progress';
-import { OverviewTotalCustomers } from 'src/sections/overview/overview-total-customers';
-import { OverviewTotalProfit } from 'src/sections/overview/overview-total-profit';
-import { OverviewTraffic } from 'src/sections/overview/overview-traffic';
+import { OverviewBudget } from 'src/sections/overview/overview-salario';
+import { OverviewLatestOrders } from 'src/sections/overview/overview-cursos-tomados-tabla';
+import { OverviewLatestProducts } from 'src/sections/overview/overview-cursos-restantes';
+import { OverviewSales } from 'src/sections/overview/overview-cursos-toamdos-bar';
+import { OverviewTasksProgress } from 'src/sections/overview/overview-progreso-cursos';
+import { OverviewTotalCustomers } from 'src/sections/overview/overview-cursos-tomados';
+import { OverviewTotalProfit } from 'src/sections/overview/overview-puntos-totales';
+import { OverviewTraffic } from 'src/sections/overview/overview-areas-cursos-tomados';
 
 const now = new Date();
 
@@ -50,10 +50,10 @@ const Page = () => (
             lg={3}
           >
             <OverviewTotalCustomers
-              difference={16}
+              difference={25}
               positive={false}
               sx={{ height: '100%' }}
-              value="1.6k"
+              value="6"
             />
           </Grid>
           <Grid
@@ -73,7 +73,7 @@ const Page = () => (
           >
             <OverviewTotalProfit
               sx={{ height: '100%' }}
-              value="$15k"
+              value="15k"
             />
           </Grid>
           <Grid
@@ -101,7 +101,7 @@ const Page = () => (
           >
             <OverviewTraffic
               chartSeries={[63, 15, 22]}
-              labels={['Desktop', 'Tablet', 'Phone']}
+              labels={['RH', 'Portal', 'Integridad']}
               sx={{ height: '100%' }}
             />
           </Grid>
@@ -161,7 +161,8 @@ const Page = () => (
                     name: 'Ekaterina Tankova'
                   },
                   createdAt: 1555016400000,
-                  status: 'pending'
+                  endedAt: 1555016400000 + 1000000000,
+                  status: 'faltante'
                 },
                 {
                   id: '9eaa1c7dd4433f413c308ce2',
@@ -171,7 +172,8 @@ const Page = () => (
                     name: 'Cao Yu'
                   },
                   createdAt: 1555016400000,
-                  status: 'delivered'
+                  endedAt: 1555016400000 + 1000000000,
+                  status: 'completado'
                 },
                 {
                   id: '01a5230c811bd04996ce7c13',
@@ -181,7 +183,8 @@ const Page = () => (
                     name: 'Alexa Richardson'
                   },
                   createdAt: 1554930000000,
-                  status: 'refunded'
+                  endedAt: 1554930000000 + 1000000000,
+                  status: 'faltante'
                 },
                 {
                   id: '1f4e1bd0a87cea23cdb83d18',
@@ -191,7 +194,8 @@ const Page = () => (
                     name: 'Anje Keizer'
                   },
                   createdAt: 1554757200000,
-                  status: 'pending'
+                  endedAt: 1554757200000 + 1000000000,
+                  status: 'faltante'
                 },
                 {
                   id: '9f974f239d29ede969367103',
@@ -201,7 +205,8 @@ const Page = () => (
                     name: 'Clarke Gillebert'
                   },
                   createdAt: 1554670800000,
-                  status: 'delivered'
+                  endedAt: 1554670800000 + 1000000000,
+                  status: 'completado'
                 },
                 {
                   id: 'ffc83c1560ec2f66a1c05596',
@@ -211,7 +216,8 @@ const Page = () => (
                     name: 'Adam Denisov'
                   },
                   createdAt: 1554670800000,
-                  status: 'delivered'
+                  endedAt: 1554670800000 + 1000000000,
+                  status: 'completado'
                 }
               ]}
               sx={{ height: '100%' }}

@@ -226,7 +226,7 @@ const Page = () => {
               </form>
               {message && <p>{message}</p>}
               <p>
-                <b>Prueba:</b> Usuario: test contraseña: 123
+                <b>Prueba:</b> Usuario: U1 contraseña: 123
               </p>
             {/*  )} */}
           </div>

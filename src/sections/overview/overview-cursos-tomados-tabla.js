@@ -19,9 +19,9 @@ import { Scrollbar } from 'src/components/scrollbar';
 import { SeverityPill } from 'src/components/severity-pill';
 
 const statusMap = {
-  pending: 'warning',
-  delivered: 'success',
-  refunded: 'error'
+  // pending: 'warning',
+  completado: 'success',
+  faltante: 'error'
 };
 
 export const OverviewLatestOrders = (props) => {
@@ -29,29 +29,33 @@ export const OverviewLatestOrders = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Latest Orders" />
+      <CardHeader title="Cursos tomados" />
       <Scrollbar sx={{ flexGrow: 1 }}>
         <Box sx={{ minWidth: 800 }}>
           <Table>
             <TableHead>
               <TableRow>
                 <TableCell>
-                  Order
+                  Clave
                 </TableCell>
                 <TableCell>
-                  Customer
+                  Curso
                 </TableCell>
                 <TableCell sortDirection="desc">
-                  Date
+                  Fecha inicio
+                </TableCell>
+                <TableCell sortDirection="desc">
+                  Fecha final
                 </TableCell>
                 <TableCell>
-                  Status
+                  Estatus
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {orders.map((order) => {
                 const createdAt = format(order.createdAt, 'dd/MM/yyyy');
+                const endedAt = format(order.endedAt, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
@@ -66,6 +70,9 @@ export const OverviewLatestOrders = (props) => {
                     </TableCell>
                     <TableCell>
                       {createdAt}
+                    </TableCell>
+                    <TableCell>
+                      {endedAt}
                     </TableCell>
                     <TableCell>
                       <SeverityPill color={statusMap[order.status]}>
@@ -91,7 +98,7 @@ export const OverviewLatestOrders = (props) => {
           size="small"
           variant="text"
         >
-          View all
+          Ver todos
         </Button>
       </CardActions>
     </Card>
