@@ -18,56 +18,87 @@ import {
 } from '@mui/material';
 import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
+import axios from 'axios';
 
 
 
 const Page = () => {
+  const loginUrl = 'http://localhost:5000/login';
+  const getSessionUser = 'http://localhost:5000/getSessionUser';
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [message, setMessage] = useState('');
+  axios.defaults.withCredentials = true;
+
   const router = useRouter();
-  const auth = useAuth();
-  const [method, setMethod] = useState('email');
-  const formik = useFormik({
-    initialValues: {
-      email: 'demo@ternium.mx',
-      password: 'Password123!',
-      submit: null
-    },
-    validationSchema: Yup.object({
-      email: Yup
-        .string()
-        .email('Must be a valid email')
-        .max(255)
-        .required('Email is required'),
-      password: Yup
-        .string()
-        .max(255)
-        .required('Password is required')
-    }),
-    onSubmit: async (values, helpers) => {
-      try {
-        await auth.signIn(values.email, values.password);
+  // const auth = useAuth();
+  // const [method, setMethod] = useState('email');
+  // const formik = useFormik({
+  //   initialValues: {
+  //     email: 'demo@ternium.mx',
+  //     password: 'Password123!',
+  //     submit: null
+  //   },
+  //   validationSchema: Yup.object({
+  //     email: Yup
+  //       .string()
+  //       .email('Must be a valid email')
+  //       .max(255)
+  //       .required('Email is required'),
+  //     password: Yup
+  //       .string()
+  //       .max(255)
+  //       .required('Password is required')
+  //   }),
+  //   onSubmit: async (values, helpers) => {
+  //     try {
+  //       await auth.signIn(values.email, values.password);
+  //       router.push('/');
+  //     } catch (err) {
+  //       helpers.setStatus({ success: false });
+  //       helpers.setErrors({ submit: err.message });
+  //       helpers.setSubmitting(false);
+  //     }
+  //   }
+  // });
+
+  // const handleMethodChange = useCallback(
+  //   (event, value) => {
+  //     setMethod(value);
+  //   },
+  //   []
+  // );
+
+  // const handleSkip = useCallback(
+  //   () => {
+  //     auth.skip();
+  //     router.push('/');
+  //   },
+  //   [auth, router]
+  // );
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Send a POST request to the server with the login data
+      const response = await axios.post(loginUrl, { username, password });
+      // Handle the response
+      if (response.status === 200) {
+        const sessionUserRes = await axios.get(getSessionUser);
+        const sessionUser = sessionUserRes.data.user
+        setMessage('Login successful');
         router.push('/');
-      } catch (err) {
-        helpers.setStatus({ success: false });
-        helpers.setErrors({ submit: err.message });
-        helpers.setSubmitting(false);
+        // navigateTo(`/perfil/${sessionUser}`);
+      } else {
+        setMessage('Login failed');
       }
+    } catch (error) {
+      console.error('Error logging in:', error);
+      setMessage('Error logging in');
     }
-  });
-
-  const handleMethodChange = useCallback(
-    (event, value) => {
-      setMethod(value);
-    },
-    []
-  );
-
-  const handleSkip = useCallback(
-    () => {
-      auth.skip();
-      router.push('/');
-    },
-    [auth, router]
-  );
+  };
 
   return (
     <>
@@ -108,21 +139,22 @@ const Page = () => {
               </Typography>
             </Stack>
             <Tabs
-              onChange={handleMethodChange}
+              // onChange={handleMethodChange}
               sx={{ mb: 3 }}
-              value={method}
+              // value={method}
             >
               <Tab
                 label="Login"
-                value="email"
+                // value="email"
               />
             </Tabs>
-            {method === 'email' && (
+            {/* {method === 'email' && ( */}
               <form
                 noValidate
-                onSubmit={formik.handleSubmit}
+                // onSubmit={formik.handleSubmit}
+                onSubmit={handleSubmit}
               >
-                <Stack spacing={3}>
+                {/* <Stack spacing={3}>
                   <TextField
                     error={!!(formik.touched.email && formik.errors.email)}
                     fullWidth
@@ -145,8 +177,32 @@ const Page = () => {
                     type="password"
                     value={formik.values.password}
                   />
+                </Stack> */}
+                <Stack spacing={3}>
+                  <TextField
+                    // error={!!(formik.touched.email && formik.errors.email)}
+                    fullWidth
+                    // helperText={formik.touched.email && formik.errors.email}
+                    label="Username"
+                    name="username"
+                    // onBlur={formik.handleBlur}
+                    onChange={(e) => setUsername(e.target.value)}
+                    type="text"
+                    value={username}
+                  />
+                  <TextField
+                    // error={!!(formik.touched.password && formik.errors.password)}
+                    fullWidth
+                    // helperText={formik.touched.password && formik.errors.password}
+                    label="Password"
+                    name="password"
+                    // onBlur={formik.handleBlur}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    value={password}
+                  />
                 </Stack>
-                {formik.errors.submit && (
+                {/* {formik.errors.submit && (
                   <Typography
                     color="error"
                     sx={{ mt: 3 }}
@@ -154,7 +210,7 @@ const Page = () => {
                   >
                     {formik.errors.submit}
                   </Typography>
-                )}
+                )} */}
                 <Button
                   fullWidth
                   size="large"
@@ -165,7 +221,8 @@ const Page = () => {
                   Continue
                 </Button>
               </form>
-            )}
+              {message && <p>{message}</p>}
+            {/*  )} */}
           </div>
         </Box>
         <Box

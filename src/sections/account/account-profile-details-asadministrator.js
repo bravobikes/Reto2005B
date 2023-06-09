@@ -98,7 +98,7 @@ export const AccountProfileDetails = () => {
       <Card>
         <CardHeader
           subheader="The information can be edited"
-          title="Profile"
+          title="Create new employee"
         />
         <CardContent sx={{ pt: 0 }}>
           <Box sx={{ m: -1.5 }}>
@@ -126,6 +126,7 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
+                  type='password'
                   label="Password"
                   name="password"
                   onChange={(e) => setPassword(e.target.value)}
@@ -155,6 +156,7 @@ export const AccountProfileDetails = () => {
                   fullWidth
                   label="Age"
                   name="age"
+                  type='number'
                   onChange={(e) => setAge(e.target.value)}
                   required
                   value={age}

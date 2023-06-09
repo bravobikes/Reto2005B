@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import {
   Box,
   Button,
@@ -10,6 +10,8 @@ import {
   TextField,
   Unstable_Grid2 as Grid
 } from '@mui/material';
+import axios from 'axios';
+
 
 const states = [
   {
@@ -31,14 +33,42 @@ const states = [
 ];
 
 export const AccountProfileDetails = () => {
-  const [values, setValues] = useState({
-    firstName: 'Anika',
-    lastName: 'Visser',
-    email: 'demo@devias.io',
-    phone: '',
-    state: 'los-angeles',
-    country: 'USA'
-  });
+  // const [values, setValues] = useState({
+  //   firstName: 'Anika',
+  //   lastName: 'Visser',
+  //   email: 'demo@devias.io',
+  //   phone: '',
+  //   state: 'los-angeles',
+  //   country: 'USA'
+  // });
+  const getEmployeeUrl = 'http://localhost:5000/getEmployee/';
+  const deleteUrl = 'http://localhost:5000/deletepeople';
+  const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
+  const [data, setData] = useState([]);
+  // Obtener el id el usuario de la sesion
+  //id = ...
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        // Make a request to the server to fetch the user profile
+        const sessionUserRes = await axios.get(getSessionUserUrl);
+        const sessionUser = sessionUserRes.data.user
+        // console.log(sessionUser);
+        const response = await axios.get(getEmployeeUrl + sessionUser);
+        const data = response.data;
+
+        console.log(response);
+        // Set the user state with the retrieved profile data
+        setData(data);
+        
+      } catch (error) {
+        console.error('Error fetching user profile:', error);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   const handleChange = useCallback(
     (event) => {
@@ -79,6 +109,48 @@ export const AccountProfileDetails = () => {
                 md={6}
               >
                 <TextField
+                  fullWidth
+                  disabled={true}
+                  // helperText="Please specify the first name"
+                  label={data.Name}
+                  name="name"
+                  // required
+                  // value={data.Name}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  disabled={true}
+                  label={data.Age}
+                  name="age"
+                  type='number'
+                  // required
+                  // value={data.Age}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  disabled={true}
+                  // label="City"
+                  label={data.City}
+                  name="city"
+                  // required
+                  // value={data.City}
+                />
+              </Grid>
+              {/* <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
                   disabled={true}
                   fullWidth
                   helperText="Please specify the first name"
@@ -97,6 +169,7 @@ export const AccountProfileDetails = () => {
                   fullWidth
                   label="Last name"
                   name="lastName"
+                  disabled={true}
                   onChange={handleChange}
                   required
                   value={values.lastName}
@@ -110,6 +183,7 @@ export const AccountProfileDetails = () => {
                   fullWidth
                   label="Email Address"
                   name="email"
+                  disabled={true}
                   onChange={handleChange}
                   required
                   value={values.email}
@@ -123,6 +197,7 @@ export const AccountProfileDetails = () => {
                   fullWidth
                   label="Phone Number"
                   name="phone"
+                  disabled={true}
                   onChange={handleChange}
                   type="number"
                   value={values.phone}
@@ -136,6 +211,7 @@ export const AccountProfileDetails = () => {
                   fullWidth
                   label="Country"
                   name="country"
+                  disabled={true}
                   onChange={handleChange}
                   required
                   value={values.country}
@@ -149,6 +225,7 @@ export const AccountProfileDetails = () => {
                   fullWidth
                   label="Select State"
                   name="state"
+                  disabled={true}
                   onChange={handleChange}
                   required
                   select
@@ -164,15 +241,15 @@ export const AccountProfileDetails = () => {
                     </option>
                   ))}
                 </TextField>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          <Button variant="contained">
+          {/* <Button variant="contained">
             Save details
-          </Button>
+          </Button> */}
         </CardActions>
       </Card>
     </form>
