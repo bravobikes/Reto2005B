@@ -127,7 +127,7 @@ export const EmpleadosTable = (props) => {
                     </TableCell>
                     <TableCell>
                       {/* aqui poner los botones de editar y eso */}
-                      <Button color="success" onClick={() => props.toggle(index)} style={{marginRight:"1em"}} variant="contained">View</Button><Button theme={theme} onClick={() => props.toggleEdit(index)} color="primary" style={{marginRight: "1em", color: 'white', fontWeight:'600', borderRadius:'0.6em', padding:"0.5em", textTransform:"none"}} variant="contained">Edit</Button><Button color="error" variant="contained">Delete</Button>
+                      <Button theme={theme} onClick={() => props.toggleEdit(index)} color="primary" style={{marginRight: "1em", color: 'white', fontWeight:'600', borderRadius:'0.6em', padding:"0.5em", textTransform:"none"}} variant="contained">Detalles</Button>
                     </TableCell>
                   </TableRow>
                 );
