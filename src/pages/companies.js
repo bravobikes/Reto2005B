@@ -78,6 +78,7 @@ const Page = () => {
           <Frame />
         </Box>
         <Box>
+          
           <Leaderboard/>
         </Box>
         </Container>
