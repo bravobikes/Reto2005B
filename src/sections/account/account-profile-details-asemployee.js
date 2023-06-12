@@ -53,9 +53,9 @@ export const AccountProfileDetails = () => {
       try {
         // Make a request to the server to fetch the user profile
         const sessionUserRes = await axios.get(getSessionUserUrl);
-        // const sessionUser = sessionUserRes.data.user
+        const sessionUserGet = sessionUserRes.data.user
         const sessionUser = '1';
-        // console.log(sessionUser);
+        console.log(sessionUserGet);
         const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
         const data = response.data;
 

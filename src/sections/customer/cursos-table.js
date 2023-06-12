@@ -28,10 +28,10 @@ const theme = createTheme({
   }
 })
 
-export const CustomersTable = (props) => {
+export const CoursesTable = (props) => {
   const {
     count = 0,
-    items = [],
+    courses = [],
     onDeselectAll,
     onDeselectOne,
     onPageChange = () => {},
@@ -43,8 +43,9 @@ export const CustomersTable = (props) => {
     selected = []
   } = props;
 
-  const selectedSome = (selected.length > 0) && (selected.length < items.length);
-  const selectedAll = (items.length > 0) && (selected.length === items.length);
+  const selectedSome = (selected.length > 0) && (selected.length < courses.length);
+  const selectedAll = (courses.length > 0) && (selected.length === courses.length);
+  // console.log(courses);
 
   return (
     <Card>
@@ -70,28 +71,28 @@ export const CustomersTable = (props) => {
                   Curso
                 </TableCell>
                 <TableCell>
-                  Contacto
+                  Encuadre
                 </TableCell>
                 <TableCell>
-                  Área
+                  Modalidad
                 </TableCell>
                 <TableCell>
-                  Duración
+                  Fecha
                 </TableCell>
                 <TableCell>
-                  Acciones
+                  Más info
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {items.map((customer) => {
-                const isSelected = selected.includes(customer.id);
-                const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
+              {courses.map((course) => {
+                const isSelected = selected.includes(course.cursoId);
+                // const createdAt = format(course.fecha, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
                     hover
-                    key={customer.id}
+                    key={course.cursoId}
                     selected={isSelected}
                   >
                     <TableCell padding="checkbox">
@@ -99,9 +100,9 @@ export const CustomersTable = (props) => {
                         checked={isSelected}
                         onChange={(event) => {
                           if (event.target.checked) {
-                            onSelectOne?.(customer.id);
+                            onSelectOne?.(course.cursoId);
                           } else {
-                            onDeselectOne?.(customer.id);
+                            onDeselectOne?.(course.cursoId);
                           }
                         }}
                       />
@@ -112,23 +113,23 @@ export const CustomersTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        {/* <Avatar src={customer.avatar}>
-                          {getInitials(customer.name)}
+                        {/* <Avatar src={course.avatar}>
+                          {getInitials(course.name)}
                         </Avatar> */}
                         <Typography variant="subtitle2">
-                          {customer.name}
+                          {course.nombreCurso}
                         </Typography>
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.email}
+                      {course.encuadre}
                     </TableCell>
                     <TableCell>
-                      {/* {customer.address.city}, {customer.address.state}, {customer.address.country} */}
-                      {customer.address.city}
+                      {/* {course.address.city}, {course.address.state}, {course.address.country} */}
+                      {course.modalidad}
                     </TableCell>
                     <TableCell>
-                      {customer.phone}
+                      {course.fecha.split('T')[0]}
                     </TableCell>
                     <TableCell>
                       {/* aqui poner los botones de editar y eso */}
@@ -154,9 +155,9 @@ export const CustomersTable = (props) => {
   );
 };
 
-CustomersTable.propTypes = {
+CoursesTable.propTypes = {
   count: PropTypes.number,
-  items: PropTypes.array,
+  courses: PropTypes.array,
   onDeselectAll: PropTypes.func,
   onDeselectOne: PropTypes.func,
   onPageChange: PropTypes.func,

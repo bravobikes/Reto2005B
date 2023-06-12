@@ -16,7 +16,7 @@ import {
 import { alpha } from '@mui/material/styles';
 import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
-import { useCallback, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const SIDE_NAV_WIDTH = 280;
@@ -26,8 +26,7 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const accountPopover = usePopover();
-  const getEmployeeUrl = 'http://localhost:5000/getEmployee/';
-  const deleteUrl = 'http://localhost:5000/deletepeople';
+  const getEmpleadoUrl = 'http://localhost:5000/getEmpleado/';
   const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
   const [data, setData] = useState([]);
   // Obtener el id el usuario de la sesion
@@ -37,13 +36,14 @@ export const TopNav = (props) => {
     const fetchProfile = async () => {
       try {
         // Make a request to the server to fetch the user profile
-        const sessionUserRes = await axios.get(getSessionUserUrl);
-        const sessionUser = sessionUserRes.data.user
+        // const sessionUserRes = await axios.get(getSessionUserUrl);
+        // const sessionUser = sessionUserRes.data.user
+        const sessionUser = 1;
         // console.log(sessionUser);
-        const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
+        const response = await axios.get(getEmpleadoUrl + sessionUser, {credentials: 'include'});
         const data = response.data;
 
-        console.log(response);
+        // console.log(response);
         // Set the user state with the retrieved profile data
         setData(data);
         
@@ -53,7 +53,7 @@ export const TopNav = (props) => {
     };
 
     fetchProfile();
-    console.log(data);
+    // console.log(data);
   }, []);
 
   return (
@@ -103,7 +103,7 @@ export const TopNav = (props) => {
                 </SvgIcon>
               </IconButton>
             </Tooltip>
-            <h3>{data.Name}</h3>
+            <h3>{data.nombre + " " + data.apellidoPat}</h3>
           </Stack>
           <Stack
             alignItems="center"

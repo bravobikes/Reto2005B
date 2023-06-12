@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
@@ -7,179 +7,72 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { CustomersTable } from 'src/sections/customer/tabla_cursos';
+import { CoursesTable } from 'src/sections/customer/cursos-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
+import axios from 'axios';
 
-const now = new Date();
 
-const data = [
-  {
-    id: '5e887ac47eed253091be10cb',
-    address: {
-      city: 'Recursos Humanos',
-      country: '',
-      state: '',
-      street: '2849 Fulton Street'
-    },
-    avatar: '/assets/avatars/avatar-carson-darrin.png',
-    createdAt: subDays(subHours(now, 7), 1).getTime(),
-    email: 'carson.darrin@devias.io',
-    name: 'Healthcare Erbology',
-    phone: '2 hrs'
-  },
-  {
-    id: '5e887b209c28ac3dd97f6db5',
-    address: {
-      city: 'Integridad',
-      country: '',
-      state: '',
-      street: '1865  Pleasant Hill Road'
-    },
-    avatar: '/assets/avatars/avatar-fran-perez.png',
-    createdAt: subDays(subHours(now, 1), 2).getTime(),
-    email: 'fran.perez@devias.io',
-    name: 'Makeup Lancome Rouge',
-    phone: '4 hrs'
-  },
-  {
-    id: '5e887b7602bdbc4dbb234b27',
-    address: {
-      city: 'Ética',
-      country: '',
-      state: '',
-      street: '4894  Lakeland Park Drive'
-    },
-    avatar: '/assets/avatars/avatar-jie-yan-song.png',
-    createdAt: subDays(subHours(now, 4), 2).getTime(),
-    email: 'jie.yan.song@devias.io',
-    name: 'Skincare Soja CO',
-    phone: '7 hrs'
-  },
-  {
-    id: '5e86809283e28b96d2d38537',
-    address: {
-      city: 'Portal',
-      country: '',
-      name: 'Anika Visser',
-      street: '4158  Hedge Street'
-    },
-    avatar: '/assets/avatars/avatar-anika-visser.png',
-    createdAt: subDays(subHours(now, 11), 2).getTime(),
-    email: 'anika.visser@devias.io',
-    name: 'Makeup Lipstick',
-    phone: '1 hr'
-  },
-  {
-    id: '5e86805e2bafd54f66cc95c3',
-    address: {
-      city: 'Recursos humanos',
-      country: '',
-      state: '',
-      street: '75247'
-    },
-    avatar: '/assets/avatars/avatar-miron-vitold.png',
-    createdAt: subDays(subHours(now, 7), 3).getTime(),
-    email: 'miron.vitold@devias.io',
-    name: 'Healthcare Ritual',
-    phone: '2 hrs'
-  },
-  {
-    id: '5e887a1fbefd7938eea9c981',
-    address: {
-      city: 'Berkeley',
-      country: 'USA',
-      state: 'California',
-      street: '317 Angus Road'
-    },
-    avatar: '/assets/avatars/avatar-penjani-inyene.png',
-    createdAt: subDays(subHours(now, 5), 4).getTime(),
-    email: 'penjani.inyene@devias.io',
-    name: 'Healthcare Erbology',
-    phone: '858-602-3409'
-  },
-  {
-    id: '5e887d0b3d090c1b8f162003',
-    address: {
-      city: 'Carson City',
-      country: 'USA',
-      state: 'Nevada',
-      street: '2188  Armbrester Drive'
-    },
-    avatar: '/assets/avatars/avatar-omar-darboe.png',
-    createdAt: subDays(subHours(now, 15), 4).getTime(),
-    email: 'omar.darobe@devias.io',
-    name: 'Healthcare Erbology',
-    phone: '415-907-2647'
-  },
-  {
-    id: '5e88792be2d4cfb4bf0971d9',
-    address: {
-      city: 'Los Angeles',
-      country: 'USA',
-      state: 'California',
-      street: '1798  Hickory Ridge Drive'
-    },
-    avatar: '/assets/avatars/avatar-siegbert-gottfried.png',
-    createdAt: subDays(subHours(now, 2), 5).getTime(),
-    email: 'siegbert.gottfried@devias.io',
-    name: 'Healthcare Erbology',
-    phone: '702-661-1654'
-  },
-  {
-    id: '5e8877da9a65442b11551975',
-    address: {
-      city: 'Murray',
-      country: 'USA',
-      state: 'Utah',
-      street: '3934  Wildrose Lane'
-    },
-    avatar: '/assets/avatars/avatar-iulia-albu.png',
-    createdAt: subDays(subHours(now, 8), 6).getTime(),
-    email: 'iulia.albu@devias.io',
-    name: 'Healthcare Erbology',
-    phone: '313-812-8947'
-  },
-  {
-    id: '5e8680e60cba5019c5ca6fda',
-    address: {
-      city: 'Salt Lake City',
-      country: 'USA',
-      state: 'Utah',
-      street: '368 Lamberts Branch Road'
-    },
-    avatar: '/assets/avatars/avatar-nasimiyu-danai.png',
-    createdAt: subDays(subHours(now, 1), 9).getTime(),
-    email: 'nasimiyu.danai@devias.io',
-    name: 'Healthcare Erbology',
-    phone: '801-301-7894'
-  }
-];
-
-const useCustomers = (page, rowsPerPage) => {
-  return useMemo(
-    () => {
-      return applyPagination(data, page, rowsPerPage);
-    },
-    [page, rowsPerPage]
-  );
+const useCourses = (data, page, rowsPerPage) => {
+  const startIndex = page * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  return useMemo(() => data.slice(startIndex, endIndex), [data, page, rowsPerPage]);
 };
 
-const useCustomerIds = (customers) => {
+
+const useCoursesIds = (courses) => {
   return useMemo(
     () => {
-      return customers.map((customer) => customer.id);
+      return courses.map((course) => course.id);
     },
-    [customers]
+    [courses]
   );
 };
 
 const Page = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
-  const customers = useCustomers(page, rowsPerPage);
-  const customersIds = useCustomerIds(customers);
-  const customersSelection = useSelection(customersIds);
+
+  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [data, setData] = useState([]);
+  const courses = useCourses(data, page, rowsPerPage);
+  const coursesIds = useCoursesIds(courses);
+  const coursesSelection = useSelection(coursesIds);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getCursosUrl = 'http://localhost:5000/getcursos';
+
+
+  function renderView(index = null) {
+    setSelectedUser(data[index])
+    setShow(!show);
+  }
+  function renderEdit(index = null) {
+    setSelectedUser(data[index])
+    setShowEdit(!showEdit);
+  }
+
+  useEffect(() => {
+    // console.log('Before fetch:', data);
+  
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(getCursosUrl);
+        setData((prevData) => response.data); // Update state using the previous state
+        console.log('After setData:', response.data);
+        setIsLoading(false); // Update loading state
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false); // Update loading state even if an error occurs
+      }
+    };
+  
+    fetchData();
+  }, []);
+
 
   const handlePageChange = useCallback(
     (event, value) => {
@@ -194,6 +87,11 @@ const Page = () => {
     },
     []
   );
+
+  if (courses.length < 1) {
+    return <p>Loading...</p>; // Add a loading state while the data is being fetched
+  }
+
 
   return (
     <>
@@ -261,19 +159,23 @@ const Page = () => {
               </div>
             </Stack>
             <CustomersSearch />
-            <CustomersTable
-              count={data.length}
-              items={customers}
-              onDeselectAll={customersSelection.handleDeselectAll}
-              onDeselectOne={customersSelection.handleDeselectOne}
-              onPageChange={handlePageChange}
-              onRowsPerPageChange={handleRowsPerPageChange}
-              onSelectAll={customersSelection.handleSelectAll}
-              onSelectOne={customersSelection.handleSelectOne}
-              page={page}
-              rowsPerPage={rowsPerPage}
-              selected={customersSelection.selected}
-            />
+            {isLoading ? (
+              <div>Loading...</div> // Replace this with your desired loading indicator
+            ) : (
+              <CoursesTable
+                count={data.length}
+                courses={courses}
+                onDeselectAll={coursesSelection.handleDeselectAll}
+                onDeselectOne={coursesSelection.handleDeselectOne}
+                onPageChange={handlePageChange}
+                onRowsPerPageChange={handleRowsPerPageChange}
+                onSelectAll={coursesSelection.handleSelectAll}
+                onSelectOne={coursesSelection.handleSelectOne}
+                page={page}
+                rowsPerPage={rowsPerPage}
+                selected={coursesSelection.selected}
+              />
+            )} 
           </Stack>
         </Container>
       </Box>
