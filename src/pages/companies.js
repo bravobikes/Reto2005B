@@ -77,9 +77,8 @@ const Page = () => {
         <Box ref={frameRef} sx={{marginTop:"2.5%"}}>
           <Frame />
         </Box>
-        <Box>
-          
-          <Leaderboard/>
+        <Box sx={{marginTop:"2.5%"}}>
+            <Leaderboard/>
         </Box>
         </Container>
 
