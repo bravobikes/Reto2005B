@@ -17,16 +17,16 @@ import {v4 as uuid} from 'uuid';
 import axios from 'axios';
 
 
-const useCustomers = (data, page, rowsPerPage) => {
+const useEmployees = (data, page, rowsPerPage) => {
   return useMemo(() => {
     return applyPagination(data, page, rowsPerPage);
   }, [data, page, rowsPerPage]);
 };
 
-const useCustomerIds = (customers) => {
+const useEmployeeIds = (employees) => {
   return useMemo(() => {
-    return customers.map((customer) => customer.id);
-  }, [customers]);
+    return employees.map((employee) => employee.ID_CET);
+  }, [employees]);
 };
 
 
@@ -37,14 +37,14 @@ const Page = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [data, setData] = useState([]);
-  const customers = useCustomers(data, page, rowsPerPage);
-  const customersIds = useCustomerIds(customers);
-  const customersSelection = useSelection(customersIds);
+  const employees = useEmployees(data, page, rowsPerPage);
+  const employeesIds = useEmployeeIds(employees);
+  const employeesSelection = useSelection(employeesIds);
 
   const [isLoading, setIsLoading] = useState(true);
 
   const getPeopleUrl = 'http://localhost:5000/getpeople';
-  const deleteUrl = 'http://localhost:5000/deletepeople';
+  const getEmpleadosUrl = 'http://localhost:5000/getempleados';
 
 
   function renderView(index = null) {
@@ -61,7 +61,7 @@ const Page = () => {
   
     const fetchData = async () => {
       try {
-        const response = await axios.get(getPeopleUrl);
+        const response = await axios.get(getEmpleadosUrl);
         // console.log('API response:', response);
         // console.log('API data:', response.data);
   
@@ -78,9 +78,6 @@ const Page = () => {
     fetchData();
   }, []);
 
-  // useEffect(() => {
-  //   console.log('data:', data);
-  // }, [data]);
   
 
 
@@ -98,18 +95,6 @@ const Page = () => {
     },
     []
   );
-
-
-
-  const deletePerson = (id) => {
-    axios.delete(`${deleteUrl}/${id}`)
-      .then(() => {
-        setData(data.filter(item => item.Id !== id));
-      })
-      .catch((error) => {
-        console.error('Error deleting person:', error);
-      });
-    };
 
   return (
     <>
@@ -186,16 +171,16 @@ const Page = () => {
                 toggle={renderView}
                 toggleEdit={renderEdit}
                 count={data.length}
-                items={customers}
-                onDeselectAll={customersSelection.handleDeselectAll}
-                onDeselectOne={customersSelection.handleDeselectOne}
+                items={employees}
+                onDeselectAll={employeesSelection.handleDeselectAll}
+                onDeselectOne={employeesSelection.handleDeselectOne}
                 onPageChange={handlePageChange}
                 onRowsPerPageChange={handleRowsPerPageChange}
-                onSelectAll={customersSelection.handleSelectAll}
-                onSelectOne={customersSelection.handleSelectOne}
+                onSelectAll={employeesSelection.handleSelectAll}
+                onSelectOne={employeesSelection.handleSelectOne}
                 page={page}
                 rowsPerPage={rowsPerPage}
-                selected={customersSelection.selected}
+                selected={employeesSelection.selected}
               />
             )} 
 

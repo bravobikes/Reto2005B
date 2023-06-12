@@ -19,6 +19,7 @@ import {
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
+import Link from 'next/link';
 const theme = createTheme({
     palette: {
         primary: {
@@ -65,13 +66,13 @@ export const EmpleadosTable = (props) => {
                   pais y estado
                 </TableCell>
                 <TableCell>
-                  user
+                  Posición actual
                 </TableCell>
                 <TableCell>
-                  cursos tomados
+                  Título
                 </TableCell>
                 <TableCell>
-                  Managerial
+                  Puesto
                 </TableCell>
                 <TableCell>
                   Acciones
@@ -79,16 +80,16 @@ export const EmpleadosTable = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-                {/* items es el arreglo de objetos customer */}
-              {items.map((customer, index) => {
-                const isSelected = selected.includes(customer.Id);
-                // const createdAt = format(customer.createdAt, 'dd/MM/yyyy');
+                {/* items es el arreglo de objetos employee */}
+              {items.map((employee, index) => {
+                const isSelected = selected.includes(employee.ID_CET);
+                // const createdAt = format(employee.createdAt, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
-                    hover
-                    key={customer.Id}
-                    selected={isSelected}
+                  hover
+                  key={employee.ID_CET}
+                  selected={isSelected}
                   >
                     {/* cambiar esto para el tipo de objeto que yo quiero */}
                     <TableCell>
@@ -97,37 +98,38 @@ export const EmpleadosTable = (props) => {
                         direction="row"
                         spacing={2}
                       >
-                        <Avatar src={customer.avatar}>
-                          {/* {getInitials(customer.nomAp)} */}
-                          {getInitials(customer.Name)}
+                        <Avatar src={employee.avatar}>
+                          {/* {getInitials(employee.nomAp)} */}
+                          {getInitials(employee.nombre + ' ' + employee.apellidoPat)}
                         </Avatar>
                         <Typography variant="subtitle2">
-                          {/* {customer.nomAp} */}
-                          {customer.Name}
+                          {/* {employee.nomAp} */}
+                          {employee.nombre + ' ' + employee.apellidoPat}
                         </Typography>
                       </Stack>
                     </TableCell>
                     <TableCell>
-                      {customer.Id}
+                      {employee.fechNac.split('T')[0]}
                     </TableCell>
                     <TableCell>
-                      {/* {customer.City}, {customer.pais} */}
-                      {customer.City}
+                      {employee.estado}, {employee.pais}
                     </TableCell>
                     <TableCell>
-                      {customer.Name}
+                      {employee.posAct}
                     </TableCell>
                     <TableCell>
-                      {/* {customer.cursosTomados} */}
-                      {customer.City}
+                      {/* {employee.cursosTomados} */}
+                      {employee.descTitulo}
                     </TableCell>
                     <TableCell>
-                      {/* {customer.Managerial.toString()} */}
-                      {customer.City}
+                      {/* {employee.Managerial.toString()} */}
+                      {employee.isManager ? 'Administrador' : 'Trainee'}
                     </TableCell>
                     <TableCell>
                       {/* aqui poner los botones de editar y eso */}
-                      <Button theme={theme} onClick={() => props.toggleEdit(index)} color="primary" style={{marginRight: "1em", color: 'white', fontWeight:'600', borderRadius:'0.6em', padding:"0.5em", textTransform:"none"}} variant="contained">Detalles</Button>
+                      <Link href={`/detalles_empleado?id=${employee.ID_CET}`} passHref>
+                        <Button theme={theme} onClick={() => props.toggleEdit(index)} color="primary" style={{marginRight: "1em", color: 'white', fontWeight:'600', borderRadius:'0.6em', padding:"0.5em", textTransform:"none"}} variant="contained">Detalles</Button>
+                      </Link>
                     </TableCell>
                   </TableRow>
                 );

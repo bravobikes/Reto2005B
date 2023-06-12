@@ -10,11 +10,100 @@ import { OverviewTasksProgress } from 'src/sections/overview/overview-progreso-c
 import { OverviewTotalCustomers } from 'src/sections/overview/overview-cursos-tomados';
 import { OverviewTotalProfit } from 'src/sections/overview/overview-puntos-totales';
 import { OverviewTraffic } from 'src/sections/overview/overview-areas-cursos-tomados';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const now = new Date();
 
-const Page = () => (
-  <>
+const Page = () => {
+
+  const id = '1';
+
+  const [formValue, setFormValue] = useState({
+    ID_CET: '',
+    apellidoMat: '',
+    apellidoPat: '',
+    clerical: '',
+    descTitulo: '',
+    escuela: '',
+    esp: '',
+    estado: '',
+    fechNacDia: new Date(),
+    grad: '',
+    isManagerStr: '',
+    nombre: '',
+    origenCand: '',
+    pais: '',
+    posAct: '',
+    posIngreso: '',
+    remuneracion: '',
+  });
+  const [message, setMessage] = useState('');
+
+  const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
+  const editUrl = `http://localhost:5000/updatepeople/${id}`;
+
+  useEffect(() => {
+    if (id) {
+      fetchEmployee();
+    }
+  }, [id]);
+
+  const fetchEmployee = async () => {
+    try {
+      const response = await axios.get(getEmployeeUrl);
+      console.log('response:');
+      console.log(response);
+      const { 
+        ID_CET,
+        apellidoMat,
+        apellidoPat,
+        clerical,
+        descTitulo,
+        escuela,
+        esp,
+        estado,
+        fechNac,
+        grad,
+        isManager,
+        nombre,
+        origenCand,
+        pais,
+        posAct,
+        posIngreso,
+        remuneracion,
+      } = response.data;
+      const datePart = fechNac.split('T')[0];
+      const isManagerStr = true ? 'Administrador' : 'Trainee';
+      const fechNacDia = new Date(datePart);
+      console.log('fechNacDia:');
+      console.log(fechNacDia);
+      setFormValue({ 
+        ID_CET,
+        apellidoMat,
+        apellidoPat,
+        clerical,
+        descTitulo,
+        escuela,
+        esp,
+        estado,
+        fechNacDia,
+        grad,
+        isManagerStr,
+        nombre,
+        origenCand,
+        pais,
+        posAct,
+        posIngreso,
+        remuneracion, 
+      });
+    } catch (error) {
+      console.error('Error fetching employee:', error);
+    }
+  };
+
+  return(
+    <>
     <Head>
       <title>
         Tablero | Portal Ternium
@@ -26,55 +115,56 @@ const Page = () => (
         flexGrow: 1,
         py: 8
       }}
-    >
+      >
       <Container maxWidth="xl">
         <Grid
           container
           spacing={3}
-        >
+          >
           <Grid
             xs={12}
             sm={6}
             lg={3}
-          >
+            >
             <OverviewBudget
               difference={12}
               positive
               sx={{ height: '100%' }}
-              value="$24k"
-            />
+              // value="$24k"
+              value={'$' + new Intl.NumberFormat().format(formValue.remuneracion) }
+              />
           </Grid>
           <Grid
             xs={12}
             sm={6}
             lg={3}
-          >
+            >
             <OverviewTotalCustomers
               difference={25}
               positive={false}
               sx={{ height: '100%' }}
               value="6"
-            />
+              />
           </Grid>
           <Grid
             xs={12}
             sm={6}
             lg={3}
-          >
+            >
             <OverviewTasksProgress
               sx={{ height: '100%' }}
               value={75.5}
-            />
+              />
           </Grid>
           <Grid
             xs={12}
             sm={6}
             lg={3}
-          >
+            >
             <OverviewTotalProfit
               sx={{ height: '100%' }}
               value="15k"
-            />
+              />
           </Grid>
           <Grid
             xs={12}
@@ -228,6 +318,7 @@ const Page = () => (
     </Box>
   </>
 );
+};
 
 Page.getLayout = (page) => (
   <DashboardLayout>
