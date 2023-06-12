@@ -139,7 +139,7 @@ export const AccountProfileDetails = () => {
                   // helperText="Ingrese nombre de usuario"
                   label="Nombre"
                   name="name"
-                  // onChange={(e) => setUsername(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.nombre}
                 />
@@ -153,7 +153,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Apellido/s"
                   name="apellidos"
-                  // onChange={(e) => setPassword(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.apellidoPat + ' ' + formValue.apellidoMat}
                 />
@@ -167,7 +167,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Fecha de nacimiento"
                   name="fechNac"
-                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.fechNacDia}
                 />
@@ -181,7 +181,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Pais"
                   name="pais"
-                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.pais}
                 />
@@ -195,7 +195,7 @@ export const AccountProfileDetails = () => {
                   label="Estado"
                   name="estado"
                   type='text'
-                  // onChange={(e) => setAge(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.estado}
                 />
@@ -209,7 +209,7 @@ export const AccountProfileDetails = () => {
                   label="Clerical"
                   name="clerical"
                   type='text'
-                  // onChange={(e) => setAge(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.clerical}
                 />
@@ -231,7 +231,7 @@ export const AccountProfileDetails = () => {
                   // helperText="Ingrese nombre de usuario"
                   label="Descripción del título"
                   name="descTitulo"
-                  // onChange={(e) => setUsername(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.descTitulo}
                 />
@@ -245,7 +245,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Especialidad"
                   name="esp"
-                  // onChange={(e) => setPassword(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.esp}
                 />
@@ -259,7 +259,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Escuela"
                   name="escuela"
-                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.escuela}
                 />
@@ -273,7 +273,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Estado graduación"
                   name="pais"
-                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.grad}
                 />
@@ -295,7 +295,7 @@ export const AccountProfileDetails = () => {
                   // helperText="Ingrese nombre de usuario"
                   label="Posición actual"
                   name="posAct"
-                  // onChange={(e) => setUsername(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.posAct}
                 />
@@ -309,7 +309,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Posición de ingreso"
                   name="posIngreso"
-                  // onChange={(e) => setPassword(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.posIngreso}
                 />
@@ -323,7 +323,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Origen de candidato"
                   name="origenCand"
-                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.origenCand}
                 />
@@ -337,7 +337,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Puesto"
                   name="isManagerStr"
-                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={formValue.isManagerStr}
                 />
@@ -351,7 +351,7 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Remuneración"
                   name="remuneracion"
-                  // onChange={(e) => setName(e.target.value)}
+                  onChange={handleInput}
                   required
                   value={'$' + formValue.remuneracion}
                 />
