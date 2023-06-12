@@ -136,9 +136,9 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  // helperText="Ingrese nombre de usuario"
+                  type='text'
                   label="Nombre"
-                  name="name"
+                  name="nombre"
                   onChange={handleInput}
                   required
                   value={formValue.nombre}
@@ -151,11 +151,25 @@ export const AccountProfileDetails = () => {
                 <TextField
                   fullWidth
                   type='text'
-                  label="Apellido/s"
-                  name="apellidos"
+                  label="Apellido paterno"
+                  name="apellidoPat"
                   onChange={handleInput}
                   required
-                  value={formValue.apellidoPat + ' ' + formValue.apellidoMat}
+                  value={formValue.apellidoPat}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  type='text'
+                  label="Apellido materno"
+                  name="apellidoMat"
+                  onChange={handleInput}
+                  required
+                  value={formValue.apellidoMat}
                 />
               </Grid>
               <Grid

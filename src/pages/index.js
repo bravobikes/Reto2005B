@@ -39,8 +39,11 @@ const Page = () => {
     remuneracion: '',
   });
   const [message, setMessage] = useState('');
+  const [cursosTomados, setCursosTomados] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
+  const getcursosTomadosUrl = `http://localhost:5000/getCursosTomados/${id}`;
   const editUrl = `http://localhost:5000/updatepeople/${id}`;
 
   useEffect(() => {
@@ -52,8 +55,13 @@ const Page = () => {
   const fetchEmployee = async () => {
     try {
       const response = await axios.get(getEmployeeUrl);
-      console.log('response:');
-      console.log(response);
+      const cursosTomadosResponse = await axios.get(getcursosTomadosUrl);
+      const cursosTomadosCant = cursosTomadosResponse.data[""];
+      setCursosTomados(cursosTomadosCant.toString());
+
+      setIsLoading(false);
+
+      console.log('response cursosTomados:');
       const { 
         ID_CET,
         apellidoMat,
@@ -76,8 +84,8 @@ const Page = () => {
       const datePart = fechNac.split('T')[0];
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);
-      console.log('fechNacDia:');
-      console.log(fechNacDia);
+      // console.log('fechNacDia:');
+      // console.log(fechNacDia);
       setFormValue({ 
         ID_CET,
         apellidoMat,
@@ -116,6 +124,9 @@ const Page = () => {
         py: 8
       }}
       >
+        {isLoading ? (
+              <div>Loading...</div> // Replace this with your desired loading indicator
+            ) : (
       <Container maxWidth="xl">
         <Grid
           container
@@ -143,7 +154,7 @@ const Page = () => {
               difference={25}
               positive={false}
               sx={{ height: '100%' }}
-              value="6"
+              value={cursosTomados}
               />
           </Grid>
           <Grid
@@ -315,6 +326,7 @@ const Page = () => {
           </Grid>
         </Grid>
       </Container>
+      )}
     </Box>
   </>
 );
