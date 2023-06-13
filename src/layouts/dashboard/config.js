@@ -13,7 +13,7 @@ import { SvgIcon } from '@mui/material';
 export const itemsAdmin = [
   {
     title: 'Tablero',
-    path: '/tablero-admin',
+    path: '/admin/tablero',
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -24,7 +24,7 @@ export const itemsAdmin = [
     // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
     // title: 'Administración',
     title: 'Administración',
-    path: '/administracionAdmin',
+    path: '/admin/administracion',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -34,7 +34,7 @@ export const itemsAdmin = [
   {
     // title: 'Courses',
     title: 'Cursos',
-    path: '/courses',
+    path: '/admin/courses',
     icon: (
       <SvgIcon fontSize="small">
         <UsersIcon />
@@ -44,7 +44,7 @@ export const itemsAdmin = [
   {
     // title: 'Profile-administrator',
     title: 'Evaluaciones',
-    path: '/evaluaciones',
+    path: '/admin/evaluaciones',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
@@ -54,7 +54,7 @@ export const itemsAdmin = [
   {
     // title: 'Videogame',
     title: 'Videojuego',
-    path: '/videojuego',
+    path: '/admin/videojuego',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -64,7 +64,7 @@ export const itemsAdmin = [
   {
     // title: 'Settings',
     title: 'Ajustes',
-    path: '/settings',
+    path: '/admin/settings',
     icon: (
       <SvgIcon fontSize="small">
         <CogIcon />
@@ -118,7 +118,7 @@ export const itemsTrainee = [
   {
     // title: 'Videogame',
     title: 'Videojuego',
-    path: '/videojuego',
+    path: '/trainee/videojuego',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
