@@ -15,7 +15,7 @@ import {
     ListItemText,
     SvgIcon
   } from '@mui/material';
-import { TarjetaCompra } from 'src/components/prueba';
+import { TarjetaCompra } from 'src/components/TarjetaCompra';
 export default function Tienda() {
     const players = [{username: "algo", puntosTotales: 123, img: "/assets/avatars/avatar-alcides-antonio.png"}];
     return (        
