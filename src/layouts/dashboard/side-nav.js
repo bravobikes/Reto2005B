@@ -15,13 +15,51 @@ import {
 } from '@mui/material';
 import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
-import { items } from './config';
+import { itemsAdmin, itemsTrainee } from './config';
 import { SideNavItem } from './side-nav-item';
+import axios from 'axios';
+import { useCallback, useMemo, useState, useEffect } from 'react';
 
 export const SideNav = (props) => {
+  const id = localStorage.getItem('sessionUser');
+  const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`
+
+
   const { open, onClose } = props;
+  const [isManager, setIsManager] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState([]);
+  const [items, setItems] = useState(itemsTrainee)
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
+
+  useEffect(() => {
+    // console.log('Before fetch:', data);
+  
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(getEmployeeUrl);
+        setData(response.data); // Update state using the previous state
+        
+        setIsLoading(false); // Update loading state
+        
+        if(response.data.isManager){
+          setItems(itemsAdmin);
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false); // Update loading state even if an error occurs
+      }
+    };
+  
+    fetchData();
+    // console.log('After setData:', data);
+  }, []);
+
+  useEffect(() => {
+    console.log('isManager: ', data.isManager);
+
+  }, [data]);
 
   const content = (
     <Scrollbar

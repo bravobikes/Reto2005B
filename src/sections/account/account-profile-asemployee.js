@@ -35,10 +35,12 @@ export const AccountProfile = () => {
     const fetchProfile = async () => {
       try {
         // Make a request to the server to fetch the user profile
-        const sessionUserRes = await axios.get(getSessionUserUrl);
+        // const sessionUserRes = await axios.get(getSessionUserUrl);
         // const sessionUser = sessionUserRes.data.user
-        const sessionUser = '1';
-        // console.log(sessionUser);
+        const sessionUser = localStorage.getItem('sessionUser');
+
+        // const sessionUser = '1';
+        console.log(sessionUser);
         const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
         const data = response.data;
 

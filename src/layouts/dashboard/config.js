@@ -8,14 +8,26 @@ import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
 import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
 import { SvgIcon } from '@mui/material';
 
-export const items = [
+
+
+export const itemsAdmin = [
   {
-    // title: 'Dashboard',
     title: 'Tablero',
-    path: '/',
+    path: '/tablero-admin',
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
+    // title: 'Administración',
+    title: 'Administración',
+    path: '/administracionAdmin',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ShoppingBagIcon />
       </SvgIcon>
     )
   },
@@ -30,10 +42,73 @@ export const items = [
     )
   },
   {
+    // title: 'Profile-administrator',
+    title: 'Evaluaciones',
+    path: '/evaluaciones',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    // title: 'Videogame',
+    title: 'Videojuego',
+    path: '/videojuego',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ShoppingBagIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    // title: 'Settings',
+    title: 'Ajustes',
+    path: '/settings',
+    icon: (
+      <SvgIcon fontSize="small">
+        <CogIcon />
+      </SvgIcon>
+    )
+  }
+];
+
+export const itemsTrainee = [
+  {
+    // title: 'Dashboard',
+    title: 'Tablero',
+    path: '/tablero-trainee',
+    icon: (
+      <SvgIcon fontSize="small">
+        <ChartBarIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    // title: 'Profile-employee',
+    title: 'Perfil',
+    path: '/profile-astrainee',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UserIcon />
+      </SvgIcon>
+    )
+  },
+  {
+    // title: 'Courses',
+    title: 'Cursos',
+    path: '/trainee/courses',
+    icon: (
+      <SvgIcon fontSize="small">
+        <UsersIcon />
+      </SvgIcon>
+    )
+  },
+  {
     // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
     // title: 'Administración',
-    title: 'Administración',
-    path: '/administracion',
+    title: 'Historico',
+    path: '/rotacionesTrainee',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -43,7 +118,7 @@ export const items = [
   {
     // title: 'Videogame',
     title: 'Videojuego',
-    path: '/companies',
+    path: '/videojuego',
     icon: (
       <SvgIcon fontSize="small">
         <ShoppingBagIcon />
@@ -52,18 +127,8 @@ export const items = [
   },
   {
     // title: 'Profile-administrator',
-    title: 'Perfil - Adminstrador',
+    title: 'Remuneracion',
     path: '/profile-asadministrator',
-    icon: (
-      <SvgIcon fontSize="small">
-        <UserIcon />
-      </SvgIcon>
-    )
-  },
-  {
-    // title: 'Profile-employee',
-    title: 'Perfil - Empleado',
-    path: '/profile-asemployee',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />

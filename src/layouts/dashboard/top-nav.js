@@ -38,7 +38,8 @@ export const TopNav = (props) => {
         // Make a request to the server to fetch the user profile
         // const sessionUserRes = await axios.get(getSessionUserUrl);
         // const sessionUser = sessionUserRes.data.user
-        const sessionUser = 1;
+        // const sessionUser = 1;
+        const sessionUser = localStorage.getItem('sessionUser');
         // console.log(sessionUser);
         const response = await axios.get(getEmpleadoUrl + sessionUser, {credentials: 'include'});
         const data = response.data;

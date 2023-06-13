@@ -88,9 +88,10 @@ const Page = () => {
       if (response.status === 200) {
         const sessionUserRes = await axios.get(getSessionUser);
         const sessionUser = sessionUserRes.data.user
+        localStorage.setItem('sessionUser', sessionUser);
         // setMessage('Login successful');
         setMessage('Bienvenidx!!');
-        router.push('/');
+        router.push('/trainee/tablero-trainee');
         // navigateTo(`/perfil/${sessionUser}`);
       } else {
         // setMessage('Login failed');
@@ -226,7 +227,10 @@ const Page = () => {
               </form>
               {message && <p>{message}</p>}
               <p>
-                <b>Prueba:</b> Usuario: U1 contraseña: 123
+                <b>Prueba:</b> Usuario (admin): <u>gameUser1</u> contraseña: <u>123</u>
+              </p>
+              <p>
+                <b>Prueba:</b> Usuario(trainee): <u>gameUser2</u> contraseña: <u>123</u>
               </p>
             {/*  )} */}
           </div>

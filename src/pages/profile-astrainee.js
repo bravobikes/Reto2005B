@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { Box, Container, Stack, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { AccountProfile } from 'src/sections/account/account-profile-asemployee';
-import { AccountProfileDetails } from 'src/sections/account/account-profile-details-asemployee';
+import { AccountProfile } from 'src/sections/account/detalles_empleado_info_astrainee';
+import { AccountProfileDetails } from 'src/sections/account/detalles_empleado_forma_astrainee';
 
 
 const Page = () => (
@@ -23,25 +23,27 @@ const Page = () => (
         <Stack spacing={3}>
           <div>
             <Typography variant="h4">
-              Account
+              Perfil
             </Typography>
           </div>
           <div>
             <Grid
               container
               spacing={3}
+              justifyContent={"center"}
+              
             >
               <Grid
                 xs={12}
                 md={6}
-                lg={4}
+                lg={6}
               >
                 <AccountProfile />
               </Grid>
               <Grid
                 xs={12}
-                md={6}
-                lg={8}
+                md={12}
+                lg={12}
               >
                 <AccountProfileDetails />
               </Grid>
