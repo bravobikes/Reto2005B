@@ -139,6 +139,9 @@ export const SideNav = (props) => {
             py: 3
           }}
         >
+          {isLoading ? (
+              <div>Loading...</div> // Replace this with your desired loading indicator
+            ) : (
           <Stack
             component="ul"
             spacing={0.5}
@@ -164,6 +167,7 @@ export const SideNav = (props) => {
               );
             })}
           </Stack>
+          )}
         </Box>
         <Divider sx={{ borderColor: 'neutral.700' }} />
         <Box

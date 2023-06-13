@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
-import { Box, Container, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Select, MenuItem, Container, Unstable_Grid2 as Grid } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { OverviewBudget } from 'src/sections/overview/trainee/overview-salario';
 import { OverviewLatestOrders } from 'src/sections/overview/trainee/overview-cursos-tomados-tabla';
@@ -42,11 +42,15 @@ const Page = () => {
   const [cursosTomados, setCursosTomados] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState([]);
+  const [dataTraineeId, setDataTraineeId] = useState(1);
+  const [empleados, setEmpleados] = useState([]);
+  const [selectedValue, setSelectedValue] = useState('2');
 
-  const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
-  const getUserUrl = `http://localhost:5000/getUser/${id}`;
-  const getcursosTomadosUrl = `http://localhost:5000/getCursosTomados/${id}`;
-  const editUrl = `http://localhost:5000/updatepeople/${id}`;
+  const getEmployeeUrl = `http://localhost:5000/getempleado/${selectedValue}`;
+  const getUserUrl = `http://localhost:5000/getUser/${selectedValue}`;
+  const getcursosTomadosUrl = `http://localhost:5000/getCursosTomados/${selectedValue}`;
+  const editUrl = `http://localhost:5000/updatepeople/${selectedValue}`;
+  const getEmpleadosUrl = "http://localhost:5000/getEmpleados";
 
   useEffect(() => {
     if (id) {
@@ -59,11 +63,14 @@ const Page = () => {
       const response = await axios.get(getEmployeeUrl);
       const cursosTomadosResponse = await axios.get(getcursosTomadosUrl);
       const userResp = await axios.get(getUserUrl);
+      const empleadosResp = await axios.get(getEmpleadosUrl);
+      
       const cursosTomadosCant = cursosTomadosResponse.data[""];
 
       setCursosTomados(cursosTomadosCant.toString());
       setUser(userResp.data);
       setIsLoading(false);
+      setEmpleados(empleadosResp.data);
 
       console.log('response cursosTomados:');
       const { 
@@ -109,11 +116,17 @@ const Page = () => {
         posIngreso,
         remuneracion, 
       });
+      
     } catch (error) {
       console.error('Error fetching employee:', error);
     }
   };
 
+
+  const handleSelectChange = (event) => {
+    setSelectedValue(event.target.value);
+    fetchEmployee();
+  };
   return(
     <>
     <Head>
@@ -129,9 +142,26 @@ const Page = () => {
       }}
       >
         {isLoading ? (
-              <div>Loading...</div> // Replace this with your desired loading indicator
-            ) : (
-      <Container maxWidth="xl">
+          <div>Loading...</div> // Replace this with your desired loading indicator
+          ) : (
+            <Container maxWidth="xl">
+              <Grid item xs={6} sm={6} lg={6}>
+              <Select
+                value={selectedValue}
+                onChange={handleSelectChange}
+                sx={{
+                  width: '100%',
+                  marginBottom: '20px',
+                  textAlign: 'center'
+                }}
+              >
+                {empleados.map((empleado, index) => (
+                  <MenuItem key={index} value={empleado.ID_CET}>
+                    {`${empleado.nombre} ${empleado.apellidoPat} ${empleado.apellidoMat}`}
+                  </MenuItem>
+                ))}
+              </Select>
+            </Grid>
         <Grid
           container
           spacing={3}
