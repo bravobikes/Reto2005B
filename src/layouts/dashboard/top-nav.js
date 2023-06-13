@@ -29,6 +29,7 @@ export const TopNav = (props) => {
   const getEmpleadoUrl = 'http://localhost:5000/getEmpleado/';
   const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true)
   // Obtener el id el usuario de la sesion
   //id = ...
 
@@ -47,6 +48,7 @@ export const TopNav = (props) => {
         // console.log(response);
         // Set the user state with the retrieved profile data
         setData(data);
+        setIsLoading(false);
         
       } catch (error) {
         console.error('Error fetching user profile:', error);
@@ -104,7 +106,11 @@ export const TopNav = (props) => {
                 </SvgIcon>
               </IconButton>
             </Tooltip>
+            {isLoading ? (
+              <div>Loading...</div> // Replace this with your desired loading indicator
+            ) : (
             <h3>{data.nombre + " " + data.apellidoPat}</h3>
+            )}
           </Stack>
           <Stack
             alignItems="center"

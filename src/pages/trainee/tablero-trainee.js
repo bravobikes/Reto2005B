@@ -8,7 +8,7 @@ import { OverviewLatestProducts } from 'src/sections/overview/trainee/overview-c
 import { OverviewSales } from 'src/sections/overview/trainee/overview-cursos-toamdos-bar';
 import { OverviewTasksProgress } from 'src/sections/overview/trainee/overview-progreso-cursos';
 import { OverviewTotalCustomers } from 'src/sections/overview/trainee/overview-cursos-tomados';
-import { OverviewTotalProfit } from 'src/sections/overview/trainee/overview-puntos-totales';
+import { OverviewTotalProfit } from 'src/sections/overview/trainee/overview-monedas';
 import { OverviewTraffic } from 'src/sections/overview/trainee/overview-areas-cursos-tomados';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -41,8 +41,10 @@ const Page = () => {
   const [message, setMessage] = useState('');
   const [cursosTomados, setCursosTomados] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const [user, setUser] = useState([]);
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
+  const getUserUrl = `http://localhost:5000/getUser/${id}`;
   const getcursosTomadosUrl = `http://localhost:5000/getCursosTomados/${id}`;
   const editUrl = `http://localhost:5000/updatepeople/${id}`;
 
@@ -56,9 +58,11 @@ const Page = () => {
     try {
       const response = await axios.get(getEmployeeUrl);
       const cursosTomadosResponse = await axios.get(getcursosTomadosUrl);
+      const userResp = await axios.get(getUserUrl);
       const cursosTomadosCant = cursosTomadosResponse.data[""];
-      setCursosTomados(cursosTomadosCant.toString());
 
+      setCursosTomados(cursosTomadosCant.toString());
+      setUser(userResp.data);
       setIsLoading(false);
 
       console.log('response cursosTomados:');
@@ -174,7 +178,7 @@ const Page = () => {
             >
             <OverviewTotalProfit
               sx={{ height: '100%' }}
-              value="15k"
+              value={user.monedas}
               />
           </Grid>
           <Grid

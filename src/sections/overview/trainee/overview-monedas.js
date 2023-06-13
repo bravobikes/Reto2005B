@@ -19,7 +19,7 @@ export const OverviewTotalProfit = (props) => {
               color="text.secondary"
               variant="overline"
             >
-              Puntos totales
+              Monedas
             </Typography>
             <Typography variant="h4">
               {value}

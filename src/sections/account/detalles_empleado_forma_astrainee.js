@@ -373,6 +373,84 @@ export const AccountProfileDetails = () => {
             </Box>
           </CardContent>
           <Divider />
+          <CardHeader subheader="La información se puede editar" title="Intereses de areas" />
+          <CardContent sx={{ pt: 0 }}>
+            <Box sx={{ m: -1.5 }}>
+              <Grid container spacing={3}>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  // helperText="Ingrese nombre de usuario"
+                  label="Posición actual"
+                  name="posAct"
+                  onChange={handleInput}
+                  required
+                  value={formValue.posAct}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  type='text'
+                  label="Posición de ingreso"
+                  name="posIngreso"
+                  onChange={handleInput}
+                  required
+                  value={formValue.posIngreso}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  type='text'
+                  label="Origen de candidato"
+                  name="origenCand"
+                  onChange={handleInput}
+                  required
+                  value={formValue.origenCand}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  type='text'
+                  label="Puesto"
+                  name="isManagerStr"
+                  onChange={handleInput}
+                  required
+                  value={formValue.isManagerStr}
+                />
+              </Grid>
+              <Grid
+                xs={12}
+                md={6}
+              >
+                <TextField
+                  fullWidth
+                  type='text'
+                  label="Remuneración"
+                  name="remuneracion"
+                  onChange={handleInput}
+                  required
+                  value={'$' + formValue.remuneracion}
+                />
+              </Grid>
+              </Grid>
+            </Box>
+          </CardContent>
+          <Divider />
           <CardActions sx={{ justifyContent: 'flex-end' }}>
             <Button type="submit" variant="contained">
               Save details

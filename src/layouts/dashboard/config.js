@@ -77,7 +77,7 @@ export const itemsTrainee = [
   {
     // title: 'Dashboard',
     title: 'Tablero',
-    path: '/tablero-trainee',
+    path: '/trainee/tablero-trainee',
     icon: (
       <SvgIcon fontSize="small">
         <ChartBarIcon />
@@ -87,7 +87,7 @@ export const itemsTrainee = [
   {
     // title: 'Profile-employee',
     title: 'Perfil',
-    path: '/profile-astrainee',
+    path: '/trainee/profile-astrainee',
     icon: (
       <SvgIcon fontSize="small">
         <UserIcon />
