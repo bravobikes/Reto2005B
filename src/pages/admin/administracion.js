@@ -161,7 +161,7 @@ const Page = () => {
                   )}
                   variant="contained"
                 >
-                  Botón
+                  Crear trainee
                 </Button>
               </div>
             </Stack>
@@ -176,11 +176,11 @@ const Page = () => {
                 }}
               >
                 {data.map((empleado, index) => (
-                  <MenuItem key={index} value={empleado.ID_CET}>
                     <Link href={`detalles_empleado?id=${empleado.ID_CET}`} passHref style={{ color: 'black', textDecoration: 'none' }}>
-                      {`${empleado.nombre} ${empleado.apellidoPat} ${empleado.apellidoMat}`}
+                      <MenuItem key={index} value={empleado.ID_CET}>
+                          {`${empleado.nombre} ${empleado.apellidoPat} ${empleado.apellidoMat}`}
+                      </MenuItem>
                     </Link>
-                  </MenuItem>
                 ))}
               </Select>
             </Grid>            {isLoading ? (
