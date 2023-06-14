@@ -6,7 +6,11 @@ import UserIcon from '@heroicons/react/24/solid/UserIcon';
 import UserPlusIcon from '@heroicons/react/24/solid/UserPlusIcon';
 import UsersIcon from '@heroicons/react/24/solid/UsersIcon';
 import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import GradingIcon from '@mui/icons-material/Grading';
 import { SvgIcon } from '@mui/material';
+import SchoolIcon from '@mui/icons-material/School';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 
 
@@ -27,7 +31,7 @@ export const itemsAdmin = [
     path: '/admin/administracion',
     icon: (
       <SvgIcon fontSize="small">
-        <ShoppingBagIcon />
+        <AdminPanelSettingsIcon/>
       </SvgIcon>
     )
   },
@@ -37,7 +41,7 @@ export const itemsAdmin = [
     path: '/admin/courses',
     icon: (
       <SvgIcon fontSize="small">
-        <UsersIcon />
+        <SchoolIcon/>
       </SvgIcon>
     )
   },
@@ -47,7 +51,7 @@ export const itemsAdmin = [
     path: '/admin/evaluaciones',
     icon: (
       <SvgIcon fontSize="small">
-        <UserIcon />
+        <GradingIcon/>
       </SvgIcon>
     )
   },
@@ -57,7 +61,7 @@ export const itemsAdmin = [
     path: '/admin/videojuego',
     icon: (
       <SvgIcon fontSize="small">
-        <ShoppingBagIcon />
+        <SportsEsportsIcon/>
       </SvgIcon>
     )
   },
@@ -100,7 +104,7 @@ export const itemsTrainee = [
     path: '/trainee/courses',
     icon: (
       <SvgIcon fontSize="small">
-        <UsersIcon />
+        <SchoolIcon/>
       </SvgIcon>
     )
   },
