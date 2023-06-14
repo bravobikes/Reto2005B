@@ -68,7 +68,7 @@ export const itemsAdmin = [
   {
     // title: 'Settings',
     title: 'Ajustes',
-    path: '/admin/settings',
+    path: '/settings',
     icon: (
       <SvgIcon fontSize="small">
         <CogIcon />
