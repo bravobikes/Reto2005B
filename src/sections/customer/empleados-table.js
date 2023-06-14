@@ -3,6 +3,9 @@ import {useState} from 'react';
 import {Button} from '@mui/material';
 import {createTheme} from '@mui/material/styles';
 import { format } from 'date-fns';
+import DeleteIcon from '@mui/icons-material/Delete';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import EditIcon from '@mui/icons-material/Edit';
 import {
   Avatar,
   Box,
@@ -15,6 +18,7 @@ import {
   TableHead,
   TablePagination,
   TableRow,
+  IconButton,
   Typography
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
@@ -127,9 +131,17 @@ export const EmpleadosTable = (props) => {
                     </TableCell>
                     <TableCell>
                       {/* aqui poner los botones de editar y eso */}
+                      {/* pioner 3 icon buttons para ver, editar y borrar */}
+                      {/* onClick={() => props.toggleEdit(index)}  */}
+                      <IconButton aria-label="delete">
+                        <VisibilityIcon/>
+                      </IconButton>
                       <Link href={`detalles_empleado?id=${employee.ID_CET}`} passHref>
-                        <Button theme={theme} onClick={() => props.toggleEdit(index)} color="primary" style={{marginRight: "1em", color: 'white', fontWeight:'600', borderRadius:'0.6em', padding:"0.5em", textTransform:"none"}} variant="contained">Detalles</Button>
+                        <IconButton aria-label="Edit" theme={theme} color="primary" style={{color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton>
                       </Link>
+                      <IconButton aria-label="delete">
+                        <DeleteIcon/>
+                      </IconButton>
                     </TableCell>
                   </TableRow>
                 );

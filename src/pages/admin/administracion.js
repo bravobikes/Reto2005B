@@ -103,8 +103,8 @@ const Page = () => {
           Administración | Portal Ternium
         </title>
       </Head>
-      {show && <Ver user={selectedUser} close={renderView} />}
-      {showEdit && <Edit user={selectedUser} close={renderView} />}
+      {/* {show && <Ver user={selectedUser} close={renderView} />} */}
+      {/* {showEdit && <Edit user={selectedUser} close={renderView} />} */}
       <Box
         component="main"
         sx={{
@@ -169,6 +169,7 @@ const Page = () => {
             ) : (
               <EmpleadosTable 
                 toggle={renderView}
+                // cambiar este
                 toggleEdit={renderEdit}
                 count={data.length}
                 items={employees}
