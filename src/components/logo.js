@@ -5,8 +5,8 @@ export const Logo = () => {
   const fillColor = theme.palette.primary.main;
 
   return (
-    <svg 
-      viewBox="0 0 190 100"
+    <svg style={{cursor:"pointer", marginBottom:"15%"}}
+      viewBox="0 0 190 70"
       xmlns="http://www.w3.org/2000/svg">
         <g fill="none"
         fillRule="evenodd">

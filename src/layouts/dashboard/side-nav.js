@@ -93,16 +93,7 @@ export const SideNav = (props) => {
             {/* <Logo /> */}
           </Box>
           <Box
-            sx={{
-              alignItems: 'center',
-              backgroundColor: 'rgba(255, 255, 255, 0.04)',
-              borderRadius: 1,
-              cursor: 'pointer',
-              display: 'flex',
-              justifyContent: 'space-between',
-              mt: 2,
-              p: '12px'
-            }}
+            
           >
             {/* esto lo acabo de agregar, para regresarlo a como estaba */}
             {/* Borrar esto y descomentar todo. */}
