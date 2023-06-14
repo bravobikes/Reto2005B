@@ -8,7 +8,9 @@ import {
   CardContent,
   CardHeader,
   Divider,
-  TextField,
+  TextField, 
+  Select, 
+  MenuItem,
   Unstable_Grid2 as Grid
 } from '@mui/material';
 import axios from 'axios';
@@ -26,9 +28,9 @@ export const AccountProfileDetails = () => {
     escuela: '',
     esp: '',
     estado: '',
-    fechNacDia: new Date(),
+    fechNac: '',
     grad: '',
-    isManagerStr: '',
+    isManager: '',
     nombre: '',
     origenCand: '',
     pais: '',
@@ -39,7 +41,7 @@ export const AccountProfileDetails = () => {
   const [message, setMessage] = useState('');
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
-  const editUrl = `http://localhost:5000/updatepeople/${id}`;
+  const editUrl = `http://localhost:5000/putEmpleado`;
 
   useEffect(() => {
     if (id) {
@@ -71,11 +73,8 @@ export const AccountProfileDetails = () => {
         posIngreso,
         remuneracion,
       } = response.data;
-      const datePart = fechNac.split('T')[0];
-      const isManagerStr = true ? 'Administrador' : 'Trainee';
-      const fechNacDia = new Date(datePart);
-      console.log('fechNacDia:');
-      console.log(fechNacDia);
+      // const isManagerStr = true ? 'Administrador' : 'Trainee';
+
       setFormValue({ 
         ID_CET,
         apellidoMat,
@@ -85,9 +84,9 @@ export const AccountProfileDetails = () => {
         escuela,
         esp,
         estado,
-        fechNacDia,
+        fechNac,
         grad,
-        isManagerStr,
+        isManager,
         nombre,
         origenCand,
         pais,
@@ -101,8 +100,17 @@ export const AccountProfileDetails = () => {
   };
 
   const handleInput = (e) => {
+    console.log('formValue.isManager');
+    console.log(formValue.isManager);
     const { name, value } = e.target;
     setFormValue((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const handleSelectChange = (event) => {
+    setFormValue((prevFormValue) => ({
+      ...prevFormValue,
+      isManager: event.target.value
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -110,11 +118,11 @@ export const AccountProfileDetails = () => {
     try {
       const response = await axios.put(editUrl, formValue);
       if (response.status === 200) {
-        setMessage('Employee updated successfully');
+        setMessage('Empleado updated successfully');
       }
     } catch (error) {
-      console.error('Error updating employee:', error);
-      setMessage('Error updating employee');
+      console.error('Error updating empleado:', error);
+      setMessage('Error updating empleado');
     }
   }; 
 
@@ -125,7 +133,7 @@ export const AccountProfileDetails = () => {
   return (
     <div>
       <form autoComplete="off" noValidate onSubmit={handleSubmit}>
-        <Card>
+        <Card onSubmit={handleSubmit}>
           <CardHeader subheader="La información se puede editar." title="Información personal" />
           <CardContent sx={{ pt: 0 }}>
             <Box sx={{ m: -1.5 }}>
@@ -183,7 +191,8 @@ export const AccountProfileDetails = () => {
                   name="fechNac"
                   onChange={handleInput}
                   required
-                  value={formValue.fechNacDia.toISOString().slice(0, 10)}
+                  // value={formValue.fechNac.toISOString().slice(0, 10)}
+                  value={formValue.fechNac.toString().slice(0, 10)}
                 />
               </Grid>
               <Grid
@@ -346,7 +355,7 @@ export const AccountProfileDetails = () => {
                 xs={12}
                 md={6}
               >
-                <TextField
+                {/* <TextField
                   fullWidth
                   type='text'
                   label="Puesto"
@@ -354,7 +363,22 @@ export const AccountProfileDetails = () => {
                   onChange={handleInput}
                   required
                   value={formValue.isManagerStr}
-                />
+                /> */}
+              <Select
+                value={formValue.isManager}
+                onChange={handleSelectChange}
+                sx={{
+                  width: '100%',
+                  // textAlign: 'center'
+                }}
+              >
+                  <MenuItem value={true}>
+                      Administrador
+                  </MenuItem>
+                  <MenuItem value={false}>
+                      Trainee
+                  </MenuItem>
+              </Select>
               </Grid>
               <Grid
                 xs={12}
@@ -376,7 +400,7 @@ export const AccountProfileDetails = () => {
           <Divider />
           <CardActions sx={{ justifyContent: 'flex-end' }}>
             <Button type="submit" variant="contained">
-              Save details
+              Actualizar información
             </Button>
           </CardActions>
         </Card>
