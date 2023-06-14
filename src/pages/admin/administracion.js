@@ -183,7 +183,8 @@ const Page = () => {
                     </Link>
                 ))}
               </Select>
-            </Grid>            {isLoading ? (
+            </Grid>
+              {isLoading ? (
               <div>Loading...</div> // Replace this with your desired loading indicator
             ) : (
               <EmpleadosTable 

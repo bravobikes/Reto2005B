@@ -4,13 +4,15 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Container, Stack, SvgIcon, Typography } from '@mui/material';
+import { Box, Button, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CoursesTable } from 'src/sections/customer/cursos-table';
 import { CustomersSearch } from 'src/sections/customer/customers-search';
 import { applyPagination } from 'src/utils/apply-pagination';
 import axios from 'axios';
+import Link from 'next/link';
+
 
 
 const useCourses = (data, page, rowsPerPage) => {
@@ -159,8 +161,25 @@ const Page = () => {
                 </Button>
               </div>
             </Stack>
-            <CustomersSearch />
-            {isLoading ? (
+            <Grid item xs={6} sm={6} lg={6}>
+              <p>Ingrese curso:</p>
+              <Select
+                // value="Ingrese Trainee"
+                sx={{
+                  width: '50%',
+                  marginBottom: '20px',
+                  textAlign: 'center'
+                }}
+              >
+                {data.map((curso, index) => (
+                    <Link href={`detalles_curso?id=${curso.cursoId}`} passHref style={{ color: 'black', textDecoration: 'none' }}>
+                      <MenuItem key={index} value={curso.cursoId}>
+                          {`${curso.nombreCurso} -  ${curso.fecha.split('T')[0]}`}
+                      </MenuItem>
+                    </Link>
+                ))}
+              </Select>
+            </Grid>            {isLoading ? (
               <div>Loading...</div> // Replace this with your desired loading indicator
             ) : (
               <CoursesTable
