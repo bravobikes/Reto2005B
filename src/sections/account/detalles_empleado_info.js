@@ -178,12 +178,12 @@ export const AccountProfileDetails = () => {
               >
                 <TextField
                   fullWidth
-                  type='text'
+                  type='date'
                   label="Fecha de nacimiento"
                   name="fechNac"
                   onChange={handleInput}
                   required
-                  value={formValue.fechNacDia}
+                  value={formValue.fechNacDia.toISOString().slice(0, 10)}
                 />
               </Grid>
               <Grid

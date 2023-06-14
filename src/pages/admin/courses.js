@@ -155,7 +155,7 @@ const Page = () => {
                   )}
                   variant="contained"
                 >
-                  botón
+                  Agregar curso
                 </Button>
               </div>
             </Stack>
