@@ -14,13 +14,14 @@ import {
     ListItem,
     ListItemAvatar,
     ListItemText,
-    SvgIcon
+    SvgIcon,
+    CardContent
   } from '@mui/material';
 import { TarjetaCompra } from 'src/components/TarjetaCompra';
 export default function Tienda() {
     const players = [{username: "algo", puntosTotales: 123, img: "/assets/avatars/avatar-alcides-antonio.png"}];
     return (        
-            <Card sx={{height:"100%"}}>
+            <Card>
                 <CardHeader title={
                     <Typography variant="h5" component="div">
                         <Grid container spacing={1} justifyContent="space-between" flexDirection="row">
@@ -46,6 +47,7 @@ export default function Tienda() {
                     </Grid>
                     </Typography>
                 }/>
+                <CardContent style={{overflow:"auto", maxHeight:"80vh"}}>
                 <Grid container sx={{marginLeft:"1.5%"}}>
                     {/* creo que mejos, si no es los primeros 3 no agregar margin pero puede que se vea bien no se */}
                     <Grid item xs={12} sm={4}>
@@ -67,6 +69,8 @@ export default function Tienda() {
                         <TarjetaCompra/>
                     </Grid>
                 </Grid>
+                </CardContent>
+                
            
                 
                 
