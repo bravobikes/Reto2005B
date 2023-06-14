@@ -4,7 +4,7 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Button, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid  } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/cursos-table';
@@ -15,6 +15,7 @@ import Ver from 'src/sections/customer/Ver';
 import Edit from 'src/sections/customer/Edit';
 import {v4 as uuid} from 'uuid';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 
 
@@ -33,12 +34,15 @@ const useEmployeeIds = (employees) => {
 
 
 const Page = () => {
+  const router = useRouter();
   const [show, setShow] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [data, setData] = useState([]);
+  const [selectedValue, setSelectedValue] = useState(0);
+
   const employees = useEmployees(data, page, rowsPerPage);
   const employeesIds = useEmployeeIds(employees);
   const employeesSelection = useSelection(employeesIds);
@@ -80,6 +84,7 @@ const Page = () => {
     fetchData();
   }, []);
 
+
   
 
 
@@ -105,8 +110,8 @@ const Page = () => {
           Administración | Portal Ternium
         </title>
       </Head>
-      {/* {show && <Ver user={selectedUser} close={renderView} />} */}
-      {/* {showEdit && <Edit user={selectedUser} close={renderView} />} */}
+      {show && <Ver user={selectedUser} close={renderView} />}
+      {showEdit && <Edit user={selectedUser} close={renderView} />}
       <Box
         component="main"
         sx={{
@@ -161,7 +166,7 @@ const Page = () => {
                   )}
                   variant="contained"
                 >
-                  Botón
+                  Agregar trainee
                 </Button>
               </div>
             </Stack>
@@ -183,12 +188,12 @@ const Page = () => {
                   </MenuItem>
                 ))}
               </Select>
-            </Grid>            {isLoading ? (
+            </Grid>
+            {isLoading ? (
               <div>Loading...</div> // Replace this with your desired loading indicator
             ) : (
               <EmpleadosTable 
                 toggle={renderView}
-                // cambiar este
                 toggleEdit={renderEdit}
                 count={data.length}
                 items={employees}
