@@ -91,7 +91,7 @@ const Page = () => {
         localStorage.setItem('sessionUser', sessionUser);
         // setMessage('Login successful');
         setMessage('Bienvenidx!!');
-        router.push('/trainee/tablero-trainee');
+        router.push('/');
         // navigateTo(`/perfil/${sessionUser}`);
       } else {
         // setMessage('Login failed');

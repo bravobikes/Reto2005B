@@ -44,7 +44,7 @@ const Page = () => {
   const [user, setUser] = useState([]);
   const [dataTraineeId, setDataTraineeId] = useState(1);
   const [empleados, setEmpleados] = useState([]);
-  const [selectedValue, setSelectedValue] = useState('2');
+  const [selectedValue, setSelectedValue] = useState('1');
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${selectedValue}`;
   const getUserUrl = `http://localhost:5000/getUser/${selectedValue}`;
@@ -69,7 +69,7 @@ const Page = () => {
 
       setCursosTomados(cursosTomadosCant.toString());
       setUser(userResp.data);
-      setIsLoading(false);
+      
       setEmpleados(empleadosResp.data);
 
       console.log('response cursosTomados:');
@@ -95,8 +95,7 @@ const Page = () => {
       const datePart = fechNac.split('T')[0];
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);
-      // console.log('fechNacDia:');
-      // console.log(fechNacDia);
+
       setFormValue({ 
         ID_CET,
         apellidoMat,
@@ -116,6 +115,7 @@ const Page = () => {
         posIngreso,
         remuneracion, 
       });
+      setIsLoading(false);
       
     } catch (error) {
       console.error('Error fetching employee:', error);
@@ -124,9 +124,16 @@ const Page = () => {
 
 
   const handleSelectChange = (event) => {
+    console.log("Selected Value before set");
+    console.log(selectedValue);
+    console.log(event.target.value);
     setSelectedValue(event.target.value);
+    setIsLoading(true);
     fetchEmployee();
+    console.log("Selected Value after set");
+    console.log(selectedValue);
   };
+  
   return(
     <>
     <Head>
@@ -208,7 +215,7 @@ const Page = () => {
             >
             <OverviewTotalProfit
               sx={{ height: '100%' }}
-              value={user.monedas}
+              value={user.monedas.toString()}
               />
           </Grid>
           <Grid
