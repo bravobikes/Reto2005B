@@ -2,20 +2,23 @@ import Head from 'next/head';
 import { subDays, subHours } from 'date-fns';
 import { Box, Container, Unstable_Grid2 as Grid } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
-import { OverviewBudget } from 'src/sections/overview/overview-salario';
-import { OverviewLatestOrders } from 'src/sections/overview/overview-cursos-tomados-tabla';
-import { OverviewLatestProducts } from 'src/sections/overview/overview-cursos-restantes';
-import { OverviewSales } from 'src/sections/overview/overview-cursos-toamdos-bar';
-import { OverviewTasksProgress } from 'src/sections/overview/overview-progreso-cursos';
-import { OverviewTotalCustomers } from 'src/sections/overview/overview-cursos-tomados';
-import { OverviewTotalProfit } from 'src/sections/overview/overview-puntos-totales';
+import { OverviewBudget } from 'src/sections/overview/trainee/overview-salario';
+import { OverviewLatestOrders } from 'src/sections/overview/trainee/overview-cursos-tomados-tabla';
+import { OverviewLatestProducts } from 'src/sections/overview/trainee/overview-cursos-restantes';
+import { OverviewSales } from 'src/sections/overview/trainee/overview-cursos-toamdos-bar';
+import { OverviewTasksProgress } from 'src/sections/overview/trainee/overview-progreso-cursos';
+import { OverviewTotalCustomers } from 'src/sections/overview/trainee/overview-cursos-tomados';
+import { OverviewTotalProfit } from 'src/sections/overview/trainee/overview-monedas';
 import { OverviewTraffic } from 'src/sections/overview/trainee/overview-areas-cursos-tomados';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 const now = new Date();
 
 const Page = () => {
+  
+  const router = useRouter();
 
   const id = localStorage.getItem('sessionUser');
 
@@ -57,6 +60,7 @@ const Page = () => {
       const response = await axios.get(getEmployeeUrl);
       const cursosTomadosResponse = await axios.get(getcursosTomadosUrl);
       const cursosTomadosCant = cursosTomadosResponse.data[""];
+
       setCursosTomados(cursosTomadosCant.toString());
 
       setIsLoading(false);
@@ -82,6 +86,11 @@ const Page = () => {
         remuneracion,
       } = response.data;
       const datePart = fechNac.split('T')[0];
+      if(isManager){
+        router.push('/admin/tablero');
+      } else {
+        router.push('trainee/tablero-trainee');
+      }
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);
       // console.log('fechNacDia:');
