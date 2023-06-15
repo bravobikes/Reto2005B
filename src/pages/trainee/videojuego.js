@@ -2,8 +2,9 @@ import Head from 'next/head';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import Frame from '../frame.js';
+import Frame from 'src/pages/frame.js';
 import Leaderboard from 'src/sections/overview/trainee/overview-leaderboard.js';
+import Tienda from 'src/sections/overview/overview-tienda';
 import {useEffect, useRef} from 'react';
 import {
   Box,
@@ -78,7 +79,14 @@ const Page = () => {
           <Frame />
         </Box>
         <Box sx={{marginTop:"2.5%"}}>
-            <Leaderboard/>
+            <Grid container sx={{width:"100%"}} spacing={2} >
+              <Grid item sm={4} xs={12}>
+                  <Leaderboard/>
+              </Grid>
+                <Grid item sm={8} xs={12}>
+                  <Tienda/>
+                </Grid>
+            </Grid>
         </Box>
         </Container>
 

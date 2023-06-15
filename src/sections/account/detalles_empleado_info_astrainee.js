@@ -13,6 +13,8 @@ import axios from 'axios';
 
 const user = {
   avatar: '/assets/avatars/avatar-anika-visser.png',
+  // avatar1: '/assets/avatars/avatar-carson-darrin.png',
+  // avatar2: '/assets/avatars/avatar-jie-yan-song.png',
 };
 
 
@@ -39,9 +41,20 @@ export const AccountProfile = () => {
     posIngreso: '',
     remuneracion: '',
   });
+  const [infoValue, setInfoValue] = useState({
+    Direccion_Area_de_rotacion_actual: '', 
+    Encargado_actual: '', 
+    Fecha_de_Graduacion: '', 
+    Fotografia_del_Global_Trainee: '', 
+    Matricula_Jefe: '', 
+    Perfil: '', 
+    encuadre: '', 
+    nombreInfo: ''
+  });
   const [message, setMessage] = useState('');
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
+  const getEmployeeProfileUrl = `http://localhost:5000/getPerfilEmpleado/${id}`;
   const editUrl = `http://localhost:5000/updatepeople/${id}`;
 
   useEffect(() => {
@@ -53,8 +66,9 @@ export const AccountProfile = () => {
   const fetchEmployee = async () => {
     try {
       const response = await axios.get(getEmployeeUrl);
-      console.log('response:');
-      console.log(response);
+      const responsePerfil = await axios.get(getEmployeeProfileUrl);
+      console.log('responsePerfil:');
+      console.log(responsePerfil);
       const { 
         ID_CET,
         apellidoMat,
@@ -74,6 +88,16 @@ export const AccountProfile = () => {
         posIngreso,
         remuneracion,
       } = response.data;
+
+        const Direccion_Area_de_rotacion_actual = responsePerfil.data['Direccion/ Area de rotacion actual']; 
+        const Encargado_actual = responsePerfil.data['Encargado actual']; 
+        const Fecha_de_Graduacion = responsePerfil.data['Fecha de Graduacion'];  
+        const Fotografia_del_Global_Trainee = responsePerfil.data['Fotografia del Global Trainee'];  
+        const Matricula_Jefe = responsePerfil.data['Matricula Jefe'];  
+        const Perfil = responsePerfil.data['Perfil'];  
+        const encuadre = responsePerfil.data['encuadre'];  
+        const nombreInfo = responsePerfil.data['nombre']; 
+
       const datePart = fechNac.split('T')[0];
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);
@@ -98,6 +122,17 @@ export const AccountProfile = () => {
         posIngreso,
         remuneracion, 
       });
+      setInfoValue({ 
+        Direccion_Area_de_rotacion_actual, 
+        Encargado_actual, 
+        Fecha_de_Graduacion, 
+        Fotografia_del_Global_Trainee, 
+        Matricula_Jefe, 
+        Perfil, 
+        encuadre, 
+        nombreInfo
+      });
+      console.log(Encargado_actual);
     } catch (error) {
       console.error('Error fetching employee:', error);
     }
@@ -137,36 +172,31 @@ return(
             color="text.secondary"
             variant="body2"
           >
-            {/* {formValue.} */}
-            *Encuadre Actual*
+            {infoValue.encuadre}
           </Typography>
           <Typography
             color="text.secondary"
             variant="body2"
           >
-            {/* {formValue.} */}
-            *Fecha de graduacion*
+            {infoValue.Fecha_de_Graduacion.split('T')[0]}
           </Typography>
           <Typography
             color="text.secondary"
             variant="body2"
           >
-            {/* {formValue.} */}
-            *Perfil*
+            {infoValue.Perfil}
           </Typography>
           <Typography
             color="text.secondary"
             variant="body2"
           >
-            {/* {formValue.} */}
-            *Direccion/Area de rotacion actual*
+            {infoValue.Direccion_Area_de_rotacion_actual}
           </Typography>
           <Typography
             color="text.secondary"
             variant="body2"
           >
-            {/* {formValue.} */}
-            *Jefe actual*
+            {infoValue.Encargado_actual}
           </Typography>
         </Box>
       </CardContent>
