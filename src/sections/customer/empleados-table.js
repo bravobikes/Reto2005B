@@ -10,6 +10,9 @@ import {
   Avatar,
   Box,
   Card,
+  Dialog,
+  DialogTitle,
+  DialogActions,
   Checkbox,
   Stack,
   Table,
@@ -47,7 +50,14 @@ export const EmpleadosTable = (props) => {
     rowsPerPage = 0,
     selected = []
   } = props;
-
+  const [open, setOpen] = useState(false);
+  function handleDelAlert() {
+    setOpen(true);
+  }
+  function handleRemove() {
+    // aqui poner la logica para borrar el trainee de la base de datos
+    setOpen(false);
+  }
 
   const selectedSome = (selected.length > 0) && (selected.length < items.length);
   const selectedAll = (items.length > 0) && (selected.length === items.length);
@@ -136,12 +146,14 @@ export const EmpleadosTable = (props) => {
                       <IconButton aria-label="delete" size="small" style={{fontSize:"0.8em"}}>
                         <VisibilityIcon/>
                       </IconButton>
+                      
                       <Link href={`detalles_empleado?id=${employee.ID_CET}`} passHref>
                         <IconButton size="small" aria-label="Edit" theme={theme} color="primary" style={{fontSize:"0.8em",color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton>
                       </Link>
-                      <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}}>
+                      <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}} onClick={handleDelAlert}>
                         <DeleteIcon/>
                       </IconButton>
+                      
                     </TableCell>
                   </TableRow>
                 );
@@ -159,6 +171,14 @@ export const EmpleadosTable = (props) => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
       />
+      <Dialog open={open} onClose = {handleRemove} aria-labelledby="borrar" aria-describedby="boton para borrar">
+                        <DialogTitle>
+                          Estas seguro que quieres eliminar al trainee?
+                        </DialogTitle>
+                        <DialogActions>
+                          <Button onClick={handleRemove}>Eliminar</Button>
+                        </DialogActions>
+                      </Dialog>
     </Card>
   );
 };
