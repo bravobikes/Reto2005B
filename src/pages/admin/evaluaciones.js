@@ -124,7 +124,7 @@ const Page = () => {
         <DialogTitle>Crea una Evalucación</DialogTitle>
         <DialogContent>
             <form>
-                <Grid container flexDirection="column">
+                <Grid container flexDirection="column" spacing={2}>
                     <Grid item>
                         <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%"}}>
                             <Grid item xs={9}>
@@ -137,7 +137,7 @@ const Page = () => {
                     </Grid>
                     <Grid item>
                         {/* aqui poner el form para comentario */}
-                        <textarea />
+                        <textarea style={{width:"100%", height:"20vh", resize:"none", borderRadius:"1em", border:"1px solid black", padding:"1%"}}/>
                     </Grid>
                     <Grid item>
                         <Button variant="contained">Submit</Button>
