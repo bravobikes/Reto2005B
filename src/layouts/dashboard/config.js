@@ -113,7 +113,7 @@ export const itemsTrainee = [
     // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
     // title: 'Administración',
     title: 'Historico',
-    path: '/rotacionesTrainee',
+    path: '/trainee/rotacionesTrainee',
     icon: (
       <SvgIcon fontSize="small">
         <HistoryIcon/>
