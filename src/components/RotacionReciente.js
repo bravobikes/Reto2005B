@@ -46,6 +46,7 @@ export default function RotacionReciente() {
                                 <Grid item>
                                     Fecha inicial: 08/09/2002
                                 </Grid>
+                                {/* con javascript hacer que esto no se vea si no tiene fecha fin */}
                                 <Grid item>
                                     Fecha fin: 05/11/2016
                                 </Grid>
