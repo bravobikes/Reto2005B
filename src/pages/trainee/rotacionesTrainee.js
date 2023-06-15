@@ -5,6 +5,7 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import Frame from 'src/pages/frame.js';
 import Leaderboard from 'src/sections/overview/trainee/overview-leaderboard.js';
 import Tienda from 'src/sections/overview/overview-tienda';
+import { ProfileRotaciones } from 'src/components/ProfileRotaciones';
 import {useEffect, useRef} from 'react';
 import {
   Box,
@@ -79,9 +80,7 @@ const Page = () => {
         <Box ref={frameRef} sx={{marginTop:"2.5%"}}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
-                <Card>
-                  {/* Aqui poner la profile como imagen, si esta en rotacion, y su area/puesto lo que venga en bd */}
-                </Card>
+                <ProfileRotaciones/>
               </Grid>
               <Grid item xs={12} sm={4}>
                   <Card>
