@@ -41,6 +41,16 @@ export default function RotacionReciente() {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Grid item>
+                            <Grid container flexDirection="row" justifyContent="space-between" style={{color:"grey"}}>
+                                <Grid item>
+                                    Fecha inicial: 08/09/2002
+                                </Grid>
+                                <Grid item>
+                                    Fecha fin: 05/11/2016
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     
                     
                 </Grid>
