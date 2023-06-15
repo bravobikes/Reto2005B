@@ -139,7 +139,7 @@ export const EmpleadosTable = (props) => {
                       {/* {employee.Managerial.toString()} */}
                       {employee.isManager ? 'Administrador' : 'Trainee'}
                     </TableCell>
-                    <TableCell sx={{minWidth:160}}>
+                    <TableCell sx={{minWidth:170}}>
                       {/* aqui poner los botones de editar y eso */}
                       {/* pioner 3 icon buttons para ver, editar y borrar */}
                       {/* onClick={() => props.toggleEdit(index)}  */}
@@ -148,7 +148,7 @@ export const EmpleadosTable = (props) => {
                       </IconButton> */}
                       
                       <Link href={`detalles_empleado?id=${employee.ID_CET}`} passHref>
-                        <Button variant="contained" size="small" style={{color:"white"}} sx={{borderRadius:"1em", padding:"5%", paddingRight:"7%", paddingLeft:"7%"}} theme={theme} color="primary">Detalles</Button>
+                        <Button variant="contained" size="small" style={{color:"white"}} sx={{borderRadius:"1em", padding:"5%", paddingRight:"10%", paddingLeft:"10%"}} theme={theme} color="primary">Detalles</Button>
                         {/* <IconButton size="small" aria-label="Edit" theme={theme} color="primary" style={{fontSize:"0.8em",color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton> */}
                       </Link>
                       <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}} onClick={handleDelAlert}>
