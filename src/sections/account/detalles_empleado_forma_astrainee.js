@@ -8,6 +8,8 @@ import {
   CardContent,
   CardHeader,
   Divider,
+  InputLabel,
+  Typography,
   TextField,
   Unstable_Grid2 as Grid
 } from '@mui/material';
@@ -97,24 +99,6 @@ export const AccountProfileDetails = () => {
     } catch (error) {
       console.error('Error fetching employee:', error);
     }
-  };
-
-  const handleInput = (e) => {
-    const { name, value } = e.target;
-    setFormValue((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.put(editUrl, formValue);
-      if (response.status === 200) {
-        setMessage('Employee updated successfully');
-      }
-    } catch (error) {
-      console.error('Error updating employee:', error);
-      setMessage('Error updating employee');
-    }
   }; 
 
   if (!id) {
@@ -123,7 +107,7 @@ export const AccountProfileDetails = () => {
 
   return (
     <div>
-      <form autoComplete="off" noValidate onSubmit={handleSubmit}>
+      <form autoComplete="off" noValidate>
         <Card>
           <CardHeader subheader="La información se puede editar." title="Información personal" />
           <CardContent sx={{ pt: 0 }}>
@@ -136,10 +120,8 @@ export const AccountProfileDetails = () => {
                 <TextField
                   fullWidth
                   type='text'
-                  // label="Nombre"
+                  label="Nombre"
                   name="nombre"
-                  onChange={handleInput}
-                  disabled
                   value={formValue.nombre}
                 />
               </Grid>
@@ -148,12 +130,11 @@ export const AccountProfileDetails = () => {
                 md={6}
               >
                 <TextField
+                  aria-readonly="true"
                   fullWidth
                   type='text'
                   label="Apellido paterno"
                   name="apellidoPat"
-                  onChange={handleInput}
-                  required
                   value={formValue.apellidoPat}
                 />
               </Grid>
@@ -166,8 +147,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Apellido materno"
                   name="apellidoMat"
-                  onChange={handleInput}
-                  required
                   value={formValue.apellidoMat}
                 />
               </Grid>
@@ -180,8 +159,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Fecha de nacimiento"
                   name="fechNac"
-                  onChange={handleInput}
-                  required
                   value={formValue.fechNacDia}
                 />
               </Grid>
@@ -194,8 +171,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Pais"
                   name="pais"
-                  onChange={handleInput}
-                  required
                   value={formValue.pais}
                 />
               </Grid>
@@ -208,8 +183,6 @@ export const AccountProfileDetails = () => {
                   label="Estado"
                   name="estado"
                   type='text'
-                  onChange={handleInput}
-                  required
                   value={formValue.estado}
                 />
               </Grid>
@@ -222,8 +195,6 @@ export const AccountProfileDetails = () => {
                   label="Clerical"
                   name="clerical"
                   type='text'
-                  onChange={handleInput}
-                  required
                   value={formValue.clerical}
                 />
               </Grid>
@@ -244,8 +215,6 @@ export const AccountProfileDetails = () => {
                   // helperText="Ingrese nombre de usuario"
                   label="Descripción del título"
                   name="descTitulo"
-                  onChange={handleInput}
-                  required
                   value={formValue.descTitulo}
                 />
               </Grid>
@@ -258,8 +227,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Especialidad"
                   name="esp"
-                  onChange={handleInput}
-                  required
                   value={formValue.esp}
                 />
               </Grid>
@@ -272,8 +239,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Escuela"
                   name="escuela"
-                  onChange={handleInput}
-                  required
                   value={formValue.escuela}
                 />
               </Grid>
@@ -286,8 +251,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Estado graduación"
                   name="pais"
-                  onChange={handleInput}
-                  required
                   value={formValue.grad}
                 />
               </Grid>
@@ -308,8 +271,6 @@ export const AccountProfileDetails = () => {
                   // helperText="Ingrese nombre de usuario"
                   label="Posición actual"
                   name="posAct"
-                  onChange={handleInput}
-                  required
                   value={formValue.posAct}
                 />
               </Grid>
@@ -322,8 +283,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Posición de ingreso"
                   name="posIngreso"
-                  onChange={handleInput}
-                  required
                   value={formValue.posIngreso}
                 />
               </Grid>
@@ -336,8 +295,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Origen de candidato"
                   name="origenCand"
-                  onChange={handleInput}
-                  required
                   value={formValue.origenCand}
                 />
               </Grid>
@@ -350,8 +307,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Puesto"
                   name="isManagerStr"
-                  onChange={handleInput}
-                  required
                   value={formValue.isManagerStr}
                 />
               </Grid>
@@ -364,8 +319,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Remuneración"
                   name="remuneracion"
-                  onChange={handleInput}
-                  required
                   value={'$' + formValue.remuneracion}
                 />
               </Grid>
@@ -386,8 +339,6 @@ export const AccountProfileDetails = () => {
                   // helperText="Ingrese nombre de usuario"
                   label="Posición actual"
                   name="posAct"
-                  onChange={handleInput}
-                  required
                   value={formValue.posAct}
                 />
               </Grid>
@@ -400,8 +351,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Posición de ingreso"
                   name="posIngreso"
-                  onChange={handleInput}
-                  required
                   value={formValue.posIngreso}
                 />
               </Grid>
@@ -414,8 +363,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Origen de candidato"
                   name="origenCand"
-                  onChange={handleInput}
-                  required
                   value={formValue.origenCand}
                 />
               </Grid>
@@ -428,8 +375,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Puesto"
                   name="isManagerStr"
-                  onChange={handleInput}
-                  required
                   value={formValue.isManagerStr}
                 />
               </Grid>
@@ -442,8 +387,6 @@ export const AccountProfileDetails = () => {
                   type='text'
                   label="Remuneración"
                   name="remuneracion"
-                  onChange={handleInput}
-                  required
                   value={'$' + formValue.remuneracion}
                 />
               </Grid>

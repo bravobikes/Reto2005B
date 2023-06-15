@@ -20,8 +20,8 @@ import { SeverityPill } from 'src/components/severity-pill';
 
 const statusMap = {
   // pending: 'warning',
-  completado: 'success',
-  faltante: 'error'
+  true: 'success',
+  false: 'error'
 };
 
 export const OverviewLatestOrders = (props) => {
@@ -29,7 +29,7 @@ export const OverviewLatestOrders = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Cursos tomados" />
+      <CardHeader title="Cursos actuales" />
       <Scrollbar sx={{ flexGrow: 1 }}>
         <Box sx={{ minWidth: 800 }}>
           <Table>
@@ -53,20 +53,22 @@ export const OverviewLatestOrders = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orders.map((order) => {
-                const createdAt = format(order.createdAt, 'dd/MM/yyyy');
-                const endedAt = format(order.endedAt, 'dd/MM/yyyy');
+              {orders.map((curso) => {
+                const createdAt = '22/09/2020'
+                const endedAt = '22/09/2020'
+                // const createdAt = format(curso.fecha.split('T')[0], 'dd/MM/yyyy');
+                // const endedAt = format(curso.fecha.split('T')[0], 'dd/MM/yyyy');
 
                 return (
                   <TableRow
                     hover
-                    key={order.id}
+                    key={curso.userId}
                   >
                     <TableCell>
-                      {order.ref}
+                      {curso.userId}
                     </TableCell>
                     <TableCell>
-                      {order.customer.name}
+                      {curso.nombreCurso}
                     </TableCell>
                     <TableCell>
                       {createdAt}
@@ -75,8 +77,11 @@ export const OverviewLatestOrders = (props) => {
                       {endedAt}
                     </TableCell>
                     <TableCell>
-                      <SeverityPill color={statusMap[order.status]}>
-                        {order.status}
+                      {/* <SeverityPill color={statusMap[curso.estatus]}>
+                        {curso.status}
+                      </SeverityPill> */}
+                      <SeverityPill color={curso.estatus ? 'success' : 'error'}>
+                        {curso.estatus ? 'completado' : 'pendiente'}
                       </SeverityPill>
                     </TableCell>
                   </TableRow>

@@ -38,7 +38,7 @@ const Page = () => {
     posIngreso: '',
     remuneracion: '',
   });
-  const [message, setMessage] = useState('');
+  const [cursosEncuadre, setCursosEncuadre] = useState([])
   const [cursosTomados, setCursosTomados] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState([]);
@@ -46,9 +46,11 @@ const Page = () => {
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
   const getUserUrl = `http://localhost:5000/getUser/${id}`;
   const getcursosTomadosUrl = `http://localhost:5000/getCursosTomados/${id}`;
-  const editUrl = `http://localhost:5000/updatepeople/${id}`;
+  const getcursosEncuadreUrl = `http://localhost:5000/getCursosEncuadre/${id}`;
 
   useEffect(() => {
+    console.log(cursosEncuadre);
+
     if (id) {
       fetchEmployee();
     }
@@ -58,11 +60,13 @@ const Page = () => {
     try {
       const response = await axios.get(getEmployeeUrl);
       const cursosTomadosResponse = await axios.get(getcursosTomadosUrl);
+      const cursosEncuadreResponse = await axios.get(getcursosEncuadreUrl);
       const userResp = await axios.get(getUserUrl);
       const cursosTomadosCant = cursosTomadosResponse.data[""];
-
+      console.log(cursosEncuadreResponse);
       setCursosTomados(cursosTomadosCant.toString());
       setUser(userResp.data);
+      setCursosEncuadre(cursosEncuadreResponse.data);
       setIsLoading(false);
 
       console.log('response cursosTomados:');
@@ -257,7 +261,8 @@ const Page = () => {
             lg={8}
           >
             <OverviewLatestOrders
-              orders={[
+              orders = {cursosEncuadre}
+              orders2={[
                 {
                   id: 'f69f88012978187a6c12897f',
                   ref: 'DEV1049',
