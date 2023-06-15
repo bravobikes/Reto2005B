@@ -90,34 +90,12 @@ export const SideNav = (props) => {
               width: 32
             }}
           >
-            {/* <Logo /> */}
+
           </Box>
           <Box
             
           >
-            {/* esto lo acabo de agregar, para regresarlo a como estaba */}
-            {/* Borrar esto y descomentar todo. */}
             <Logo />
-            {/* <div>
-              <Typography
-                color="inherit"
-                variant="subtitle1"
-              >
-                Ternium
-              </Typography>
-              <Typography
-                color="neutral.400"
-                variant="body2"
-              >
-                Production
-              </Typography>
-            </div> */}
-            {/* <SvgIcon
-              fontSize="small"
-              sx={{ color: 'neutral.500' }}
-            >
-              <ChevronUpDownIcon />
-            </SvgIcon> */}
           </Box>
         </Box>
         {/* hasta aqui llega lo del logo y eso */}

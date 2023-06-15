@@ -9,6 +9,7 @@ import XCircleIcon from '@heroicons/react/24/solid/XCircleIcon';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import GradingIcon from '@mui/icons-material/Grading';
 import { SvgIcon } from '@mui/material';
+import HistoryIcon from '@mui/icons-material/History';
 import SchoolIcon from '@mui/icons-material/School';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
@@ -115,7 +116,7 @@ export const itemsTrainee = [
     path: '/rotacionesTrainee',
     icon: (
       <SvgIcon fontSize="small">
-        <ShoppingBagIcon />
+        <HistoryIcon/>
       </SvgIcon>
     )
   },
@@ -125,7 +126,7 @@ export const itemsTrainee = [
     path: '/trainee/videojuego',
     icon: (
       <SvgIcon fontSize="small">
-        <ShoppingBagIcon />
+        <SportsEsportsIcon/>
       </SvgIcon>
     )
   },
