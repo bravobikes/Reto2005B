@@ -42,12 +42,12 @@ export const SettingsNotifications = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h6">
-                  Notifications
+                  Notificaciones
                 </Typography>
                 <Stack>
                   <FormControlLabel
                     control={<Checkbox defaultChecked />}
-                    label="Email"
+                    label="Correo"
                   />
                   <FormControlLabel
                     control={<Checkbox defaultChecked />}
@@ -55,11 +55,11 @@ export const SettingsNotifications = () => {
                   />
                   <FormControlLabel
                     control={<Checkbox />}
-                    label="Text Messages"
+                    label="Mensajes SMS"
                   />
                   <FormControlLabel
                     control={<Checkbox defaultChecked />}
-                    label="Phone calls"
+                    label="Llamadas"
                   />
                 </Stack>
               </Stack>
@@ -76,7 +76,7 @@ export const SettingsNotifications = () => {
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
           <Button variant="contained">
-            Save
+            Guardar
           </Button>
         </CardActions>
       </Card>
