@@ -19,6 +19,7 @@ import {
     TablePagination,
     TableRow,
     IconButton,
+    Rating,
     Typography
   } from '@mui/material';
   import { Scrollbar } from 'src/components/scrollbar';
@@ -97,12 +98,15 @@ export default function TablaEvaluacion(props) {
                     </TableCell>
                     <TableCell>
                       {/* {employee.fechNac.split('T')[0]} */}
+                      <Rating name="read-only" value={3} readOnly />
                     </TableCell>
                     <TableCell>
                       {/* {employee.estado}, {employee.pais} */}
+                      AM+
                     </TableCell>
                     <TableCell>
                       {/* {employee.posAct} */}
+                      Verdadero
                     </TableCell>
                     {/* <TableCell> */}
                       {/* {employee.cursosTomados} */}
@@ -116,15 +120,10 @@ export default function TablaEvaluacion(props) {
                       {/* aqui poner los botones de editar y eso */}
                       {/* pioner 3 icon buttons para ver, editar y borrar */}
                       {/* onClick={() => props.toggleEdit(index)}  */}
-                      <IconButton aria-label="delete" size="small" style={{fontSize:"0.8em"}}>
-                        <VisibilityIcon/>
-                      </IconButton>
-                      {/* <Link href={`detalles_empleado?id=${employee.ID_CET}`} passHref> */}
-                        <IconButton size="small" aria-label="Edit" theme={theme} color="primary" style={{fontSize:"0.8em",color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton>
-                      {/* </Link> */}
-                      <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}}>
-                        <DeleteIcon/>
-                      </IconButton>
+                      {/* si no esta en Rotacion deshabilitar el boton */}
+                      <Button variant="contained">
+                        Evaluar
+                      </Button>
                     </TableCell>
                   </TableRow>
                   {/* closing tag del map */}

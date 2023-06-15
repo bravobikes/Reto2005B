@@ -1,3 +1,4 @@
+// esta pagina es de cuando pense que evaluaciones y rotaciones serian diferentes creo que ya no sirve para nada
 import Head from 'next/head';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
@@ -22,26 +23,6 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 
 
 const Page = () => {
-  const frameRef = useRef(null);
-
-  useEffect(() => {
-    const calculateHeight = () => {
-      const frame = frameRef.current;
-      if (frame) {
-        const containerWidth = frame.parentNode.offsetWidth;
-        const aspectRatio = 2.2 / 1; // Adjust this value to match your iframe's aspect ratio
-        const height = containerWidth / aspectRatio;
-        frame.style.height = `${height}px`;
-      }
-    };
-
-    calculateHeight();
-    window.addEventListener('resize', calculateHeight);
-    return () => {
-      window.removeEventListener('resize', calculateHeight);
-    };
-  }, []);
-
   return(<>
     <Head>
       <title>
@@ -75,7 +56,7 @@ const Page = () => {
           
         </Stack>
         
-        <Box ref={frameRef} sx={{marginTop:"2.5%"}}>
+        <Box sx={{marginTop:"2.5%"}}>
             
         </Box>
        
