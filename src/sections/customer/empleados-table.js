@@ -139,16 +139,17 @@ export const EmpleadosTable = (props) => {
                       {/* {employee.Managerial.toString()} */}
                       {employee.isManager ? 'Administrador' : 'Trainee'}
                     </TableCell>
-                    <TableCell sx={{minWidth:150}}>
+                    <TableCell sx={{minWidth:160}}>
                       {/* aqui poner los botones de editar y eso */}
                       {/* pioner 3 icon buttons para ver, editar y borrar */}
                       {/* onClick={() => props.toggleEdit(index)}  */}
-                      <IconButton aria-label="delete" size="small" style={{fontSize:"0.8em"}}>
+                      {/* <IconButton aria-label="delete" size="small" style={{fontSize:"0.8em"}}>
                         <VisibilityIcon/>
-                      </IconButton>
+                      </IconButton> */}
                       
                       <Link href={`detalles_empleado?id=${employee.ID_CET}`} passHref>
-                        <IconButton size="small" aria-label="Edit" theme={theme} color="primary" style={{fontSize:"0.8em",color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton>
+                        <Button variant="contained" size="small" style={{color:"white"}} theme={theme} color="primary">Detalles</Button>
+                        {/* <IconButton size="small" aria-label="Edit" theme={theme} color="primary" style={{fontSize:"0.8em",color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton> */}
                       </Link>
                       <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}} onClick={handleDelAlert}>
                         <DeleteIcon/>
