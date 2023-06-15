@@ -9,6 +9,12 @@ import {
   CardHeader,
   Divider,
   InputLabel,
+  Table,
+  TableBody,
+  TableRow,
+  TableCell,
+  Select,
+  MenuItem,
   Typography,
   TextField,
   Unstable_Grid2 as Grid
@@ -17,6 +23,23 @@ import axios from 'axios';
 
 export const AccountProfileDetails = () => {
   const id = localStorage.getItem('sessionUser');
+
+  const availableAreas = [
+    'Marketing',
+    'Finance',
+    'Technology',
+    'Human Resources',
+    'Sales',
+    'Operations',
+    'Product Management',
+    'Customer Service',
+  ];
+  const areasDeInteres = [
+    'Marketing',
+    'Finance',
+    'Technology',
+    'Human Resources',
+  ];
 
   const [formValue, setFormValue] = useState({
     ID_CET: '',
@@ -38,6 +61,7 @@ export const AccountProfileDetails = () => {
     remuneracion: '',
   });
   const [message, setMessage] = useState('');
+
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
   const editUrl = `http://localhost:5000/updatepeople/${id}`;
@@ -334,61 +358,39 @@ export const AccountProfileDetails = () => {
                 xs={12}
                 md={6}
               >
-                <TextField
-                  fullWidth
-                  // helperText="Ingrese nombre de usuario"
-                  label="Posición actual"
-                  name="posAct"
-                  value={formValue.posAct}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  type='text'
-                  label="Posición de ingreso"
-                  name="posIngreso"
-                  value={formValue.posIngreso}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  type='text'
-                  label="Origen de candidato"
-                  name="origenCand"
-                  value={formValue.origenCand}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  type='text'
-                  label="Puesto"
-                  name="isManagerStr"
-                  value={formValue.isManagerStr}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  type='text'
-                  label="Remuneración"
-                  name="remuneracion"
-                  value={'$' + formValue.remuneracion}
-                />
+                <Card sx={{ border: '1px solid grey', padding: '20px' }}>
+                  <Typography variant="h6" sx={{ color: 'grey', marginBottom: '10px' }}>
+                    Areas de Interes
+                  </Typography>
+                  <Table>
+                    <TableBody>
+                      {/* Display the existing areas de interes in the table rows */}
+                      {areasDeInteres.map((area, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{area}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                  <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
+                    <Select
+                      // value={selectedArea}
+                      // onChange={handleAreaSelect}
+                      sx={{ marginRight: '10px' }}
+                    >
+                      {/* Render the options for selecting an area de interes */}
+                      {availableAreas.map((area, index) => (
+                        <MenuItem key={index} value={area}>
+                          {area}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    {/* <Button variant="contained" onClick={handleAddArea}> */}
+                    <Button variant="contained">
+                      Add
+                    </Button>
+                  </Box>
+                </Card>
               </Grid>
               </Grid>
             </Box>
