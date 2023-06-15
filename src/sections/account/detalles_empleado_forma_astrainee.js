@@ -434,7 +434,7 @@ export const AccountProfileDetails = () => {
         <Select>
           {availableAreas.map((area, index) => (
             <MenuItem key={index} value={area}>
-              {area}
+              {area}  
             </MenuItem>
           ))}
         </Select>
