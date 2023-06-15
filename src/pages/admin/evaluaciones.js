@@ -16,6 +16,7 @@ import {
   Stack,
   Dialog,
   DialogTitle,
+  TextField,
   DialogContent,
   SvgIcon,
   Select,
@@ -124,9 +125,23 @@ const Page = () => {
         <DialogTitle>Crea una Evalucación</DialogTitle>
         <DialogContent>
             <form>
-                <Grid container flexDirection="column" spacing={2}>
+                {/* Tuve que quitar spacing asi que agregar margin donde quiero separar */}
+                <Grid container flexDirection="column">
                     <Grid item>
-                        <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%"}}>
+                        <h3>Trainee Evaluado:</h3>                    
+                    </Grid>
+                    <Grid item>
+                        <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                            <Grid item xs={7}>
+                                <TextField label="Nombre Completo" sx={{width:"100%"}}/>
+                            </Grid>
+                            <Grid item xs={5}>
+                                <TextField label="Rotacion"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%", marginTop:"5%", marginBottom:"5%"}}>
                             <Grid item xs={9}>
                                 <h3>Calificación:</h3>
                             </Grid>
@@ -135,7 +150,7 @@ const Page = () => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item>
+                    <Grid item sx={{marginBottom:"5%"}}>
                         {/* aqui poner el form para comentario */}
                         <textarea style={{width:"100%", height:"20vh", resize:"none", borderRadius:"1em", border:"1px solid black", padding:"1%"}}/>
                     </Grid>
