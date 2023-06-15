@@ -11,6 +11,7 @@ import {
   Button,
   Container,
   Pagination,
+  Card,
   Stack,
   SvgIcon,
   Typography,
@@ -76,6 +77,18 @@ const Page = () => {
         </Stack>
         
         <Box ref={frameRef} sx={{marginTop:"2.5%"}}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={4}>
+                <Card>
+                  {/* Aqui poner la profile como imagen, si esta en rotacion, y su area/puesto lo que venga en bd */}
+                </Card>
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                  <Card>
+                    {/* Aqui poner lo de rotación actual que tengo pensado, poner su evaluación, calificación y comentario de eso */}
+                  </Card>
+              </Grid>
+            </Grid>
             
         </Box>
        
