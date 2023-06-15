@@ -57,7 +57,7 @@ import {
     }, []);
     
     return(
-      <Card sx={{width: "90%"}}>
+      <Card sx={{width: "100%"}}>
         <CardContent>
           <Box
             sx={{

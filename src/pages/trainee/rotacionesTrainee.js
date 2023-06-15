@@ -5,6 +5,8 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import Frame from 'src/pages/frame.js';
 import Leaderboard from 'src/sections/overview/trainee/overview-leaderboard.js';
 import Tienda from 'src/sections/overview/overview-tienda';
+import RotacionReciente from 'src/components/RotacionReciente';
+import HistRotaciones from 'src/components/HistRotaciones';
 import { ProfileRotaciones } from 'src/components/ProfileRotaciones';
 import {useEffect, useRef} from 'react';
 import {
@@ -14,6 +16,7 @@ import {
   Pagination,
   Card,
   Stack,
+  CardHeader,
   SvgIcon,
   Typography,
   Unstable_Grid2 as Grid
@@ -24,25 +27,6 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 
 
 const Page = () => {
-  const frameRef = useRef(null);
-
-  useEffect(() => {
-    const calculateHeight = () => {
-      const frame = frameRef.current;
-      if (frame) {
-        const containerWidth = frame.parentNode.offsetWidth;
-        const aspectRatio = 2.2 / 1; // Adjust this value to match your iframe's aspect ratio
-        const height = containerWidth / aspectRatio;
-        frame.style.height = `${height}px`;
-      }
-    };
-
-    calculateHeight();
-    window.addEventListener('resize', calculateHeight);
-    return () => {
-      window.removeEventListener('resize', calculateHeight);
-    };
-  }, []);
 
   return(<>
     <Head>
@@ -77,17 +61,16 @@ const Page = () => {
           
         </Stack>
         
-        <Box ref={frameRef} sx={{marginTop:"2.5%"}}>
+        <Box sx={{marginTop:"2.5%"}}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={4}>
                 <ProfileRotaciones/>
               </Grid>
-              <Grid item xs={12} sm={4}>
-                  <Card>
-                    {/* Aqui poner lo de rotación actual que tengo pensado, poner su evaluación, calificación y comentario de eso */}
-                  </Card>
+              <Grid item xs={12} sm={8}>
+                  <RotacionReciente/>
               </Grid>
             </Grid>
+            <HistRotaciones/>
             
         </Box>
        
