@@ -13,32 +13,43 @@ import {
   TableBody,
   TableRow,
   TableCell,
+  TableContainer,
+  TableHead,
   Select,
   MenuItem,
   Typography,
+  SvgIcon,
   TextField,
   Unstable_Grid2 as Grid
 } from '@mui/material';
+import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import axios from 'axios';
 
 export const AccountProfileDetails = () => {
   const id = localStorage.getItem('sessionUser');
 
   const availableAreas = [
-    'Marketing',
-    'Finance',
-    'Technology',
-    'Human Resources',
-    'Sales',
-    'Operations',
-    'Product Management',
-    'Customer Service',
+    'Mantenimiento',
+    'Operaciones',
+    'Supply Chain',
+    'Ingeniería', 
+    'Proyectos',
+    'Medio Ambiente',
+    'Seguridad',
+    'Comercial',
+    'Administración y Finanzas',
+    'Auditoría y Legal',
+    'Comunicaciones',
+    'Recursos Humanos'
+
   ];
   const areasDeInteres = [
-    'Marketing',
-    'Finance',
-    'Technology',
-    'Human Resources',
+    'Mantenimiento',
+    'Operaciones',
+    'Supply Chain',
+    'Ingeniería', 
+    'Proyectos',
+    'Medio Ambiente',
   ];
 
   const [formValue, setFormValue] = useState({
@@ -124,6 +135,14 @@ export const AccountProfileDetails = () => {
       console.error('Error fetching employee:', error);
     }
   }; 
+
+  const renderTableColumns = (startIndex, endIndex) => {
+    return areasDeInteres.slice(startIndex, endIndex).map((area, index) => (
+      <TableRow key={index}>
+        <TableCell>{area}</TableCell>
+      </TableRow>
+    ));
+  };
 
   if (!id) {
     return <p>Loading...</p>; // Add a loading state while the id is undefined
@@ -352,48 +371,60 @@ export const AccountProfileDetails = () => {
           <Divider />
           <CardHeader subheader="La información se puede editar" title="Intereses de areas" />
           <CardContent sx={{ pt: 0 }}>
-            <Box sx={{ m: -1.5 }}>
-              <Grid container spacing={3}>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <Card sx={{ border: '1px solid grey', padding: '20px' }}>
-                  <Typography variant="h6" sx={{ color: 'grey', marginBottom: '10px' }}>
-                    Areas de Interes
-                  </Typography>
-                  <Table>
-                    <TableBody>
-                      {/* Display the existing areas de interes in the table rows */}
-                      {areasDeInteres.map((area, index) => (
-                        <TableRow key={index}>
-                          <TableCell>{area}</TableCell>
-                        </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                  <Box sx={{ display: 'flex', alignItems: 'center', marginTop: '10px' }}>
-                    <Select
-                      // value={selectedArea}
-                      // onChange={handleAreaSelect}
-                      sx={{ marginRight: '10px' }}
-                    >
-                      {/* Render the options for selecting an area de interes */}
-                      {availableAreas.map((area, index) => (
-                        <MenuItem key={index} value={area}>
-                          {area}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                    {/* <Button variant="contained" onClick={handleAddArea}> */}
-                    <Button variant="contained">
-                      Add
-                    </Button>
-                  </Box>
-                </Card>
-              </Grid>
-              </Grid>
-            </Box>
+          <Grid container spacing={2}>
+      <Grid item xs={12} md={6}>
+        {/* First column of the table */}
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Áreas de Interés Actuales</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {renderTableColumns(0, areasDeInteres.length/2)}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={12} md={6}>
+        {/* Second column of the table */}
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>------------------</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {renderTableColumns(areasDeInteres.length/2, areasDeInteres.length)}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Grid>
+      <Grid item xs={12}>
+        {/* Select and button */}
+        <Select>
+          {availableAreas.map((area, index) => (
+            <MenuItem key={index} value={area}>
+              {area}
+            </MenuItem>
+          ))}
+        </Select>
+        {/* <Button onClick={handleAddArea} variant="contained" color="primary"> */}
+        <Button
+                  startIcon={(
+                    <SvgIcon fontSize="small">
+                      <PlusIcon />
+                    </SvgIcon>
+                  )}
+                  variant="contained"
+                >
+                  Agregar Área
+                </Button>
+        {/* </Button> */}
+      </Grid>
+    </Grid>
           </CardContent>
           <Divider />
           <CardActions sx={{ justifyContent: 'flex-end' }}>
