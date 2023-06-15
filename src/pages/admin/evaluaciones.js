@@ -5,6 +5,7 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import Frame from 'src/pages/frame.js';
 import Leaderboard from 'src/sections/overview/trainee/overview-leaderboard.js';
 import Tienda from 'src/sections/overview/overview-tienda';
+import TablaEvaluacion from 'src/sections/customer/TablaEvaluaciones';
 import {useEffect, useRef} from 'react';
 import {
   Box,
@@ -120,6 +121,7 @@ const Page = () => {
               >
                 
               </Select>
+              <TablaEvaluacion/>
 
           </Stack>
         </Container>
