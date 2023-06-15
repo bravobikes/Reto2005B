@@ -152,7 +152,7 @@ const Page = () => {
                     </Grid>
                     <Grid item sx={{marginBottom:"5%"}}>
                         {/* aqui poner el form para comentario */}
-                        <textarea style={{width:"100%", height:"20vh", resize:"none", borderRadius:"1em", border:"1px solid black", padding:"1%"}}/>
+                        <textarea placeholder="Comentarios" style={{width:"100%", height:"20vh", resize:"none", borderRadius:"1em", border:"1px solid black", padding:"1%"}}/>
                     </Grid>
                     <Grid item>
                         <Button variant="contained">Submit</Button>
