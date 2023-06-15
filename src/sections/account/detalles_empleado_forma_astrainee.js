@@ -369,7 +369,35 @@ export const AccountProfileDetails = () => {
             </Box>
           </CardContent>
           <Divider />
-          <CardHeader subheader="La información se puede editar" title="Intereses de areas" />
+          <Grid container>
+            <Grid item xs={12} md={6}>
+              <CardHeader subheader="La información se puede editar" title="Intereses de areas" />
+            </Grid>
+            <Grid item xs={12} md={6}>
+              {/* Select and button */}
+        <Select>
+          {availableAreas.map((area, index) => (
+            <MenuItem key={index} value={area}>
+              {area}
+            </MenuItem>
+          ))}
+        </Select>
+        {/* <Button onClick={handleAddArea} variant="contained" color="primary"> */}
+        <Button
+                  startIcon={(
+                    <SvgIcon fontSize="small">
+                      <PlusIcon />
+                    </SvgIcon>
+                  )}
+                  variant="contained"
+                  sx={{ marginLeft: '10px' }}
+                >
+                  Agregar Área
+                </Button>
+        {/* </Button> */}
+            </Grid>
+
+          </Grid>
           <CardContent sx={{ pt: 0 }}>
           <Grid container spacing={2}>
       <Grid item xs={12} md={6}>
@@ -402,8 +430,7 @@ export const AccountProfileDetails = () => {
           </Table>
         </TableContainer>
       </Grid>
-      <Grid item xs={12}>
-        {/* Select and button */}
+      {/* <Grid item xs={12} spacing={2}>
         <Select>
           {availableAreas.map((area, index) => (
             <MenuItem key={index} value={area}>
@@ -411,7 +438,6 @@ export const AccountProfileDetails = () => {
             </MenuItem>
           ))}
         </Select>
-        {/* <Button onClick={handleAddArea} variant="contained" color="primary"> */}
         <Button
                   startIcon={(
                     <SvgIcon fontSize="small">
@@ -419,11 +445,11 @@ export const AccountProfileDetails = () => {
                     </SvgIcon>
                   )}
                   variant="contained"
+                  sx={{ marginLeft: '10px' }}
                 >
                   Agregar Área
                 </Button>
-        {/* </Button> */}
-      </Grid>
+      </Grid> */}
     </Grid>
           </CardContent>
           <Divider />
