@@ -25,8 +25,8 @@ export const SettingsNotifications = () => {
     <form onSubmit={handleSubmit}>
       <Card>
         <CardHeader
-          subheader="Manage the notifications"
-          title="Notifications"
+          subheader="Personaliza tus notifiaciones"
+          title="Notificaciones"
         />
         <Divider />
         <CardContent>
