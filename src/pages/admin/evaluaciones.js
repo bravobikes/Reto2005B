@@ -6,13 +6,17 @@ import Frame from 'src/pages/frame.js';
 import Leaderboard from 'src/sections/overview/trainee/overview-leaderboard.js';
 import Tienda from 'src/sections/overview/overview-tienda';
 import TablaEvaluacion from 'src/sections/customer/TablaEvaluaciones';
-import {useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {
   Box,
   Button,
   Container,
   Pagination,
+  Rating,
   Stack,
+  Dialog,
+  DialogTitle,
+  DialogContent,
   SvgIcon,
   Select,
   Typography,
@@ -24,25 +28,14 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 
 
 const Page = () => {
-  const frameRef = useRef(null);
-
-  useEffect(() => {
-    const calculateHeight = () => {
-      const frame = frameRef.current;
-      if (frame) {
-        const containerWidth = frame.parentNode.offsetWidth;
-        const aspectRatio = 2.2 / 1; // Adjust this value to match your iframe's aspect ratio
-        const height = containerWidth / aspectRatio;
-        frame.style.height = `${height}px`;
-      }
-    };
-
-    calculateHeight();
-    window.addEventListener('resize', calculateHeight);
-    return () => {
-      window.removeEventListener('resize', calculateHeight);
-    };
-  }, []);
+    const [crea, setCrea] = useState(false);
+  function handleCreaEv() {
+   setCrea(true);
+  }
+  function handleSubmitEv() {
+    // aqui poner logica para agregar la evaluacion a bd
+    setCrea(false);
+  }
 
   return (
     <>
@@ -106,6 +99,7 @@ const Page = () => {
                     </SvgIcon>
                   )}
                   variant="contained"
+                  onClick={handleCreaEv}
                 >
                   Crear Evaluación
                 </Button>
@@ -126,6 +120,16 @@ const Page = () => {
           </Stack>
         </Container>
       </Box>
+      <Dialog open={crea} onClose={handleCreaEv}>
+        <DialogTitle>Crea una Evalucación</DialogTitle>
+        <DialogContent>
+            <form>
+                <h6>Crea Evaluacion</h6>
+                <Rating name="Calificacion"/>
+            </form>
+        </DialogContent>
+      </Dialog>
+
     </>
   );
 };
