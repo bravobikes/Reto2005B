@@ -8,7 +8,7 @@ import Tienda from 'src/sections/overview/overview-tienda';
 import RotacionReciente from 'src/components/RotacionReciente';
 import HistRotaciones from 'src/components/HistRotaciones';
 import { ProfileRotaciones } from 'src/components/ProfileRotaciones';
-import {useEffect, useRef} from 'react';
+import {useEffect, useState} from 'react';
 import {
   Box,
   Button,
@@ -22,16 +22,66 @@ import {
   Unstable_Grid2 as Grid
 } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
+import axios from 'axios';
+
 
 
 
 
 const Page = () => {
+  const id = localStorage.getItem('sessionUser');
+
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const [show, setShow] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [data, setData] = useState([]);
+  const [ultimaRotacion, setUltimaRotacion] = useState([]);
+  // const courses = useCourses(data, page, rowsPerPage);
+  // const coursesIds = useCoursesIds(courses);
+  // const coursesSelection = useSelection(coursesIds);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getHistorialUrl = `http://localhost:5000/getHistoricoTrainee/${id}`;
+
+
+  function renderView(index = null) {
+    setSelectedUser(data[index])
+    setShow(!show);
+  }
+  function renderEdit(index = null) {
+    setSelectedUser(data[index])
+    setShowEdit(!showEdit);
+  }
+
+  useEffect(() => {
+    // console.log('Before fetch:', data);
+  
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(getHistorialUrl);
+        setData(response.data); // Update state using the previous state
+        setUltimaRotacion(response.data[response.data.length-1]);
+        // console.log('After setData:', response.data[response.data.length-1]);
+        setIsLoading(false); // Update loading state
+        console.log(ultimaRotacion);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setIsLoading(false); // Update loading state even if an error occurs
+      }
+    };
+  
+    fetchData();
+  }, []);
+
 
   return(<>
     <Head>
       <title>
-        Videojuego | Portal Ternium
+        Rotaciones | Portal Ternium
       </title>
     </Head>
     <Box

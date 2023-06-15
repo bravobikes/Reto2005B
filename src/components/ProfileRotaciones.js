@@ -24,36 +24,35 @@ import {
   
   
   export const ProfileRotaciones = () => {
+    const id = localStorage.getItem('sessionUser');
     
-    const getEmployeeUrl = 'http://localhost:5000/getEmployee/';
-    const deleteUrl = 'http://localhost:5000/deletepeople';
-    const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
-    const [data, setData] = useState([]);
-    // Obtener el id el usuario de la sesion
-    //id = ...
+
+    const getPerfilEmpleado = `http://localhost:5000/getPerfilEmpleado/${id}`;
+    const getHistoricoUrl = `http://localhost:5000/getHistoricoTrainee/${id}`;
+
+
+    const [perfilEmpleado, setPerfilEmpleado] = useState([]);
+    const [rotaciones, setRotaciones] = useState([]);
+    const [ultimaRotacion, setUltimaRotacion] = useState([]);
+
   
     useEffect(() => {
       const fetchProfile = async () => {
         try {
           // Make a request to the server to fetch the user profile
-          const sessionUserRes = await axios.get(getSessionUserUrl);
-          // const sessionUser = sessionUserRes.data.user
-          const sessionUser = '1';
-          // console.log(sessionUser);
-          const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
-          const data = response.data;
-  
-          console.log(response);
-          // Set the user state with the retrieved profile data
-          setData(data);
-          
+          const perfilEmpleadoResp = await axios.get(getPerfilEmpleado);
+          const historicoEmpleadoResp = await axios.get(getHistoricoUrl);
+          setPerfilEmpleado(perfilEmpleadoResp.data)
+          setRotaciones(historicoEmpleadoResp.data);
+          setUltimaRotacion(historicoEmpleadoResp.data[historicoEmpleadoResp.data.length - 1])
+          console.log(ultimaRotacion);
         } catch (error) {
           console.error('Error fetching user profile:', error);
         }
       };
   
       fetchProfile();
-      console.log(data);
+
     }, []);
     
     return(
@@ -83,7 +82,7 @@ import {
             >
               {/* {user.name} */}
               {/* {data.Name} */}
-              Nombre Usuario
+              {perfilEmpleado.nombre}
             </Typography>
             <Typography
               color="text.secondary"
@@ -97,19 +96,20 @@ import {
               variant="body2"
             >
               {/* {user.timezone} */}
-              Posicion/área del trainee
+              {perfilEmpleado['Direccion/ Area de rotacion actual']}
             </Typography>
           </Box>
         </CardContent>
         <Divider />
         <CardActions sx={{marginTop: "3%"}}>
           {/* aqui poner el precio y comprar maybe, ene sta fila al menos */}
-            <Grid container alignItems="center" justifyContent="space-between" flexDirection="row" style={{color:"green"}}>
+            <Grid container alignItems="center" justifyContent="space-between" flexDirection="row" color={ ultimaRotacion.enRotacion ? 'green' : 'red'}>
+            {/* <Grid container alignItems="center" justifyContent="space-between" flexDirection="row"> */}
                 <Grid item xs={1} style={{ fontSize: "2em", paddingBottom:"0.3rem"}}>
                     &#8226;
                 </Grid>
                 <Grid item xs={11}>
-                    En Rotación
+                { ultimaRotacion.enRotacion ? 'En Rotación' : 'Sin Rotación'}
                 </Grid>
             </Grid>
           
