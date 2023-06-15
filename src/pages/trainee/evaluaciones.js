@@ -60,7 +60,7 @@ const Page = () => {
           >
             <Stack spacing={1}>
               <Typography variant="h4">
-                Videojuego
+                Evaluaciones
               </Typography>
               <Stack
                 alignItems="center"
@@ -76,18 +76,9 @@ const Page = () => {
         </Stack>
         
         <Box ref={frameRef} sx={{marginTop:"2.5%"}}>
-          <Frame />
+            
         </Box>
-        <Box sx={{marginTop:"2.5%"}}>
-            <Grid container sx={{width:"100%"}} spacing={2} >
-              <Grid item sm={4} xs={12}>
-                  <Leaderboard/>
-              </Grid>
-                <Grid item sm={8} xs={12}>
-                  <Tienda/>
-                </Grid>
-            </Grid>
-        </Box>
+       
         </Container>
 
     </Box>
