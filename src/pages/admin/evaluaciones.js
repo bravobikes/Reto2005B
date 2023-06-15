@@ -120,12 +120,32 @@ const Page = () => {
           </Stack>
         </Container>
       </Box>
-      <Dialog open={crea} onClose={handleCreaEv}>
+      <Dialog open={crea} onClose={handleSubmitEv} fullWidth={true} maxWidth="sm">
         <DialogTitle>Crea una Evalucación</DialogTitle>
         <DialogContent>
             <form>
-                <h6>Crea Evaluacion</h6>
-                <Rating name="Calificacion"/>
+                <Grid container flexDirection="column">
+                    <Grid item>
+                        <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%"}}>
+                            <Grid item xs={9}>
+                                <h3>Calificación:</h3>
+                            </Grid>
+                            <Grid item xs={3} sx={{marginTop:"0.5em"}}>
+                                <Rating name="Calificacion"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item>
+                        {/* aqui poner el form para comentario */}
+                        <textarea />
+                    </Grid>
+                    <Grid item>
+                        <Button variant="contained">Submit</Button>
+                    </Grid>
+                </Grid>
+                
+
+                
             </form>
         </DialogContent>
       </Dialog>
