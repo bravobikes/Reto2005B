@@ -98,7 +98,18 @@ const Page = () => {
                   </Button>
                 </Stack>
               </Stack>
-              
+              <div>
+                <Button
+                  startIcon={(
+                    <SvgIcon fontSize="small">
+                      <PlusIcon />
+                    </SvgIcon>
+                  )}
+                  variant="contained"
+                >
+                  Crear Evaluación
+                </Button>
+              </div>
             </Stack>
             <Select
                 // value="Ingrese Trainee"

@@ -58,6 +58,9 @@ export default function TablaEvaluacion(props) {
                   Nombre y Apellido
                 </TableCell>
                 <TableCell>
+                  Rotación
+                </TableCell>
+                <TableCell>
                   Ultima Calificacion
                 </TableCell>
                 <TableCell>
@@ -98,6 +101,25 @@ export default function TablaEvaluacion(props) {
                     </TableCell>
                     <TableCell>
                       {/* {employee.fechNac.split('T')[0]} */}
+                      <Stack
+                        alignItems="center"
+                        direction="row"
+                        spacing={2}
+                      >
+                        {/* tambien agregar el avatar */}
+                        {/* <Avatar src={employee.avatar}> */}
+                          {/* {getInitials(employee.nomAp)} */}
+                          {/* {getInitials(employee.nombre + ' ' + employee.apellidoPat)}
+                        </Avatar> */}
+                        <Typography variant="subtitle2">
+                          {/* {employee.nomAp} */}
+                          {/* {employee.nombre + ' ' + employee.apellidoPat} */}
+                          NomRotacion
+                        </Typography>
+                      </Stack>
+                    </TableCell>
+                    <TableCell>
+                      {/* {employee.fechNac.split('T')[0]} */}
                       <Rating name="read-only" value={3} readOnly />
                     </TableCell>
                     <TableCell>
@@ -106,7 +128,7 @@ export default function TablaEvaluacion(props) {
                     </TableCell>
                     <TableCell>
                       {/* {employee.posAct} */}
-                      Verdadero
+                      Activo
                     </TableCell>
                     {/* <TableCell> */}
                       {/* {employee.cursosTomados} */}
@@ -121,8 +143,9 @@ export default function TablaEvaluacion(props) {
                       {/* pioner 3 icon buttons para ver, editar y borrar */}
                       {/* onClick={() => props.toggleEdit(index)}  */}
                       {/* si no esta en Rotacion deshabilitar el boton */}
-                      <Button variant="contained">
-                        Evaluar
+                      {/* esto de detalles tal vez quitarlo pero me parecio chido que salga un desgloce de las rotaciones de la persona como Dialog */}
+                      <Button variant="contained" size="small">
+                        Detalles
                       </Button>
                     </TableCell>
                   </TableRow>

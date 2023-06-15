@@ -38,6 +38,7 @@ const Page = () => (
                 md={6}
                 lg={6}
               >
+                {/* cambiar este a algo mas personalizado */}
                 <AccountProfile />
               </Grid>
               <Grid
@@ -45,6 +46,7 @@ const Page = () => (
                 md={12}
                 lg={12}
               >
+                {/* cambiar esto a lo mismo pero con un boton de back */}
                 <AccountProfileDetails />
               </Grid>
             </Grid>
