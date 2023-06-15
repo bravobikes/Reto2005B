@@ -13,7 +13,7 @@ import {
   } from '@mui/material';
 export default function HistRotaciones() {
     return (
-        <Card>
+        <Card style={{marginTop:"5%"}}>
             <CardHeader title="Rotaciones historicas"/>
             <CardContent sx={{
                 alignItems: 'center',
