@@ -57,7 +57,7 @@ export const SideNav = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log('isManager: ', data.isManager);
+    // console.log('isManager: ', data.isManager);
 
   }, [data]);
 
