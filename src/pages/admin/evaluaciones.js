@@ -15,7 +15,10 @@ import {
   Rating,
   Stack,
   Dialog,
+  MenuItem,
   DialogTitle,
+  FormControl,
+  InputLabel,
   TextField,
   DialogContent,
   SvgIcon,
@@ -140,8 +143,43 @@ const Page = () => {
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Grid item sx={{marginTop:"5%"}}>
+                        <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                            <Grid item xs={6}>
+                                <h3>Estado de Rotacion: </h3>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControl sx={{width:"100%"}}>
+                                <InputLabel id="labelSeleccionar">Seleccionar</InputLabel>
+                                <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
+                                    <MenuItem value={0}>Inactivo</MenuItem>
+                                    <MenuItem value={1}>Activo</MenuItem>
+                                </Select>
+                                </FormControl>
+                                
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <Grid item sx={{marginTop:"2.5%"}}>
+                        <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                            <Grid item xs={6}>
+                                <h3>Potencial: </h3>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControl sx={{width:"100%"}}>
+                                <InputLabel id="labelSeleccionar">Seleccionar</InputLabel>
+                                <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
+                                    {/* No se bien cuales son las opciones pero aqui deberian de ir */}
+                                    <MenuItem value={"AM+"}>AM+</MenuItem>
+                                    <MenuItem value={"AF+"}>AF+</MenuItem>
+                                </Select>
+                                </FormControl>
+                                
+                            </Grid>
+                        </Grid>
+                    </Grid>
                     <Grid item>
-                        <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%", marginTop:"5%", marginBottom:"5%"}}>
+                        <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%", marginTop:"2.5%", marginBottom:"5%"}}>
                             <Grid item xs={9}>
                                 <h3>Calificación:</h3>
                             </Grid>
