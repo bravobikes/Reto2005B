@@ -289,7 +289,7 @@ const Page = () => {
                 {
                   id: 'bcad5524fe3a2f8f8620ceda',
                   image: '/assets/products/product-7.png',
-                  name: 'Healthcare Ritual',
+                  name: 'Premios Ternium 2023',
                   updatedAt: subDays(subHours(now, 5), 6).getTime()
                 }
               ]}
