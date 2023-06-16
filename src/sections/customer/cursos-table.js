@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { format } from 'date-fns';
 import {
@@ -16,17 +17,82 @@ import {
 } from '@mui/material';
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
-import {Button} from '@mui/material';
-import {createTheme} from '@mui/material/styles';
+import { Button } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-      primary: {
-          main: 'rgb(1,104,138)',
-          contrastText: 'rgb(7,84,110)'
-      }
+    primary: {
+      main: 'rgb(1,104,138)',
+      contrastText: 'rgb(7,84,110)'
+    }
   }
-})
+});
+
+const Popup = ({ content, onClose }) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'; // Prevent scrolling on the background content
+    return () => {
+      document.body.style.overflow = 'auto'; // Restore scrolling when the pop-up is closed
+    };
+  }, []);
+
+  return (
+    <>
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(0, 0, 0, 0.5)',
+          zIndex: 9998,
+          opacity: 1,
+          transition: 'opacity 0.3s ease'
+        }}
+        onClick={onClose}
+      ></div>
+      <div
+        style={{
+          position: 'fixed',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          backgroundColor: 'white',
+          padding: '2em',
+          borderRadius: '0.6em',
+          boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.5)',
+          zIndex: 9999,
+          opacity: 1,
+          transform: 'translate(-50%, -50%) scale(1)',
+          transition: 'opacity 0.3s ease, transform 0.3s ease',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
+        <button
+          style={{
+            alignSelf: 'flex-end',
+            background: 'none',
+            border: 'none',
+            padding: 0,
+            cursor: 'pointer'
+          }}
+          onClick={onClose}
+        >
+          <img
+            src='/assets/icone-x-grise.png'
+            alt="Close"
+            style={{ width: '20px', height: '20px' }}
+          />
+        </button>
+        <h3>{content.text}</h3>
+        <img src={content.image} alt="Pop-up Image" />
+      </div>
+    </>
+  );
+};
 
 export const CoursesTable = (props) => {
   const {
@@ -43,9 +109,11 @@ export const CoursesTable = (props) => {
     selected = []
   } = props;
 
-  const selectedSome = (selected.length > 0) && (selected.length < courses.length);
-  const selectedAll = (courses.length > 0) && (selected.length === courses.length);
-  // console.log(courses);
+  const selectedSome = selected.length > 0 && selected.length < courses.length;
+  const selectedAll = courses.length > 0 && selected.length === courses.length;
+
+  const [isPopupOpen, setPopupOpen] = useState(false);
+  const [popupContent, setPopupContent] = useState({});
 
   return (
     <Card>
@@ -67,34 +135,19 @@ export const CoursesTable = (props) => {
                     }}
                   />
                 </TableCell>
-                <TableCell>
-                  Curso
-                </TableCell>
-                <TableCell>
-                  Encuadre
-                </TableCell>
-                <TableCell>
-                  Modalidad
-                </TableCell>
-                <TableCell>
-                  Fecha
-                </TableCell>
-                <TableCell>
-                  Más info
-                </TableCell>
+                <TableCell>Curso</TableCell>
+                <TableCell>Encuadre</TableCell>
+                <TableCell>Modalidad</TableCell>
+                <TableCell>Fecha</TableCell>
+                <TableCell>Más info</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
               {courses.map((course) => {
                 const isSelected = selected.includes(course.cursoId);
-                // const createdAt = format(course.fecha, 'dd/MM/yyyy');
 
                 return (
-                  <TableRow
-                    hover
-                    key={course.cursoId}
-                    selected={isSelected}
-                  >
+                  <TableRow hover key={course.cursoId} selected={isSelected}>
                     <TableCell padding="checkbox">
                       <Checkbox
                         checked={isSelected}
@@ -108,32 +161,38 @@ export const CoursesTable = (props) => {
                       />
                     </TableCell>
                     <TableCell>
-                      <Stack
-                        alignItems="center"
-                        direction="row"
-                        spacing={2}
-                      >
-                        {/* <Avatar src={course.avatar}>
-                          {getInitials(course.name)}
-                        </Avatar> */}
+                      <Stack alignItems="center" direction="row" spacing={2}>
                         <Typography variant="subtitle2">
                           {course.nombreCurso}
                         </Typography>
                       </Stack>
                     </TableCell>
+                    <TableCell>{course.encuadre}</TableCell>
+                    <TableCell>{course.modalidad}</TableCell>
+                    <TableCell>{course.fecha.split('T')[0]}</TableCell>
                     <TableCell>
-                      {course.encuadre}
-                    </TableCell>
-                    <TableCell>
-                      {/* {course.address.city}, {course.address.state}, {course.address.country} */}
-                      {course.modalidad}
-                    </TableCell>
-                    <TableCell>
-                      {course.fecha.split('T')[0]}
-                    </TableCell>
-                    <TableCell>
-                      {/* aqui poner los botones de editar y eso */}
-                      <Button theme={theme} color="primary" style={{marginRight: "1em", color: 'white', fontWeight:'600', borderRadius:'0.6em', padding:"0.5em", textTransform:"none"}} variant="contained">Más info</Button>
+                      <Button
+                        theme={theme}
+                        color="primary"
+                        style={{
+                          marginRight: '1em',
+                          color: 'white',
+                          fontWeight: '600',
+                          borderRadius: '0.6em',
+                          padding: '0.5em',
+                          textTransform: 'none'
+                        }}
+                        variant="contained"
+                        onClick={() => {
+                          setPopupContent({
+                            text: 'Este espacio es para poner la descripción del curso.',
+                            image: '/assets/Ternium-produjo-su-primer-rollo-del-nuevo-Laminador-en-Caliente-el-pasado-15-de-mayo-1.jpg'
+                          });
+                          setPopupOpen(true);
+                        }}
+                      >
+                        Más info
+                      </Button>
                     </TableCell>
                   </TableRow>
                 );
@@ -151,6 +210,9 @@ export const CoursesTable = (props) => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
       />
+      {isPopupOpen && (
+        <Popup content={popupContent} onClose={() => setPopupOpen(false)} />
+      )}
     </Card>
   );
 };
