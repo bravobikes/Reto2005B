@@ -9,6 +9,7 @@ import {
   CardHeader,
   Stack,
   SvgIcon,
+  Grid,
   Typography,
   useTheme
 } from '@mui/material';
@@ -86,16 +87,30 @@ export const OverviewTraffic = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Areas de cursos tomados" />
+      <CardHeader title="Areas de cursos tomados"/>
       <CardContent>
-        <Chart
-          height={300}
-          options={chartOptions}
-          series={chartSeries}
-          type="donut"
-          width="100%"
-        />
-        <Stack
+        <Grid container flexDirection="column" spacing={2} style={{}}>
+          <Grid item sx={{width:"70%", marginLeft:"20%"}}>
+                <img src="/favicon-16x16.png" style={{width:"100%"}}/>
+          </Grid>
+          <Grid item>
+            {/* Nombre */}
+            <span style={{fontWeight:"600", fontSize:"1.5em"}}>Nombre</span>
+          </Grid>
+          <Grid item>
+            <span style={{color:"grey"}}>G1</span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600"}}>Prox pago: 08/02/2023</span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600", color:"green"}}>$24,000</span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600"}}>Fecha PTU: 08/23/2032</span>
+          </Grid>
+        </Grid>
+        {/* <Stack
           alignItems="center"
           direction="row"
           justifyContent="center"
@@ -130,7 +145,7 @@ export const OverviewTraffic = (props) => {
               </Box>
             );
           })}
-        </Stack>
+        </Stack> */}
       </CardContent>
     </Card>
   );

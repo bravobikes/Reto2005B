@@ -27,19 +27,51 @@ import {
   Unstable_Grid2 as Grid
 } from '@mui/material';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
+import axios from 'axios';
 
 
 
 
 const Page = () => {
-    const [crea, setCrea] = useState(false);
+  const getEmpleadosIdNombreUrl = 'http://localhost:5000/getempleadosidNombre';
+
+  const [crea, setCrea] = useState(false);
+  const [empleadosIdNombre, setEmpleadosIdNombre] = useState([]);
+  const [selectedValue, setSelectedValue] = useState([]);
+
+
+  useEffect(() => {
+      fetchEmpleados();
+  }, []);
+
+  const fetchEmpleados = async () => {
+    try {
+      const empleadosIdNombreResp = await axios.get(getEmpleadosIdNombreUrl);
+      setEmpleadosIdNombre(empleadosIdNombreResp.data);
+      console.log(empleadosIdNombreResp.data);
+    } catch (error) {
+      console.error('Error fetching employee:', error);
+    }
+  }; 
+
+
+
   function handleCreaEv() {
    setCrea(true);
   }
   function handleSubmitEv() {
     // aqui poner logica para agregar la evaluacion a bd
     setCrea(false);
+
   }
+
+  const handleSelectChange = (event) => {
+    console.log(selectedValue);
+    setSelectedValue((prevFormValue) => ({
+      ...prevFormValue,
+      selectedValue: event.target.value
+    }));
+  };
 
   return (
     <>
@@ -109,15 +141,12 @@ const Page = () => {
                 </Button>
               </div>
             </Stack>
-            <Select
-                // value="Ingrese Trainee"
-                sx={{
-                  width: '50%',
-                  marginBottom: '20px',
-                  textAlign: 'center'
-                }}
-              >
-                
+              <Select labelId="labelSeleccionar" sx={{ width: "100%" }}>
+                {empleadosIdNombre.map((empleado) => (
+                  <MenuItem key={empleado.ID_CET} value={selectedValue} onChange={handleSelectChange}>
+                    {`${empleado.nombre} ${empleado.apellidoPat} ${empleado.apellidoMat}`}
+                  </MenuItem>
+                ))}
               </Select>
               <TablaEvaluacion/>
 

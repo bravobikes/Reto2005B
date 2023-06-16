@@ -69,6 +69,7 @@ const Page = () => {
   const getPeopleUrl = 'http://localhost:5000/getpeople';
   const getEmpleadosUrl = 'http://localhost:5000/getempleados';
   const postEmpleadoUrl = 'http://localhost:5000/postEmpleado';
+  
   function handleCreaTr() {
     setCrea(true);
   }

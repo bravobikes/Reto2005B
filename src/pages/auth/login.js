@@ -232,19 +232,6 @@ const Page = () => {
             {/*  )} */}
           </div>
         </Box>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '16px',
-            left: '16px',
-            padding: '8px',
-            backgroundColor: 'white',
-            borderRadius: '4px',
-            zIndex: 1,
-          }}
-        >
-        <img src="/assets/terniumLogo.png" alt="Logo" style={{ maxWidth: '100%' }} />
-        </Box>
       </Box>
     </>
   );

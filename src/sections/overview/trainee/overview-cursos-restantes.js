@@ -22,7 +22,7 @@ export const OverviewLatestProducts = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Cursos " />
+      <CardHeader title="Noticias" />
       <List>
         {products.map((product, index) => {
           const hasDivider = index < products.length - 1;
@@ -35,34 +35,21 @@ export const OverviewLatestProducts = (props) => {
             >
               <ListItemAvatar>
                 {
-                  product.image
-                    ? (
                       <Box
                         component="img"
-                        src={product.image}
+                        src="/assets/Centro-Industrial-Ternium-1.jpg"
                         sx={{
                           borderRadius: 1,
                           height: 48,
                           width: 48
                         }}
                       />
-                    )
-                    : (
-                      <Box
-                        sx={{
-                          borderRadius: 1,
-                          backgroundColor: 'neutral.200',
-                          height: 48,
-                          width: 48
-                        }}
-                      />
-                    )
                 }
               </ListItemAvatar>
               <ListItemText
                 primary={product.name}
                 primaryTypographyProps={{ variant: 'subtitle1' }}
-                secondary={`Creado hace ${ago[0]} días.`}
+                secondary={`Ternium | Hace ${ago[0]} días`}
                 secondaryTypographyProps={{ variant: 'body2' }}
               />
               <IconButton edge="end">

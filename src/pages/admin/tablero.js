@@ -45,12 +45,16 @@ const Page = () => {
   const [dataTraineeId, setDataTraineeId] = useState(1);
   const [empleados, setEmpleados] = useState([]);
   const [selectedValue, setSelectedValue] = useState('1');
+  const [cursosEncuadre, setCursosEncuadre] = useState([])
+
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${selectedValue}`;
   const getUserUrl = `http://localhost:5000/getUser/${selectedValue}`;
   const getcursosTomadosUrl = `http://localhost:5000/getCursosTomados/${selectedValue}`;
   const editUrl = `http://localhost:5000/updatepeople/${selectedValue}`;
   const getEmpleadosUrl = "http://localhost:5000/getEmpleados";
+  const getcursosEncuadreUrl = `http://localhost:5000/getCursosEncuadre/${selectedValue}`;
+
 
   useEffect(() => {
     if (id) {
@@ -64,6 +68,8 @@ const Page = () => {
       const cursosTomadosResponse = await axios.get(getcursosTomadosUrl);
       const userResp = await axios.get(getUserUrl);
       const empleadosResp = await axios.get(getEmpleadosUrl);
+      const cursosEncuadreResponse = await axios.get(getcursosEncuadreUrl);
+
       
       const cursosTomadosCant = cursosTomadosResponse.data[""];
 
@@ -71,6 +77,8 @@ const Page = () => {
       setUser(userResp.data);
       
       setEmpleados(empleadosResp.data);
+      setCursosEncuadre(cursosEncuadreResponse.data);
+
 
       console.log('response cursosTomados:');
       const { 
@@ -257,25 +265,25 @@ const Page = () => {
                 {
                   id: '5ece2c077e39da27658aa8a9',
                   image: '/assets/products/product-1.png',
-                  name: 'Healthcare Erbology',
+                  name: 'Ternium tiene nuevas oficinas',
                   updatedAt: subHours(now, 6).getTime()
                 },
                 {
                   id: '5ece2c0d16f70bff2cf86cd8',
                   image: '/assets/products/product-2.png',
-                  name: 'Makeup Lancome Rouge',
+                  name: 'Ternium abre nueva planta',
                   updatedAt: subDays(subHours(now, 8), 2).getTime()
                 },
                 {
                   id: 'b393ce1b09c1254c3a92c827',
                   image: '/assets/products/product-5.png',
-                  name: 'Skincare Soja CO',
+                  name: 'Global trainees tienen nueva pagina!',
                   updatedAt: subDays(subHours(now, 1), 1).getTime()
                 },
                 {
                   id: 'a6ede15670da63f49f752c89',
                   image: '/assets/products/product-6.png',
-                  name: 'Makeup Lipstick',
+                  name: 'Competencia Ternium',
                   updatedAt: subDays(subHours(now, 3), 3).getTime()
                 },
                 {
@@ -285,7 +293,7 @@ const Page = () => {
                   updatedAt: subDays(subHours(now, 5), 6).getTime()
                 }
               ]}
-              sx={{ height: '100%' }}
+              sx={{ maxHeight:"50vh", overflow:"auto"}}
             />
           </Grid>
           <Grid
@@ -294,7 +302,8 @@ const Page = () => {
             lg={8}
           >
             <OverviewLatestOrders
-              orders={[
+              orders = {cursosEncuadre}
+              orders2={[
                 {
                   id: 'f69f88012978187a6c12897f',
                   ref: 'DEV1049',
