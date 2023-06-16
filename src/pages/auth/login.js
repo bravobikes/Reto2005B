@@ -113,7 +113,7 @@ const Page = () => {
       </Head>
       <Box
         sx={{
-          backgroundColor: 'background.paper',
+          backgroundColor: '00FFFFFF',
           flex: '1 1 auto',
           alignItems: 'center',
           display: 'flex',
@@ -133,9 +133,6 @@ const Page = () => {
               spacing={1}
               sx={{ mb: 3 }}
             >
-              <Typography variant="h4">
-                Welcome!
-              </Typography>
               <Typography
                 color="text.secondary"
                 variant="body2"
@@ -246,7 +243,7 @@ const Page = () => {
             zIndex: 1,
           }}
         >
-          <img src="/assets/terniumLogo.png" alt="Logo" style={{ maxWidth: '100%' }} />
+        <img src="/assets/terniumLogo.png" alt="Logo" style={{ maxWidth: '100%' }} />
         </Box>
       </Box>
     </>
