@@ -88,13 +88,7 @@ export const OverviewTraffic = (props) => {
     <Card sx={sx}>
       <CardHeader title="Areas de cursos tomados" />
       <CardContent>
-        <Chart
-          height={300}
-          options={chartOptions}
-          series={chartSeries}
-          type="donut"
-          width="100%"
-        />
+        
         <Stack
           alignItems="center"
           direction="row"

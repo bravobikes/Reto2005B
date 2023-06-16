@@ -285,7 +285,7 @@ const Page = () => {
                   updatedAt: subDays(subHours(now, 5), 6).getTime()
                 }
               ]}
-              sx={{ height: '100%' }}
+              sx={{ maxHeight:"60vh", overflow:"auto" }}
             />
           </Grid>
           <Grid
