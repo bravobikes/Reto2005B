@@ -4,7 +4,7 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Button, Select, MenuItem, Container, Stack, DialogTitle, DialogContent, SvgIcon, Typography, Dialog, Unstable_Grid2 as Grid } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/cursos-table';
@@ -44,10 +44,17 @@ const Page = () => {
   const employeesSelection = useSelection(employeesIds);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [crea, setCrea] = useState(false);
 
   const getPeopleUrl = 'http://localhost:5000/getpeople';
   const getEmpleadosUrl = 'http://localhost:5000/getempleados';
-
+  function handleCreaTr() {
+    setCrea(true);
+  }
+  function handleCerrar() {
+    // aqui poner logica para agregar al api
+    setCrea(false);
+  }
 
   function renderView(index = null) {
     setSelectedUser(data[index])
@@ -160,6 +167,7 @@ const Page = () => {
                     </SvgIcon>
                   )}
                   variant="contained"
+                  onClick={handleCreaTr}
                 >
                   Crear trainee
                 </Button>
@@ -208,6 +216,14 @@ const Page = () => {
           </Stack>
         </Container>
       </Box>
+      <Dialog open={crea} onClose={handleCerrar} fullWidth={true} maxWidth="sm">
+        <DialogTitle>Agrega un Trainee</DialogTitle>
+        <DialogContent>
+          <form>
+
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
