@@ -35,6 +35,7 @@ import axios from 'axios';
 const Page = () => {
   const getEmpleadosIdNombreUrl = 'http://localhost:5000/getempleadosidNombre';
   const getPotencialesUrl = 'http://localhost:5000/getPotenciales';
+  const postRotacionUrl = 'http://localhost:5000/postRotacion';
 
   const [crea, setCrea] = useState(false);
   const [empleadosIdNombre, setEmpleadosIdNombre] = useState([]);
@@ -44,10 +45,12 @@ const Page = () => {
   const [selectedPotencialValue, setSelectedPotencialValue] = useState([]);
   const [calificacion, setCalificacion] = useState(0);
   const [comentarios, setComentarios] = useState('');
+  const [message, setMessage] = useState('');
+
 
   const [evaluacionForm, setEvaluacionForm] = useState({
     calificacion: '',
-    comentario: '',
+    comentarios: '',
     potencial:'',
     rotId: ''
   });
@@ -76,7 +79,17 @@ const Page = () => {
       console.error('Error fetching potenciales:', error);
     }
   }; 
-
+  
+  const handleEvaluacionSubmit = async () => {
+    try {
+      await axios.post(postRotacionUrl, {evaluacionForm});
+      setMessage("Evaluacion registrada correctamente!");
+      fetchEmpleados();
+    } catch (error) {
+      setMessage("Error registrando evaluacion");
+      console.error('Error fetching potenciales:', error);
+    }
+  }; 
 
   function handleCreaEv() {
    setCrea(true);
@@ -106,7 +119,7 @@ const Page = () => {
     const value = event.target.value;
     setEvaluacionForm((prevForm) => ({
       ...prevForm,
-      evaluado: value,
+      rotId: value,
     }));
   };
 
@@ -125,6 +138,8 @@ const Page = () => {
       calificacion: value,
     }));
   };
+
+
 
   return (
     <>
@@ -218,10 +233,10 @@ const Page = () => {
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl sx={{width:"100%"}}>
-                                <Select value={selectedEvaluadoValue} onChange={handleSelectEvaluadoChange}>
+                                <Select value={evaluacionForm.rotId} onChange={handleSelectEvaluadoChange}>
                                   {empleadosIdNombre.map((empleado, index) => (
                                     <MenuItem key={index} value={empleado.ID_CET} >
-                                      {empleado.nombre}
+                                      {empleado.nombre} {empleado.apellidoPat} {empleado.apellidoMat}
                                     </MenuItem>
                                   ))}
                                 </Select>
@@ -248,7 +263,7 @@ const Page = () => {
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl sx={{width:"100%"}}>
-                                <Select value={selectedPotencialValue} onChange={handleSelectPotencialChange}>
+                                <Select value={evaluacionForm.potencial} onChange={handleSelectPotencialChange}>
                                   {potenciales.map((potencial, index) => (
                                     <MenuItem key={index} value={potencial.potCatId} >
                                       {potencial.potencialCalif}
@@ -268,12 +283,14 @@ const Page = () => {
                         <textarea
                           placeholder="Comentarios"
                           style={{ width: "100%", height: "20vh", resize: "none", borderRadius: "1em", border: "1px solid black", padding: "1%" }}
-                          value={comentarios}
+                          value={evaluacionForm.comentarios}
                           onChange={handleComentariosChange}
                         />
                     </Grid>
                     <Grid item>
-                        <Button variant="contained">Submit</Button>
+                        <Button variant="contained" onClick={handleEvaluacionSubmit}>Submit</Button>
+                        {message && <p>{message}</p>}
+
                     </Grid>
                 </Grid>
                 
