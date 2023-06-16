@@ -28,7 +28,7 @@ export const indigo = withAlphas({
   lightest: '#F5F7FF',
   light: '#EBEEFE',
   main: '#ff3300', // main ternium red graphs
-  dark: '#4338CA',
+  dark: '#ff9900', 
   darkest: '#312E81',
   contrastText: '#FFFFFF'
 });
