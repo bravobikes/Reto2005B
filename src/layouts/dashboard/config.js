@@ -130,16 +130,7 @@ export const itemsTrainee = [
       </SvgIcon>
     )
   },
-  {
-    // title: 'Profile-administrator',
-    title: 'Remuneracion',
-    path: '/profile-asadministrator',
-    icon: (
-      <SvgIcon fontSize="small">
-        <UserIcon />
-      </SvgIcon>
-    )
-  },
+
   {
     // title: 'Settings',
     title: 'Ajustes',
