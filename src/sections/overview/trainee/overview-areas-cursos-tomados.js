@@ -86,7 +86,7 @@ export const OverviewTraffic = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Araeas de cursos tomados" />
+      <CardHeader title="Areas de cursos tomados" />
       <CardContent>
         <Chart
           height={300}
