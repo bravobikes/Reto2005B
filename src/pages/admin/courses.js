@@ -4,7 +4,7 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Button, Dialog, TextField, DialogTitle, DialogContent, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CoursesTable } from 'src/sections/customer/cursos-table';
@@ -44,10 +44,16 @@ const Page = () => {
   const coursesSelection = useSelection(coursesIds);
 
   const [isLoading, setIsLoading] = useState(true);
+  const [crea, setCrea] = useState(false);
 
   const getCursosUrl = 'http://localhost:5000/getcursos';
 
-
+  function handleCreaCu() {
+    setCrea(true);
+  }
+  function handleCloseCu() {
+    setCrea(false);
+  }
   function renderView(index = null) {
     setSelectedUser(data[index])
     setShow(!show);
@@ -156,6 +162,7 @@ const Page = () => {
                     </SvgIcon>
                   )}
                   variant="contained"
+                  onClick={handleCreaCu}
                 >
                   Agregar curso
                 </Button>
@@ -199,6 +206,28 @@ const Page = () => {
           </Stack>
         </Container>
       </Box>
+      <Dialog open={crea} onClose={handleCloseCu} fullWidth={true} maxWidth="sm">
+        <DialogTitle>Agrega un Curso</DialogTitle>
+        <DialogContent>
+          <form>
+              <Grid container flexDirection="column">
+                <Grid item>
+                  <h3>Información del curso:</h3>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                    <Grid item xs={6}>
+                      <TextField label="Nombre Curso" sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <TextField label="Rotacion"/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Grid>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
