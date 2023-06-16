@@ -122,7 +122,7 @@ export const CoursesTable = (props) => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell padding="checkbox">
+                {/* <TableCell padding="checkbox">
                   <Checkbox
                     checked={selectedAll}
                     indeterminate={selectedSome}
@@ -134,7 +134,7 @@ export const CoursesTable = (props) => {
                       }
                     }}
                   />
-                </TableCell>
+                </TableCell> */}
                 <TableCell>Curso</TableCell>
                 <TableCell>Encuadre</TableCell>
                 <TableCell>Modalidad</TableCell>
@@ -148,7 +148,7 @@ export const CoursesTable = (props) => {
 
                 return (
                   <TableRow hover key={course.cursoId} selected={isSelected}>
-                    <TableCell padding="checkbox">
+                    {/* <TableCell padding="checkbox">
                       <Checkbox
                         checked={isSelected}
                         onChange={(event) => {
@@ -159,7 +159,7 @@ export const CoursesTable = (props) => {
                           }
                         }}
                       />
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell>
                       <Stack alignItems="center" direction="row" spacing={2}>
                         <Typography variant="subtitle2">
