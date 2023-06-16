@@ -188,7 +188,13 @@ export const EmpleadosTable = (props) => {
                       </IconButton> */}
                       
                       <Link href={`detalles_empleado?id=${employee.ID_CET}`} passHref>
-                        <Button variant="contained" size="small" style={{color:"white"}} sx={{borderRadius:"1em", padding:"5%", paddingRight:"10%", paddingLeft:"10%"}} theme={theme} color="primary">Detalles</Button>
+                        <Button 
+                          class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-11dum7h-MuiButtonBase-root-MuiButton-root"
+                          variant="contained" 
+                          size="small" 
+                          style={{color:"white"}} 
+                          sx={{borderRadius:"1em", padding:"5%", paddingRight:"10%", paddingLeft:"10%"}} 
+                          theme={theme} color="primary">Detalles</Button>
                         {/* <IconButton size="small" aria-label="Edit" theme={theme} color="primary" style={{fontSize:"0.8em",color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton> */}
                       </Link>
                       <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}} onClick={() => handleDelAlert(employee.ID_CET)}>
