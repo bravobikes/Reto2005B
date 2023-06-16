@@ -67,8 +67,8 @@ export const AccountProfile = () => {
     try {
       const response = await axios.get(getEmployeeUrl);
       const responsePerfil = await axios.get(getEmployeeProfileUrl);
-      console.log('responsePerfil:');
-      console.log(responsePerfil);
+      // console.log('responsePerfil:');
+      // console.log(responsePerfil);
       const { 
         ID_CET,
         apellidoMat,
@@ -101,8 +101,8 @@ export const AccountProfile = () => {
       const datePart = fechNac.split('T')[0];
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);
-      console.log('fechNacDia:');
-      console.log(fechNacDia);
+      // console.log('fechNacDia:');
+      // console.log(fechNacDia);
       setFormValue({ 
         ID_CET,
         apellidoMat,
@@ -132,7 +132,7 @@ export const AccountProfile = () => {
         encuadre, 
         nombreInfo
       });
-      console.log(Encargado_actual);
+      // console.log(Encargado_actual);
     } catch (error) {
       console.error('Error fetching employee:', error);
     }

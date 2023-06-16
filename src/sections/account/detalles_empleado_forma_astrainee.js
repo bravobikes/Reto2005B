@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 import {
   Box,
   Button,
@@ -14,7 +15,9 @@ import {
   TableRow,
   TableCell,
   TableContainer,
+  IconButton,
   TableHead,
+  Link,
   Select,
   MenuItem,
   Typography,
@@ -72,22 +75,32 @@ export const AccountProfileDetails = () => {
     remuneracion: '',
   });
   const [message, setMessage] = useState('');
+  const [areaMessage, setAreaMessage] = useState('');
+  const [areasInteres, setAreasInteres] = useState([]);
+  const [areasInteresEmpleado, setAreasInteresEmpleado] = useState([]);
+  const [selectedArea, setSelectedArea] = useState([]);
 
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
   const editUrl = `http://localhost:5000/updatepeople/${id}`;
+  const getAreasInteresUrl = `http://localhost:5000/getAreasInteres`;
+  const getAreasInteresEmpleadoUrl = `http://localhost:5000/getAreasInteresEmpleado/${id}`;
+  const postAreaInteresUrl = `http://localhost:5000/postAreaInteres/${id}`;
+  const deleteAreaInteresUrl = `http://localhost:5000/deleteAreaInteres/${id}/`;
 
   useEffect(() => {
+    console.log(areasInteresEmpleado)
     if (id) {
       fetchEmployee();
+      fetchAreasInteres();
     }
   }, [id]);
 
   const fetchEmployee = async () => {
     try {
       const response = await axios.get(getEmployeeUrl);
-      console.log('response:');
-      console.log(response);
+      // console.log('response:');
+      // console.log(response);
       const { 
         ID_CET,
         apellidoMat,
@@ -110,8 +123,8 @@ export const AccountProfileDetails = () => {
       const datePart = fechNac.split('T')[0];
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);
-      console.log('fechNacDia:');
-      console.log(fechNacDia);
+      // console.log('fechNacDia:');
+      // console.log(fechNacDia);
       setFormValue({ 
         ID_CET,
         apellidoMat,
@@ -136,12 +149,84 @@ export const AccountProfileDetails = () => {
     }
   }; 
 
+  const fetchAreasInteres = async () => {
+    try {
+      const areasInteresResponse = await axios.get(getAreasInteresUrl);
+      const areasInteresEmpleadoResponse = await axios.get(getAreasInteresEmpleadoUrl);
+      setAreasInteres(areasInteresResponse.data);
+      setAreasInteresEmpleado(areasInteresEmpleadoResponse.data);
+    } catch (error) {
+      console.error('Error fetching employee:', error);
+    }
+  }; 
+
+  const handleDeleteArea = async (area) => {
+    try {
+
+      
+      // Send a DELETE request to the server to delete the area
+      const response = await axios.delete(deleteAreaInteresUrl + area);
+      
+      // Check the response status
+      if (response.status === 200) {
+        fetchAreasInteres();
+      } else {
+        console.error('Failed to delete area:', response.data);
+      }
+    } catch (error) {
+      console.error('Error deleting area:', error);
+    }
+  };
+
+
+  
+
   const renderTableColumns = (startIndex, endIndex) => {
-    return areasDeInteres.slice(startIndex, endIndex).map((area, index) => (
+    return areasInteresEmpleado.slice(startIndex, endIndex).map((area, index) => (
       <TableRow key={index}>
-        <TableCell>{area}</TableCell>
-      </TableRow>
+      <TableCell>{area.area}</TableCell>
+      <TableCell>
+        <IconButton onClick={() => handleDeleteArea(area.area)}>
+          <DeleteIcon />
+        </IconButton>
+      </TableCell>
+    </TableRow>
     ));
+  };
+  const handleSelectChange = (event) => {
+    console.log(selectedArea);
+    setSelectedArea((prevFormValue) => ({
+      ...prevFormValue,
+      selectedArea: event.target.value
+    }));
+  };
+
+  const handleAddArea = async () => {
+    try {
+      var areaExiste = false;
+      for(var i = 0; i < areasInteresEmpleado.length; i++){
+        console.log(areasInteresEmpleado[i].nombreAreaId + " - " + selectedArea);
+        if(areasInteresEmpleado[i].nombreAreaId == selectedArea){
+          setAreaMessage('Area ya existente');
+          areaExiste = true;
+        } 
+      }
+        if(!areaExiste){
+          // Make the POST request using Axios
+          const response = await axios.post(postAreaInteresUrl, {selectedArea});
+          // Handle the response as needed
+          console.log('Area added:', response.data);
+          fetchAreasInteres();
+          setAreaMessage("Area de interés agregada correctamente")
+
+        }
+      // Update the areasInteres array or refresh the component
+      // ...
+    } catch (error) {
+      setAreaMessage("Error agregando area")
+      // Handle the error
+      console.error('Error adding area:', error);
+    }
   };
 
   if (!id) {
@@ -374,27 +459,27 @@ export const AccountProfileDetails = () => {
               <CardHeader subheader="La información se puede editar" title="Intereses de areas" />
             </Grid>
             <Grid item xs={12} md={6}>
+            {areaMessage && <p>{areaMessage}</p>}
               {/* Select and button */}
-        <Select>
-          {availableAreas.map((area, index) => (
-            <MenuItem key={index} value={area}>
-              {area}
+        <Select value={selectedArea.selectedArea} onChange={handleSelectChange}>
+          {areasInteres.map((area, index) => (
+            <MenuItem key={index} value={area.nombreAreaId}>
+              {area.area}
             </MenuItem>
           ))}
         </Select>
-        {/* <Button onClick={handleAddArea} variant="contained" color="primary"> */}
         <Button
                   startIcon={(
                     <SvgIcon fontSize="small">
                       <PlusIcon />
                     </SvgIcon>
                   )}
+                  onClick={handleAddArea}
                   variant="contained"
                   sx={{ marginLeft: '10px' }}
                 >
                   Agregar Área
                 </Button>
-        {/* </Button> */}
             </Grid>
 
           </Grid>
@@ -410,7 +495,7 @@ export const AccountProfileDetails = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {renderTableColumns(0, areasDeInteres.length/2)}
+              {renderTableColumns(0, areasInteresEmpleado.length/2)}
             </TableBody>
           </Table>
         </TableContainer>
@@ -425,7 +510,7 @@ export const AccountProfileDetails = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {renderTableColumns(areasDeInteres.length/2, areasDeInteres.length)}
+              {renderTableColumns(areasInteresEmpleado.length/2, areasInteresEmpleado.length)}
             </TableBody>
           </Table>
         </TableContainer>
