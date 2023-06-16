@@ -100,7 +100,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Courses | Portal Ternium
+          Cursos | Portal Ternium
         </title>
       </Head>
       <Box

@@ -172,16 +172,7 @@ export const CoursesTable = (props) => {
                     <TableCell>{course.fecha.split('T')[0]}</TableCell>
                     <TableCell>
                       <Button
-                        theme={theme}
-                        color="primary"
-                        style={{
-                          marginRight: '1em',
-                          color: 'white',
-                          fontWeight: '600',
-                          borderRadius: '0.6em',
-                          padding: '0.5em',
-                          textTransform: 'none'
-                        }}
+                      class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium css-11dum7h-MuiButtonBase-root-MuiButton-root"
                         variant="contained"
                         onClick={() => {
                           setPopupContent({
@@ -192,6 +183,7 @@ export const CoursesTable = (props) => {
                         }}
                       >
                         Más info
+                        <span class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span>
                       </Button>
                     </TableCell>
                   </TableRow>
