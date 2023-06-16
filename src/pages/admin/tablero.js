@@ -45,12 +45,16 @@ const Page = () => {
   const [dataTraineeId, setDataTraineeId] = useState(1);
   const [empleados, setEmpleados] = useState([]);
   const [selectedValue, setSelectedValue] = useState('1');
+  const [cursosEncuadre, setCursosEncuadre] = useState([])
+
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${selectedValue}`;
   const getUserUrl = `http://localhost:5000/getUser/${selectedValue}`;
   const getcursosTomadosUrl = `http://localhost:5000/getCursosTomados/${selectedValue}`;
   const editUrl = `http://localhost:5000/updatepeople/${selectedValue}`;
   const getEmpleadosUrl = "http://localhost:5000/getEmpleados";
+  const getcursosEncuadreUrl = `http://localhost:5000/getCursosEncuadre/${selectedValue}`;
+
 
   useEffect(() => {
     if (id) {
@@ -64,6 +68,8 @@ const Page = () => {
       const cursosTomadosResponse = await axios.get(getcursosTomadosUrl);
       const userResp = await axios.get(getUserUrl);
       const empleadosResp = await axios.get(getEmpleadosUrl);
+      const cursosEncuadreResponse = await axios.get(getcursosEncuadreUrl);
+
       
       const cursosTomadosCant = cursosTomadosResponse.data[""];
 
@@ -71,6 +77,8 @@ const Page = () => {
       setUser(userResp.data);
       
       setEmpleados(empleadosResp.data);
+      setCursosEncuadre(cursosEncuadreResponse.data);
+
 
       console.log('response cursosTomados:');
       const { 
@@ -294,7 +302,8 @@ const Page = () => {
             lg={8}
           >
             <OverviewLatestOrders
-              orders={[
+              orders = {cursosEncuadre}
+              orders2={[
                 {
                   id: 'f69f88012978187a6c12897f',
                   ref: 'DEV1049',
