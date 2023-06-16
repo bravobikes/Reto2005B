@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {useState} from 'react';
+import { useEffect, useState } from 'react';
 import {Button} from '@mui/material';
 import {createTheme} from '@mui/material/styles';
 import { format } from 'date-fns';
@@ -25,6 +25,7 @@ import {
   import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
 import Link from 'next/link';
+import axios from 'axios';
 const theme = createTheme({
     palette: {
         primary: {
@@ -34,8 +35,33 @@ const theme = createTheme({
     }
 })
 export default function TablaEvaluacion(props) {
+  const id = localStorage.getItem('sessionUser');
+
+
+  const [rotaciones, setRotaciones] = useState([]);
+
+  useEffect(() => {
+    console.log(rotaciones);
+    if (id) {
+      fetchRotaciones();
+    }
+  }, [id]);
+
+  const getRotaciones = `http://localhost:5000/getRotaciones`;
+
+
+  const fetchRotaciones = async () => {
+    try {
+      const rotacionesResponse = await axios.get(getRotaciones);
+      setRotaciones(rotacionesResponse.data);
+    } catch (error) {
+      console.error('Error fetching employee:', error);
+    }
+  }; 
+
+
     const {
-        count = 0,
+        count = 5,
         items = [],
         onDeselectAll,
         onDeselectOne,
@@ -61,97 +87,33 @@ export default function TablaEvaluacion(props) {
                   Rotación
                 </TableCell>
                 <TableCell>
-                  Ultima Calificacion
+                  Fecha
                 </TableCell>
                 <TableCell>
-                  Ultimo Potencial
+                  Calificación
                 </TableCell>
                 <TableCell>
-                  En Rotacion
-                </TableCell>
-                <TableCell>
-                  Acciones
+                  Potencial
                 </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-                
-                  <TableRow
-                //   hover
-                //   key={employee.ID_CET}
-                //   selected={isSelected}
-                  >
-                    <TableCell>
-                      <Stack
-                        alignItems="center"
-                        direction="row"
-                        spacing={2}
-                      >
-                        {/* tambien agregar el avatar */}
-                        {/* <Avatar src={employee.avatar}> */}
-                          {/* {getInitials(employee.nomAp)} */}
-                          {/* {getInitials(employee.nombre + ' ' + employee.apellidoPat)}
-                        </Avatar> */}
-                        <Typography variant="subtitle2">
-                          {/* {employee.nomAp} */}
-                          {/* {employee.nombre + ' ' + employee.apellidoPat} */}
-                          Sebastian Ramirez
-                        </Typography>
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      {/* {employee.fechNac.split('T')[0]} */}
-                      <Stack
-                        alignItems="center"
-                        direction="row"
-                        spacing={2}
-                      >
-                        {/* tambien agregar el avatar */}
-                        {/* <Avatar src={employee.avatar}> */}
-                          {/* {getInitials(employee.nomAp)} */}
-                          {/* {getInitials(employee.nombre + ' ' + employee.apellidoPat)}
-                        </Avatar> */}
-                        <Typography variant="subtitle2">
-                          {/* {employee.nomAp} */}
-                          {/* {employee.nombre + ' ' + employee.apellidoPat} */}
-                          NomRotacion
-                        </Typography>
-                      </Stack>
-                    </TableCell>
-                    <TableCell>
-                      {/* {employee.fechNac.split('T')[0]} */}
-                      <Rating name="read-only" value={3} readOnly />
-                    </TableCell>
-                    <TableCell>
-                      {/* {employee.estado}, {employee.pais} */}
-                      AM+
-                    </TableCell>
-                    <TableCell>
-                      {/* {employee.posAct} */}
-                      Activo
-                    </TableCell>
-                    {/* <TableCell> */}
-                      {/* {employee.cursosTomados} */}
-                      {/* {employee.descTitulo} */}
-                    {/* </TableCell> */}
-                    {/* <TableCell> */}
-                      {/* {employee.Managerial.toString()} */}
-                      {/* {employee.isManager ? 'Administrador' : 'Trainee'} */}
-                    {/* </TableCell> */}
-                    <TableCell sx={{minWidth:150}}>
-                      {/* aqui poner los botones de editar y eso */}
-                      {/* pioner 3 icon buttons para ver, editar y borrar */}
-                      {/* onClick={() => props.toggleEdit(index)}  */}
-                      {/* si no esta en Rotacion deshabilitar el boton */}
-                      {/* esto de detalles tal vez quitarlo pero me parecio chido que salga un desgloce de las rotaciones de la persona como Dialog */}
-                      <Button variant="contained" size="small">
-                        Detalles
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                  {/* closing tag del map */}
-              {/* })} */}
-            </TableBody>
+              {rotaciones.map((rotacion, index) => (
+                <TableRow key={index}>
+                  <TableCell>{rotacion.nombre} {rotacion.apellidoPat}</TableCell>
+                  <TableCell>{rotacion.ID_CET}</TableCell>
+                  <TableCell>{rotacion.fechaRot.split('T')[0]}</TableCell>
+                  <TableCell>{rotacion.calificacion}</TableCell> 
+                  <TableCell>{rotacion.potencialCalif}</TableCell> 
+                  <TableCell>
+                    {/* Delete icon */}
+                    <IconButton onClick={() => handleDelete(rotacion.id)}>
+                      <DeleteIcon />
+                    </IconButton>
+                  </TableCell>
+                </TableRow>
+              ))}
+</TableBody>
           </Table>
         </Box>
       </Scrollbar>

@@ -89,7 +89,7 @@ const Page = () => {
       if(isManager){
         router.push('/admin/tablero');
       } else {
-        router.push('trainee/tablero-trainee');
+        router.push('/trainee/tablero-trainee');
       }
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);

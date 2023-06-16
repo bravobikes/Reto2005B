@@ -87,7 +87,7 @@ export const OverviewTraffic = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Areas de cursos tomados"/>
+      <CardHeader title="Remuneración"/>
       <CardContent>
         <Grid container flexDirection="column" spacing={2} style={{}}>
           <Grid item sx={{width:"70%", marginLeft:"20%"}}>
@@ -95,19 +95,22 @@ export const OverviewTraffic = (props) => {
           </Grid>
           <Grid item>
             {/* Nombre */}
-            <span style={{fontWeight:"600", fontSize:"1.5em"}}>Nombre</span>
+            <span style={{fontWeight:"600", fontSize:"1.5em"}}>Encuadre:</span>
           </Grid>
           <Grid item>
-            <span style={{color:"grey"}}>G1</span>
+            <span style={{color:"grey"}}>GT1</span>
           </Grid>
           <Grid item>
-            <span style={{fontWeight:"600"}}>Prox pago: 08/02/2023</span>
+            <span style={{fontWeight:"600"}}>Sueldo actual:</span>
           </Grid>
           <Grid item>
             <span style={{fontWeight:"600", color:"green"}}>$24,000</span>
           </Grid>
           <Grid item>
-            <span style={{fontWeight:"600"}}>Fecha PTU: 08/23/2032</span>
+            <span style={{fontWeight:"600"}}>Proximo adelanto PTU: </span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600", color:"green"}}>08/23/2032</span>
           </Grid>
         </Grid>
         {/* <Stack

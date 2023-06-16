@@ -34,14 +34,28 @@ import axios from 'axios';
 
 const Page = () => {
   const getEmpleadosIdNombreUrl = 'http://localhost:5000/getempleadosidNombre';
+  const getPotencialesUrl = 'http://localhost:5000/getPotenciales';
 
   const [crea, setCrea] = useState(false);
   const [empleadosIdNombre, setEmpleadosIdNombre] = useState([]);
   const [selectedValue, setSelectedValue] = useState([]);
+  const [selectedEvaluadoValue, setSelectedEvaluadoValue] = useState([]);
+  const [potenciales, setPotenciales] = useState([]);
+  const [selectedPotencialValue, setSelectedPotencialValue] = useState([]);
+  const [calificacion, setCalificacion] = useState(0);
+  const [comentarios, setComentarios] = useState('');
+
+  const [evaluacionForm, setEvaluacionForm] = useState({
+    calificacion: '',
+    comentario: '',
+    potencial:'',
+    rotId: ''
+  });
 
 
   useEffect(() => {
       fetchEmpleados();
+      fetchPotenciales();
   }, []);
 
   const fetchEmpleados = async () => {
@@ -53,7 +67,15 @@ const Page = () => {
       console.error('Error fetching employee:', error);
     }
   }; 
-
+  
+  const fetchPotenciales = async () => {
+    try {
+      const potencialesResp = await axios.get(getPotencialesUrl);
+      setPotenciales(potencialesResp.data);
+    } catch (error) {
+      console.error('Error fetching potenciales:', error);
+    }
+  }; 
 
 
   function handleCreaEv() {
@@ -66,10 +88,41 @@ const Page = () => {
   }
 
   const handleSelectChange = (event) => {
+    console.log('selectedValue:');
     console.log(selectedValue);
-    setSelectedValue((prevFormValue) => ({
-      ...prevFormValue,
-      selectedValue: event.target.value
+    setSelectedValue(event.target.value);
+  };
+  
+  const handleComentariosChange = (event) => {
+    const value = event.target.value;
+    setComentarios(value);
+    setEvaluacionForm((prevForm) => ({
+      ...prevForm,
+      comentarios: value,
+    }));
+  };
+
+  const handleSelectEvaluadoChange = (event) => {
+    const value = event.target.value;
+    setEvaluacionForm((prevForm) => ({
+      ...prevForm,
+      evaluado: value,
+    }));
+  };
+
+  const handleSelectPotencialChange = (event) => {
+    const value = event.target.value;
+    setEvaluacionForm((prevForm) => ({
+      ...prevForm,
+      potencial: value,
+    }));
+  };
+
+  const handleCalificacionChange = (event, value) => {
+    setCalificacion(value);
+    setEvaluacionForm((prevForm) => ({
+      ...prevForm,
+      calificacion: value,
     }));
   };
 
@@ -141,13 +194,13 @@ const Page = () => {
                 </Button>
               </div>
             </Stack>
-              <Select labelId="labelSeleccionar" sx={{ width: "100%" }}>
-                {empleadosIdNombre.map((empleado) => (
-                  <MenuItem key={empleado.ID_CET} value={selectedValue} onChange={handleSelectChange}>
-                    {`${empleado.nombre} ${empleado.apellidoPat} ${empleado.apellidoMat}`}
-                  </MenuItem>
-                ))}
-              </Select>
+            <Select value={selectedValue} onChange={handleSelectChange}>
+              {empleadosIdNombre.map((empleado, index) => (
+                <MenuItem key={index} value={empleado.ID_CET} >
+                  {empleado.nombre  }
+                </MenuItem>
+              ))}
+            </Select>
               <TablaEvaluacion/>
 
           </Stack>
@@ -159,35 +212,34 @@ const Page = () => {
             <form>
                 {/* Tuve que quitar spacing asi que agregar margin donde quiero separar */}
                 <Grid container flexDirection="column">
-                    <Grid item>
-                        <h3>Trainee Evaluado:</h3>                    
-                    </Grid>
-                    <Grid item>
-                        <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
-                            <Grid item xs={7}>
-                                <TextField label="Nombre Completo" sx={{width:"100%"}}/>
-                            </Grid>
-                            <Grid item xs={5}>
-                                <TextField label="Rotacion"/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                    <Grid item sx={{marginTop:"5%"}}>
-                        <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
                             <Grid item xs={6}>
-                                <h3>Estado de Rotacion: </h3>
+                                <h3>Trainee evaluado: </h3>
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl sx={{width:"100%"}}>
-                                <InputLabel id="labelSeleccionar">Seleccionar</InputLabel>
-                                <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
-                                    <MenuItem value={0}>Inactivo</MenuItem>
-                                    <MenuItem value={1}>Activo</MenuItem>
+                                <Select value={selectedEvaluadoValue} onChange={handleSelectEvaluadoChange}>
+                                  {empleadosIdNombre.map((empleado, index) => (
+                                    <MenuItem key={index} value={empleado.ID_CET} >
+                                      {empleado.nombre}
+                                    </MenuItem>
+                                  ))}
                                 </Select>
                                 </FormControl>
                                 
                             </Grid>
                         </Grid>
+                    <Grid item sx={{marginTop:"5%"}}>
+                    <Grid item>
+                        <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%", marginTop:"2.5%", marginBottom:"5%"}}>
+                            <Grid item xs={9}>
+                                <h3>Calificación:</h3>
+                            </Grid>
+                            <Grid item xs={3} sx={{marginTop:"0.5em"}}>
+                            <Rating name="Calificacion" value={evaluacionForm.calificacion} onChange={handleCalificacionChange} />
+                            </Grid>
+                        </Grid>
+                    </Grid>
                     </Grid>
                     <Grid item sx={{marginTop:"2.5%"}}>
                         <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
@@ -196,30 +248,29 @@ const Page = () => {
                             </Grid>
                             <Grid item xs={6}>
                                 <FormControl sx={{width:"100%"}}>
-                                <InputLabel id="labelSeleccionar">Seleccionar</InputLabel>
-                                <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
-                                    {/* No se bien cuales son las opciones pero aqui deberian de ir */}
-                                    <MenuItem value={"AM+"}>AM+</MenuItem>
-                                    <MenuItem value={"AF+"}>AF+</MenuItem>
+                                <Select value={selectedPotencialValue} onChange={handleSelectPotencialChange}>
+                                  {potenciales.map((potencial, index) => (
+                                    <MenuItem key={index} value={potencial.potCatId} >
+                                      {potencial.potencialCalif}
+                                    </MenuItem>
+                                  ))}
                                 </Select>
                                 </FormControl>
                                 
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item>
-                        <Grid container alignItems="center" flexDirection="row" justifyContent="space-between" sx={{width:"100%", marginTop:"2.5%", marginBottom:"5%"}}>
-                            <Grid item xs={9}>
-                                <h3>Calificación:</h3>
+                    <Grid item xs={6}>
+                                <h3>Comentarios:</h3>
                             </Grid>
-                            <Grid item xs={3} sx={{marginTop:"0.5em"}}>
-                                <Rating name="Calificacion"/>
-                            </Grid>
-                        </Grid>
-                    </Grid>
                     <Grid item sx={{marginBottom:"5%"}}>
                         {/* aqui poner el form para comentario */}
-                        <textarea placeholder="Comentarios" style={{width:"100%", height:"20vh", resize:"none", borderRadius:"1em", border:"1px solid black", padding:"1%"}}/>
+                        <textarea
+                          placeholder="Comentarios"
+                          style={{ width: "100%", height: "20vh", resize: "none", borderRadius: "1em", border: "1px solid black", padding: "1%" }}
+                          value={comentarios}
+                          onChange={handleComentariosChange}
+                        />
                     </Grid>
                     <Grid item>
                         <Button variant="contained">Submit</Button>

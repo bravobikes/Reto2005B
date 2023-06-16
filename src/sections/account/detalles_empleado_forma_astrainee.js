@@ -31,29 +31,6 @@ import axios from 'axios';
 export const AccountProfileDetails = () => {
   const id = localStorage.getItem('sessionUser');
 
-  const availableAreas = [
-    'Mantenimiento',
-    'Operaciones',
-    'Supply Chain',
-    'Ingeniería', 
-    'Proyectos',
-    'Medio Ambiente',
-    'Seguridad',
-    'Comercial',
-    'Administración y Finanzas',
-    'Auditoría y Legal',
-    'Comunicaciones',
-    'Recursos Humanos'
-
-  ];
-  const areasDeInteres = [
-    'Mantenimiento',
-    'Operaciones',
-    'Supply Chain',
-    'Ingeniería', 
-    'Proyectos',
-    'Medio Ambiente',
-  ];
 
   const [formValue, setFormValue] = useState({
     ID_CET: '',
@@ -203,17 +180,17 @@ export const AccountProfileDetails = () => {
           // Make the POST request using Axios
           const response = await axios.post(postAreaInteresUrl, {selectedArea});
           // Handle the response as needed
-          console.log('Area added:', response.data);
+          console.log('Área added:', response.data);
           fetchAreasInteres();
-          setAreaMessage("Area de interés agregada correctamente")
+          setAreaMessage("Área de interés agregada correctamente")
 
         
       // Update the areasInteres array or refresh the component
       // ...
     } catch (error) {
-      setAreaMessage("Error agregando area")
+      setAreaMessage("Error agregando área")
       // Handle the error
-      console.error('Error adding area:', error);
+      console.error('Error adding área:', error);
     }
   };
 
