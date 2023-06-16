@@ -130,7 +130,6 @@ export const itemsTrainee = [
       </SvgIcon>
     )
   },
-
   {
     // title: 'Settings',
     title: 'Ajustes',
