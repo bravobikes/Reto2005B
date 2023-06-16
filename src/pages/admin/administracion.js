@@ -4,7 +4,7 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Select, MenuItem, Container, Stack, DialogTitle, DialogContent, SvgIcon, Typography, Dialog, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Button, Select, MenuItem, Container,TextField, Stack, DialogTitle, DialogContent, SvgIcon, Typography, Dialog, Unstable_Grid2 as Grid } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/cursos-table';
@@ -220,7 +220,34 @@ const Page = () => {
         <DialogTitle>Agrega un Trainee</DialogTitle>
         <DialogContent>
           <form>
-
+              <Grid container sx={{width:"100%"}} flexDirection="column">
+                <Grid item>
+                  <h3>Información personal:</h3>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                    <Grid item xs={6}>
+                        <TextField label="Nombre" sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="Apellido" sx={{width:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Grid container justifyContent="space-between" alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginTop:"2.5%"}}>
+                    <Grid item xs={6}>
+                      <h3>Fecha de nacimiento</h3>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <input type="date" style={{padding:"5%", borderRadius:"1em", border:"1px solid grey", margin:"2%", width:"100%", height:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <h3>Ubicación</h3>
+                </Grid>
+              </Grid>
           </form>
         </DialogContent>
       </Dialog>
