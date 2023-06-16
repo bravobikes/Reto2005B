@@ -16,6 +16,7 @@ import {
 import { alpha } from '@mui/material/styles';
 import { usePopover } from 'src/hooks/use-popover';
 import { AccountPopover } from './account-popover';
+import { NotifPopover } from './notif-popover';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -26,6 +27,7 @@ export const TopNav = (props) => {
   const { onNavOpen } = props;
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
   const accountPopover = usePopover();
+  const notifPopover = usePopover();
   const getEmpleadoUrl = 'http://localhost:5000/getEmpleado/';
   const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
   const [data, setData] = useState([]);
@@ -99,13 +101,8 @@ export const TopNav = (props) => {
                 </SvgIcon>
               </IconButton>
             )}
-            <Tooltip title="Search">
-              <IconButton>
-                <SvgIcon fontSize="small">
-                  <MagnifyingGlassIcon />
-                </SvgIcon>
-              </IconButton>
-            </Tooltip>
+            
+            <div></div>
             {isLoading ? (
               <div>Loading...</div> // Replace this with your desired loading indicator
             ) : (
@@ -118,7 +115,16 @@ export const TopNav = (props) => {
             spacing={2}
           >
             <Tooltip title="Notifications">
-              <IconButton>
+              {/* Boton para notificaciones */}
+              <IconButton
+                onClick={notifPopover.handleOpen}
+                ref={notifPopover.anchorRef}
+                sx={{
+                  cursos:"pointer",
+                  height:40,
+                  width:40
+                }}
+              >
                 <Badge
                   badgeContent={4}
                   color="success"
@@ -148,6 +154,12 @@ export const TopNav = (props) => {
         open={accountPopover.open}
         onClose={accountPopover.handleClose}
       />
+      <NotifPopover
+        anchorEl={notifPopover.anchorRef.current}
+        open={notifPopover.open}
+        onClose={notifPopover.handleClose}
+      />
+
     </>
   );
 };
