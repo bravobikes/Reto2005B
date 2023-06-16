@@ -43,8 +43,9 @@ export const NotifPopover = (props) => {
           color="text.secondary"
           variant="body2"
         >
-            <Link href='/trainee/rotacionesTrainee' passHref>
-            prueba
+            <div style={{color:"grey", textDecoration:"none"}}>Evaluaciones</div>
+            <Link href='/trainee/rotacionesTrainee' passHref style={{textDecoration:"none"}}>
+            Tienes una nueva evaluacion
             </Link>
           
 
