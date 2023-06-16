@@ -1,10 +1,12 @@
 import { useTheme } from '@mui/material/styles';
+import Link from 'next/link';
 
 export const Logo = () => {
   const theme = useTheme();
   const fillColor = theme.palette.primary.main;
 
   return (
+    <Link href="/" passHref>
     <svg style={{cursor:"pointer", marginBottom:"15%"}}
       viewBox="0 0 190 70"
       xmlns="http://www.w3.org/2000/svg">
@@ -28,5 +30,6 @@ export const Logo = () => {
           </path>
         </g>
     </svg>
+    </Link>
   );
 };
