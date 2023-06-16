@@ -90,6 +90,9 @@ export const OverviewTraffic = (props) => {
       <CardHeader title="Areas de cursos tomados" />
       <CardContent>
         <Grid container flexDirection="column" spacing={2} style={{}}>
+          <Grid item sx={{width:"40%", marginLeft:"35%"}}>
+                <img src="/favicon-16x16.png" style={{width:"100%"}}/>
+          </Grid>
           <Grid item>
             {/* Nombre */}
             <span style={{fontWeight:"600", fontSize:"1.5em"}}>Nombre</span>
