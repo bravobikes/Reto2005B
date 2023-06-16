@@ -64,7 +64,7 @@ export const Layout = (props) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: '35%',
-    height: '75%',
+    height: '85%',
     borderRadius: '20px',
     overflow: 'hidden',
     backdropFilter: 'blur(10px)',
@@ -74,13 +74,14 @@ export const Layout = (props) => {
     className="login-content"
     style={{
       display: 'flex',
+      overflow: 'auto',
       flexDirection: 'column',
       alignItems: 'center',
       position: 'relative',
       zIndex: 2,
       padding: '20px',
       background: 'rgb(255, 255, 255, .75)',
-      borderRadius: '20px',
+      borderRadius: '30px',
     }}
   >
     <img
