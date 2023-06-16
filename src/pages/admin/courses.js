@@ -4,7 +4,7 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Dialog, TextField, DialogTitle, DialogContent, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Button, Dialog, FormControl, InputLabel, TextField, DialogTitle, DialogContent, Select, MenuItem, Container, Stack, SvgIcon, Typography, Unstable_Grid2 as Grid } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CoursesTable } from 'src/sections/customer/cursos-table';
@@ -52,6 +52,10 @@ const Page = () => {
     setCrea(true);
   }
   function handleCloseCu() {
+    setCrea(false);
+  }
+  function handleSubmit(){
+    // aqui poner logica de api para agregar el item
     setCrea(false);
   }
   function renderView(index = null) {
@@ -220,9 +224,38 @@ const Page = () => {
                       <TextField label="Nombre Curso" sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                      <TextField label="Rotacion"/>
+                    <FormControl sx={{width:"100%"}}>
+                        <InputLabel id="labelSeleccionar">Encuadre</InputLabel>
+                        <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
+                            <MenuItem value={0}>Gt1</MenuItem>
+                            <MenuItem value={1}>Gt2</MenuItem>
+                            </Select>
+                          </FormControl>
                     </Grid>
                   </Grid>
+                </Grid>
+                <Grid item>
+                  <h3>Modalidad y Fecha</h3>
+                </Grid>
+                <Grid item sx={{marginTop:"2.5%"}}>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                    <Grid item xs={6}>
+                        <FormControl sx={{width:"100%"}}>
+                        <InputLabel id="labelSeleccionar">Modalidad</InputLabel>
+                        <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
+                            <MenuItem value={0}>Webinar</MenuItem>
+                            <MenuItem value={1}>E-learning</MenuItem>
+                            </Select>
+                          </FormControl>
+                                
+                    </Grid>
+                    <Grid item xs={6}>
+                      <input type="date" style={{padding:"5%", borderRadius:"1em", paddingTop:"1em", paddingBottom:"1em", fontSize:"1em", border:"1px solid grey", margin:"2%", width:"100%", height:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item sx={{marginTop:"5%"}}>
+                  <Button variant="contained" onClick={handleSubmit}>Agregar Curso</Button>
                 </Grid>
               </Grid>
           </form>
