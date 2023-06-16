@@ -9,6 +9,7 @@ import {
   CardHeader,
   Stack,
   SvgIcon,
+  Grid,
   Typography,
   useTheme
 } from '@mui/material';
@@ -88,8 +89,24 @@ export const OverviewTraffic = (props) => {
     <Card sx={sx}>
       <CardHeader title="Areas de cursos tomados" />
       <CardContent>
-        
-        <Stack
+        <Grid container flexDirection="column" spacing={2} style={{}}>
+          <Grid item>
+            Nombre
+          </Grid>
+          <Grid item>
+            G1
+          </Grid>
+          <Grid item>
+            Prox pago: 08/02/2023
+          </Grid>
+          <Grid item>
+            $24,000
+          </Grid>
+          <Grid item>
+            Fecha PTU: fecha
+          </Grid>
+        </Grid>
+        {/* <Stack
           alignItems="center"
           direction="row"
           justifyContent="center"
@@ -124,7 +141,7 @@ export const OverviewTraffic = (props) => {
               </Box>
             );
           })}
-        </Stack>
+        </Stack> */}
       </CardContent>
     </Card>
   );
