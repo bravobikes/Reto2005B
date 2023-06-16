@@ -57,33 +57,41 @@ export const Layout = (props) => {
           opacity: fadeIn ? 1 : 0,
         }}
       />
-      <Box
-        sx={{
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-          width: '35%',
-          height: '75%',
-          borderRadius: '20px',
-          overflow: 'hidden',
-          backdropFilter: 'blur(10px)',
-        }}
-      >
-        <div
-          className="login-content"
-          style={{
-            position: 'relative',
-            zIndex: 2,
-            padding: '20px',
-            textAlign: 'center',
-            background: '#ffffff',
-            borderRadius: '20px',
-          }}
-        >
-          {children}
-        </div>
-      </Box>
+<Box
+  sx={{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '35%',
+    height: '75%',
+    borderRadius: '20px',
+    overflow: 'hidden',
+    backdropFilter: 'blur(10px)',
+  }}
+>
+  <div
+    className="login-content"
+    style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      position: 'relative',
+      zIndex: 2,
+      padding: '20px',
+      background: 'rgb(255, 255, 255, .75)',
+      borderRadius: '20px',
+    }}
+  >
+    <img
+      src="/assets/terniumLogo.png"
+      alt="Logo"
+      style={{ maxWidth: '75%', marginBottom: '-150px', marginTop: '58px' }}
+    />
+    {children}
+  </div>
+</Box>
+
     </Box>
   );
 };
