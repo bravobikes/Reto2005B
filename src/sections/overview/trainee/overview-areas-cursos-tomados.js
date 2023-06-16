@@ -91,19 +91,20 @@ export const OverviewTraffic = (props) => {
       <CardContent>
         <Grid container flexDirection="column" spacing={2} style={{}}>
           <Grid item>
-            Nombre
+            {/* Nombre */}
+            <span style={{fontWeight:"600", fontSize:"1.5em"}}>Nombre</span>
           </Grid>
           <Grid item>
-            G1
+            <span style={{color:"grey"}}>G1</span>
           </Grid>
           <Grid item>
-            Prox pago: 08/02/2023
+            <span style={{fontWeight:"600"}}>Prox pago: 08/02/2023</span>
           </Grid>
           <Grid item>
-            $24,000
+            <span style={{fontWeight:"600", color:"green"}}>$24,000</span>
           </Grid>
           <Grid item>
-            Fecha PTU: fecha
+            <span style={{fontWeight:"600"}}>Fecha PTU: 08/23/2032</span>
           </Grid>
         </Grid>
         {/* <Stack
