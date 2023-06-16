@@ -78,7 +78,7 @@ export const AccountProfileDetails = () => {
   const [areaMessage, setAreaMessage] = useState('');
   const [areasInteres, setAreasInteres] = useState([]);
   const [areasInteresEmpleado, setAreasInteresEmpleado] = useState([]);
-  const [selectedArea, setSelectedArea] = useState([]);
+  const [selectedArea, setSelectedArea] = useState(0);
 
 
   const getEmployeeUrl = `http://localhost:5000/getempleado/${id}`;
@@ -149,6 +149,7 @@ export const AccountProfileDetails = () => {
     }
   }; 
 
+
   const fetchAreasInteres = async () => {
     try {
       const areasInteresResponse = await axios.get(getAreasInteresUrl);
@@ -160,12 +161,10 @@ export const AccountProfileDetails = () => {
     }
   }; 
 
-  const handleDeleteArea = async (area) => {
+  const handleDeleteArea = async (areaId) => {
     try {
-
-      
       // Send a DELETE request to the server to delete the area
-      const response = await axios.delete(deleteAreaInteresUrl + area);
+      const response = await axios.delete(deleteAreaInteresUrl + areaId);
       
       // Check the response status
       if (response.status === 200) {
@@ -186,32 +185,21 @@ export const AccountProfileDetails = () => {
       <TableRow key={index}>
       <TableCell>{area.area}</TableCell>
       <TableCell>
-        <IconButton onClick={() => handleDeleteArea(area.area)}>
+        <IconButton onClick={() => handleDeleteArea(area.nombreAreaId)}>
           <DeleteIcon />
         </IconButton>
       </TableCell>
     </TableRow>
     ));
   };
-  const handleSelectChange = (event) => {
+
+  const handleAreaChange = (event) => {
     console.log(selectedArea);
-    setSelectedArea((prevFormValue) => ({
-      ...prevFormValue,
-      selectedArea: event.target.value
-    }));
+    setSelectedArea(event.target.value);
   };
 
   const handleAddArea = async () => {
     try {
-      var areaExiste = false;
-      for(var i = 0; i < areasInteresEmpleado.length; i++){
-        console.log(areasInteresEmpleado[i].nombreAreaId + " - " + selectedArea);
-        if(areasInteresEmpleado[i].nombreAreaId == selectedArea){
-          setAreaMessage('Area ya existente');
-          areaExiste = true;
-        } 
-      }
-        if(!areaExiste){
           // Make the POST request using Axios
           const response = await axios.post(postAreaInteresUrl, {selectedArea});
           // Handle the response as needed
@@ -219,7 +207,7 @@ export const AccountProfileDetails = () => {
           fetchAreasInteres();
           setAreaMessage("Area de interés agregada correctamente")
 
-        }
+        
       // Update the areasInteres array or refresh the component
       // ...
     } catch (error) {
@@ -237,7 +225,7 @@ export const AccountProfileDetails = () => {
     <div>
       <form autoComplete="off" noValidate>
         <Card>
-          <CardHeader subheader="La información se puede editar." title="Información personal" />
+          <CardHeader title="Información personal" />
           <CardContent sx={{ pt: 0 }}>
             <Box sx={{ m: -1.5 }}>
               <Grid container spacing={3}>
@@ -330,7 +318,7 @@ export const AccountProfileDetails = () => {
             </Box>
           </CardContent>
           <Divider />
-          <CardHeader subheader="La información se puede editar" title="Educación" />
+          <CardHeader title="Educación" />
           <CardContent sx={{ pt: 0 }}>
             <Box sx={{ m: -1.5 }}>
               <Grid container spacing={3}>
@@ -386,7 +374,7 @@ export const AccountProfileDetails = () => {
             </Box>
           </CardContent>
           <Divider />
-          <CardHeader subheader="La información se puede editar" title="Información Trainee" />
+          <CardHeader title="Información Trainee" />
           <CardContent sx={{ pt: 0 }}>
             <Box sx={{ m: -1.5 }}>
               <Grid container spacing={3}>
@@ -456,12 +444,12 @@ export const AccountProfileDetails = () => {
           <Divider />
           <Grid container>
             <Grid item xs={12} md={6}>
-              <CardHeader subheader="La información se puede editar" title="Intereses de areas" />
+              <CardHeader title="Intereses de areas" />
             </Grid>
             <Grid item xs={12} md={6}>
             {areaMessage && <p>{areaMessage}</p>}
               {/* Select and button */}
-        <Select value={selectedArea.selectedArea} onChange={handleSelectChange}>
+        <Select value={selectedArea} onChange={handleAreaChange}>
           {areasInteres.map((area, index) => (
             <MenuItem key={index} value={area.nombreAreaId}>
               {area.area}
