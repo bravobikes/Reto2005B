@@ -15,42 +15,44 @@ import {
     ListItemText,
     SvgIcon
   } from '@mui/material';
-export default function Leaderboard() {
+  import {useState, useEffect} from 'react';
+export default function Leaderboard(props) {
     const players = [{username: "algo", puntosTotales: 123, img: "/assets/avatars/avatar-alcides-antonio.png"}];
+    const url = 'http://localhost:5000/getpeople';
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        fetchInfo();
+    }, []);
+    const fetchInfo = async () => {
+        try {
+            const response = await fetch(url);
+            const jsonData = await response.json();
+            setData(jsonData);
+        } catch(error) {
+            console.error('Error fetching data:',error)
+        }
+    }
+    console.log(props.data)
     return (
             <Card sx={{height: "100%"}}>
                 <CardHeader title="Leaderboard" />
                 <List>
-                    {/* usar una funcion para checar que no sea el ultimo ListItem cuando tenga arreglo */}
-                    <ListItem divider={1}>
-                        <ListItemAvatar>
+                    {data.slice(0, 5).map((item, index) => (
+                        <ListItem divider={1}>
                             <Box
                             component="img"
                             src={"/assets/avatars/avatar-alcides-antonio.png"}
                             sx={{
                             borderRadius: "50%",
                             height: 48,
-                            width: 48
+                            width: 48,
+                            marginRight: "5%"
                             }}
-                        />
-                        </ListItemAvatar>
-                        <ListItemText primary="sebramirez" secondary="500 puntos"/>
-                    </ListItem>
-                    <ListItem>
-                        <ListItemAvatar>
-                            <Box
-                             component="img"
-                            //  cambiar el src de cada uno de estos a la propiedad del objeto
-                             src={"/assets/avatars/avatar-anika-visser.png"}
-                             sx={{
-                                borderRadius: "50%",
-                                height:48,
-                                width:48
-                             }}
                             />
-                        </ListItemAvatar>
-                        <ListItemText primary="idk" secondary="100 puntos" />
-                    </ListItem>
+                            <ListItemText primary={item.Name} secondary={`${item.Age} puntos`}/>
+                        </ListItem>
+                    ))}
+                    
                 </List>
             </Card>
         

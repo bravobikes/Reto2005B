@@ -5,7 +5,7 @@ import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
 import Frame from 'src/pages/frame.js';
 import Leaderboard from 'src/sections/overview/trainee/overview-leaderboard.js';
 import Tienda from 'src/sections/overview/overview-tienda';
-import {useEffect, useRef} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {
   Box,
   Button,
@@ -22,8 +22,9 @@ import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 
 
 const Page = () => {
-  const frameRef = useRef(null);
 
+
+  const frameRef = useRef(null);
   useEffect(() => {
     const calculateHeight = () => {
       const frame = frameRef.current;
