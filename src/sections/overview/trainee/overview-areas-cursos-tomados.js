@@ -88,9 +88,9 @@ export const OverviewTraffic = (props) => {
   return (
     <Card sx={sx}>
       <CardHeader title="Areas de cursos tomados"/>
-      <CardContent sx={{maxHeight:"50vh", overflow:"auto"}}>
+      <CardContent>
         <Grid container flexDirection="column" spacing={2} style={{}}>
-          <Grid item sx={{width:"40%", marginLeft:"35%"}}>
+          <Grid item sx={{width:"70%", marginLeft:"20%"}}>
                 <img src="/favicon-16x16.png" style={{width:"100%"}}/>
           </Grid>
           <Grid item>
