@@ -4,6 +4,7 @@ import {Button} from '@mui/material';
 import {createTheme} from '@mui/material/styles';
 import { format } from 'date-fns';
 import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import {
@@ -13,6 +14,7 @@ import {
   Dialog,
   DialogTitle,
   DialogActions,
+  DialogContent,
   Checkbox,
   Stack,
   Table,
@@ -27,6 +29,10 @@ import {
 import { Scrollbar } from 'src/components/scrollbar';
 import { getInitials } from 'src/utils/get-initials';
 import Link from 'next/link';
+import axios from 'axios';
+
+
+
 const theme = createTheme({
     palette: {
         primary: {
@@ -50,12 +56,46 @@ export const EmpleadosTable = (props) => {
     rowsPerPage = 0,
     selected = []
   } = props;
+
+  const deleteEmployeeUrl = "http://localhost:5000/deleteEmpleado/";
+
   const [open, setOpen] = useState(false);
-  function handleDelAlert() {
+  const [selectedEmployeeId, setselectedEmployeeId] = useState(null);
+  const [message, setMessage] = useState('');
+  const [refresh, setRefresh] = useState(false);
+
+  const handleDelAlert = (employeeId) => {
+    setselectedEmployeeId(employeeId);
     setOpen(true);
-  }
-  function handleRemove() {
-    // aqui poner la logica para borrar el trainee de la base de datos
+  };
+
+  const handleDelete = async () => {
+    if (selectedEmployeeId) {
+      try {
+        const response = await axios.delete(deleteEmployeeUrl + selectedEmployeeId);
+        if (response.status === 200) {
+          console.log('Employee deleted successfully:', selectedEmployeeId);
+          setMessage("Empleado borrado exitosamente");
+          setRefresh(!refresh);
+          // Perform any additional actions or update the UI accordingly
+        } else {
+          console.error('Failed to delete employee:', selectedEmployeeId);
+          setMessage("Error borrando empleado");
+          // Handle the error condition, show a message, or perform any necessary actions
+        }
+      } catch (error) {
+        console.error('Error deleting employee:', error);
+        setMessage("Error borrando empleado");
+        // Handle the error condition, show a message, or perform any necessary actions
+      } finally {
+        setselectedEmployeeId(null);
+      }
+    }
+    // setOpen(false);
+  };
+
+   function handleClose() {
+    setMessage('')
     setOpen(false);
   }
 
@@ -151,7 +191,7 @@ export const EmpleadosTable = (props) => {
                         <Button variant="contained" size="small" style={{color:"white"}} sx={{borderRadius:"1em", padding:"5%", paddingRight:"10%", paddingLeft:"10%"}} theme={theme} color="primary">Detalles</Button>
                         {/* <IconButton size="small" aria-label="Edit" theme={theme} color="primary" style={{fontSize:"0.8em",color: 'black', fontWeight:'600', borderRadius:'0.6em', textTransform:"none"}} variant="contained"><EditIcon/></IconButton> */}
                       </Link>
-                      <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}} onClick={handleDelAlert}>
+                      <IconButton size="small" aria-label="delete" style={{fontSize:"0.8em"}} onClick={() => handleDelAlert(employee.ID_CET)}>
                         <DeleteIcon/>
                       </IconButton>
                       
@@ -172,14 +212,23 @@ export const EmpleadosTable = (props) => {
         rowsPerPage={rowsPerPage}
         rowsPerPageOptions={[5, 10, 25]}
       />
-      <Dialog open={open} onClose = {handleRemove} aria-labelledby="borrar" aria-describedby="boton para borrar">
-                        <DialogTitle>
-                          Estas seguro que quieres eliminar al trainee?
-                        </DialogTitle>
-                        <DialogActions>
-                          <Button onClick={handleRemove}>Eliminar</Button>
-                        </DialogActions>
-                      </Dialog>
+      <Dialog open={open} aria-labelledby="borrar" aria-describedby="boton para borrar">
+        <DialogTitle>
+          <Typography variant="h6" component="div" sx={{ display: 'flex', alignItems: 'center' }}>
+            Estas seguro que quieres eliminar al trainee?
+            <IconButton style={{ marginLeft: 'auto' }} onClick={handleClose}>
+              <CloseIcon />
+            </IconButton>
+          </Typography>
+        </DialogTitle>
+        <DialogContent>
+          {/* Content of the dialog */}
+        </DialogContent>
+        <DialogActions>
+          {message && <p>{message}</p>}
+          <Button onClick={handleDelete}>Eliminar</Button>
+        </DialogActions>
+      </Dialog>
     </Card>
   );
 };

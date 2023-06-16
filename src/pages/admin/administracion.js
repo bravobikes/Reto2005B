@@ -39,8 +39,25 @@ const Page = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [data, setData] = useState([]);
-  const [crearEmpleadoForm, setCrearEmpleadoForm] = useState([]);
   const [message, setMessage] = useState('');
+  const [crearEmpleadoForm, setCrearEmpleadoForm] = useState({
+    apellidoMat: '',
+    apellidoPat: '',
+    clerical: '',
+    descTitulo: '',
+    escuela: '',
+    esp: '',
+    estado: '',
+    fechNac: '',
+    grad: '',
+    isManager: '',
+    nombre: '',
+    origenCand: '',
+    pais: '',
+    posAct: '',
+    posIngreso: '',
+    remuneracion: '',
+});
 
   const employees = useEmployees(data, page, rowsPerPage);
   const employeesIds = useEmployeeIds(employees);
@@ -58,12 +75,14 @@ const Page = () => {
   function handleCerrar() {
     setCrea(false);
   }
-  function handleSubmitCrear() {
-      // console.log(`username: ${username}, password:${password}`);
-      try {
-          // Send a POST request to the server with the registration data
-          const crearEmpleadoResponse = axios.post(postEmpleadoUrl, {crearEmpleadoForm});
-        console.log("PostRegister handle submit");
+
+  async function handleSubmitCrear() {
+    try {
+      // Send a POST request to the server with the registration data
+      console.log(crearEmpleadoForm);
+      const crearEmpleadoResponse = await axios.post(postEmpleadoUrl, crearEmpleadoForm);
+      console.log("PostEmpleado handle submit");
+  
       // Handle the response
       if (crearEmpleadoResponse.status === 200) {
         setMessage('Registration successful');
@@ -71,15 +90,18 @@ const Page = () => {
         setMessage('Registration failed');
       }
     } catch (error) {
-      console.error('Error registering user:', error);
-      setMessage('Error registering user');
+      console.error('Error registering empleado:', error);
+      setMessage('Error registering empleado');
     }
+    
     setCrea(false);
   }
+
   function renderView(index = null) {
     setSelectedUser(data[index])
     setShow(!show);
   }
+
   function renderEdit(index = null) {
     setSelectedUser(data[index])
     setShowEdit(!showEdit);
@@ -109,7 +131,17 @@ const Page = () => {
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-    setCrearEmpleadoForm((prevState) => ({ ...prevState, [name]: value }));
+    setCrearEmpleadoForm((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (event) => {
+    setCrearEmpleadoForm((prevFormValue) => ({
+      ...prevFormValue,
+      isManager: event.target.value
+    }));
   };
 
   
@@ -208,13 +240,13 @@ const Page = () => {
                   textAlign: 'center'
                 }}
               >
-                {data.map((empleado, index) => (
-                    <Link href={`detalles_empleado?id=${empleado.ID_CET}`} passHref style={{ color: 'black', textDecoration: 'none' }}>
-                      <MenuItem key={index} value={empleado.ID_CET}>
-                          {`${empleado.nombre} ${empleado.apellidoPat} ${empleado.apellidoMat}`}
-                      </MenuItem>
-                    </Link>
-                ))}
+            {data.map((empleado, index) => (
+              <Link href={`detalles_empleado?id=${empleado.ID_CET}`} passHref key={index} style={{ color: 'black', textDecoration: 'none' }}>
+                <MenuItem value={empleado.ID_CET}>
+                  {`${empleado.nombre} ${empleado.apellidoPat} ${empleado.apellidoMat}`}
+                </MenuItem>
+              </Link>
+            ))}
               </Select>
             </Grid>
               {isLoading ? (
@@ -252,30 +284,30 @@ const Page = () => {
                 <Grid item>
                   <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
                     <Grid item xs={6}>
-                        <TextField label="Nombre" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Nombre" name='nombre' value={crearEmpleadoForm.nombre} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Apellido paterno" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Apellido paterno" name='apellidoPat' value={crearEmpleadoForm.apellidoPat} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item>
                   <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
                     <Grid item xs={6}>
-                        <TextField label="Apellido materno" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Apellido materno" name='apellidoMat' value={crearEmpleadoForm.apellidoMat} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="País" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="País" name='pais' value={crearEmpleadoForm.pais} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                  <Grid container alignItems="center"  flexDirection="row" spacing={1} sx={{width:"100%"}}>
                     <Grid item xs={6}>
-                        <TextField label="Estado" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Estado" name='estado' value={crearEmpleadoForm.estado} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Clerical" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Clerical" name='clerical' value={crearEmpleadoForm.clerical} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -285,7 +317,7 @@ const Page = () => {
                       <h3>Fecha de nacimiento</h3>
                     </Grid>
                     <Grid item xs={6}>
-                      <input type="date" style={{padding:"5%", borderRadius:"1em", border:"1px solid grey", margin:"2%", width:"100%", height:"100%"}}/>
+                      <TextField type='date' name='fechNac' value={crearEmpleadoForm.fechNac} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -295,20 +327,20 @@ const Page = () => {
                 <Grid item>
                   <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
                     <Grid item xs={6}>
-                        <TextField label="Descripción del título" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Descripción del título" name='descTitulo' value={crearEmpleadoForm.descTitulo} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Especialidad" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Especialidad" name='esp' value={crearEmpleadoForm.esp} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item>
                   <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
                     <Grid item xs={6}>
-                        <TextField label="Escuela" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Escuela" name='escuela' value={crearEmpleadoForm.escuela} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Estado graduación" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Estado graduación" name='grad' value={crearEmpleadoForm.grad} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -318,20 +350,20 @@ const Page = () => {
                 <Grid item>
                   <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
                     <Grid item xs={6}>
-                        <TextField label="Posición actual" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Posición actual" name='posAct' value={crearEmpleadoForm.posAct} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Posición de ingreso" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Posición de ingreso" name='posIngreso' value={crearEmpleadoForm.posIngreso} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item>
                   <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
                     <Grid item xs={6}>
-                        <TextField label="Origen candidato" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField label="Origen candidato" name='origenCand' value={crearEmpleadoForm.origenCand} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Remuneración" onChange={handleInput} sx={{width:"100%"}}/>
+                        <TextField type='number' label="Remuneración" name='remuneracion' value={crearEmpleadoForm.remuneracion} onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -341,13 +373,10 @@ const Page = () => {
                       <h3>Puesto: </h3>
                     </Grid>
                     <Grid item xs={6}>
-                      <FormControl sx={{width:"100%"}}>
-                        <InputLabel id="labelSeleccionar">Seleccionar</InputLabel>
-                          <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
+                          <Select labelId="labelSeleccionar" name='isManager' value={crearEmpleadoForm.isManager}  onChange={handleSelectChange} sx={{width:"100%"}}>
                               <MenuItem value={0}>Trainee</MenuItem>
                               <MenuItem value={1}>Administrador</MenuItem>
                           </Select>
-                      </FormControl>
                       {message && <p>{message}</p>}
                     </Grid>
                   </Grid>
