@@ -77,6 +77,7 @@ export const OverviewLatestProducts = (props) => {
       <Divider />
       <CardActions sx={{ justifyContent: 'flex-end' }}>
         <Button
+          href="/trainee/courses"
           color="inherit"
           endIcon={(
             <SvgIcon fontSize="small">

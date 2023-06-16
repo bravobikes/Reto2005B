@@ -98,7 +98,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Courses | Portal Ternium
+          Cursos | Portal Ternium
         </title>
       </Head>
       <Box
@@ -155,7 +155,7 @@ const Page = () => {
                   )}
                   variant="contained"
                 >
-                  botón
+                  Botón
                 </Button>
               </div>
             </Stack>
