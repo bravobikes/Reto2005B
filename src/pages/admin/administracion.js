@@ -4,7 +4,7 @@ import { subDays, subHours } from 'date-fns';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import PlusIcon from '@heroicons/react/24/solid/PlusIcon';
-import { Box, Button, Select, MenuItem, Container,TextField, Stack, DialogTitle, DialogContent, SvgIcon, Typography, Dialog, Unstable_Grid2 as Grid } from '@mui/material';
+import { Box, Button, Select, MenuItem, FormControl, InputLabel, Container,TextField, Stack, DialogTitle, DialogContent, SvgIcon, Typography, Dialog, Unstable_Grid2 as Grid } from '@mui/material';
 import { useSelection } from 'src/hooks/use-selection';
 import { Layout as DashboardLayout } from 'src/layouts/dashboard/layout';
 import { CustomersTable } from 'src/sections/customer/cursos-table';
@@ -52,10 +52,12 @@ const Page = () => {
     setCrea(true);
   }
   function handleCerrar() {
+    setCrea(false);
+  }
+  function handleSubmitCrear() {
     // aqui poner logica para agregar al api
     setCrea(false);
   }
-
   function renderView(index = null) {
     setSelectedUser(data[index])
     setShow(!show);
@@ -246,6 +248,49 @@ const Page = () => {
                 </Grid>
                 <Grid item>
                   <h3>Ubicación</h3>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                    <Grid item xs={6}>
+                        <TextField label="Pais" sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="Estado" sx={{width:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <h3>Informacion Profesional</h3>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                    <Grid item xs={6}>
+                        <TextField label="Posicion Actual" sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="Título" sx={{width:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item sx={{marginTop:"2.5%"}}>
+                  <Grid container flexDirection="row" alignItems="center" spacing={1} sx={{width:"100%"}}>
+                    <Grid item xs={6}>
+                      <h3>Puesto: </h3>
+                    </Grid>
+                    <Grid item xs={6}>
+                      <FormControl sx={{width:"100%"}}>
+                        <InputLabel id="labelSeleccionar">Seleccionar</InputLabel>
+                          <Select labelId="labelSeleccionar" sx={{width:"100%"}}>
+                              <MenuItem value={0}>Trainee</MenuItem>
+                              <MenuItem value={1}>Administrador</MenuItem>
+                          </Select>
+                      </FormControl>
+                    </Grid>
+                  </Grid>
+                  
+                </Grid>
+                <Grid item sx={{marginTop:"5%"}}>
+                  <Button variant="contained" onClick={handleSubmitCrear}>Agregar Trainee</Button>
                 </Grid>
               </Grid>
           </form>
