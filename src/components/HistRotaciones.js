@@ -68,8 +68,11 @@ export default function HistRotaciones() {
             <CardContent sx={{
                 alignItems: 'center',
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                // maxHeight:"100vh",
+                // overflow:"auto"
                 }}>
+                    <div style={{width:"100%", maxHeight:"50vh", overflow:"auto"}}>
                 {/* poner un Grid con las cosas que quiero agregar */}
 
 
@@ -106,7 +109,7 @@ export default function HistRotaciones() {
                 </Card>
                     ))}
 
-
+</div>
 
                 
             </CardContent>

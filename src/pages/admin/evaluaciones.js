@@ -45,7 +45,7 @@ const Page = () => {
     <>
       <Head>
         <title>
-          Administración | Portal Ternium
+          Evaluaciones | Portal Ternium
         </title>
       </Head>
       {/* {show && <Ver user={selectedUser} close={renderView} />} */}
@@ -66,7 +66,7 @@ const Page = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h4">
-                Administración
+                Evaluaciones
                 </Typography>
                 <Stack
                   alignItems="center"

@@ -39,6 +39,9 @@ const Page = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [data, setData] = useState([]);
+  const [crearEmpleadoForm, setCrearEmpleadoForm] = useState([]);
+  const [message, setMessage] = useState('');
+
   const employees = useEmployees(data, page, rowsPerPage);
   const employeesIds = useEmployeeIds(employees);
   const employeesSelection = useSelection(employeesIds);
@@ -48,6 +51,7 @@ const Page = () => {
 
   const getPeopleUrl = 'http://localhost:5000/getpeople';
   const getEmpleadosUrl = 'http://localhost:5000/getempleados';
+  const postEmpleadoUrl = 'http://localhost:5000/postEmpleado';
   function handleCreaTr() {
     setCrea(true);
   }
@@ -55,7 +59,21 @@ const Page = () => {
     setCrea(false);
   }
   function handleSubmitCrear() {
-    // aqui poner logica para agregar al api
+      // console.log(`username: ${username}, password:${password}`);
+      try {
+          // Send a POST request to the server with the registration data
+          const crearEmpleadoResponse = axios.post(postEmpleadoUrl, {crearEmpleadoForm});
+        console.log("PostRegister handle submit");
+      // Handle the response
+      if (crearEmpleadoResponse.status === 200) {
+        setMessage('Registration successful');
+      } else {
+        setMessage('Registration failed');
+      }
+    } catch (error) {
+      console.error('Error registering user:', error);
+      setMessage('Error registering user');
+    }
     setCrea(false);
   }
   function renderView(index = null) {
@@ -88,6 +106,11 @@ const Page = () => {
   
     fetchData();
   }, []);
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setCrearEmpleadoForm((prevState) => ({ ...prevState, [name]: value }));
+  };
 
   
 
@@ -227,12 +250,32 @@ const Page = () => {
                   <h3>Información personal:</h3>
                 </Grid>
                 <Grid item>
-                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
                     <Grid item xs={6}>
-                        <TextField label="Nombre" sx={{width:"100%"}}/>
+                        <TextField label="Nombre" onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Apellido" sx={{width:"100%"}}/>
+                        <TextField label="Apellido paterno" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
+                    <Grid item xs={6}>
+                        <TextField label="Apellido materno" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="País" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                    <Grid item xs={6}>
+                        <TextField label="Estado" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="Clerical" onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -247,28 +290,48 @@ const Page = () => {
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <h3>Ubicación</h3>
+                  <h3>Educación</h3>
                 </Grid>
                 <Grid item>
-                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
                     <Grid item xs={6}>
-                        <TextField label="Pais" sx={{width:"100%"}}/>
+                        <TextField label="Descripción del título" onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Estado" sx={{width:"100%"}}/>
+                        <TextField label="Especialidad" onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
                 <Grid item>
-                  <h3>Informacion Profesional</h3>
-                </Grid>
-                <Grid item>
                   <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%"}}>
                     <Grid item xs={6}>
-                        <TextField label="Posicion Actual" sx={{width:"100%"}}/>
+                        <TextField label="Escuela" onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                     <Grid item xs={6}>
-                        <TextField label="Título" sx={{width:"100%"}}/>
+                        <TextField label="Estado graduación" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <h3>Informacion Trainee</h3>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
+                    <Grid item xs={6}>
+                        <TextField label="Posición actual" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="Posición de ingreso" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Grid container alignItems="center" flexDirection="row" spacing={1} sx={{width:"100%", marginBottom:1}}>
+                    <Grid item xs={6}>
+                        <TextField label="Origen candidato" onChange={handleInput} sx={{width:"100%"}}/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <TextField label="Remuneración" onChange={handleInput} sx={{width:"100%"}}/>
                     </Grid>
                   </Grid>
                 </Grid>
@@ -285,6 +348,7 @@ const Page = () => {
                               <MenuItem value={1}>Administrador</MenuItem>
                           </Select>
                       </FormControl>
+                      {message && <p>{message}</p>}
                     </Grid>
                   </Grid>
                   
