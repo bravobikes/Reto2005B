@@ -124,16 +124,7 @@ const Page = () => {
                   direction="row"
                   spacing={1}
                 >
-                  <Button
-                    color="inherit"
-                    startIcon={(
-                      <SvgIcon fontSize="small">
-                        <ArrowUpOnSquareIcon />
-                      </SvgIcon>
-                    )}
-                  >
-                    Botón
-                  </Button>
+                  
                   <Button
                     color="inherit"
                     startIcon={(
@@ -147,16 +138,7 @@ const Page = () => {
                 </Stack>
               </Stack>
               <div>
-                <Button
-                  startIcon={(
-                    <SvgIcon fontSize="small">
-                      <PlusIcon />
-                    </SvgIcon>
-                  )}
-                  variant="contained"
-                >
-                  Botón
-                </Button>
+                
               </div>
             </Stack>
             <CustomersSearch />
