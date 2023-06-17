@@ -32,64 +32,16 @@ const Page = () => {
   axios.defaults.withCredentials = true;
 
   const router = useRouter();
-  // const auth = useAuth();
-  // const [method, setMethod] = useState('email');
-  // const formik = useFormik({
-  //   initialValues: {
-  //     email: 'demo@ternium.mx',
-  //     password: 'Password123!',
-  //     submit: null
-  //   },
-  //   validationSchema: Yup.object({
-  //     email: Yup
-  //       .string()
-  //       .email('Must be a valid email')
-  //       .max(255)
-  //       .required('Email is required'),
-  //     password: Yup
-  //       .string()
-  //       .max(255)
-  //       .required('Password is required')
-  //   }),
-  //   onSubmit: async (values, helpers) => {
-  //     try {
-  //       await auth.signIn(values.email, values.password);
-  //       router.push('/');
-  //     } catch (err) {
-  //       helpers.setStatus({ success: false });
-  //       helpers.setErrors({ submit: err.message });
-  //       helpers.setSubmitting(false);
-  //     }
-  //   }
-  // });
-
-  // const handleMethodChange = useCallback(
-  //   (event, value) => {
-  //     setMethod(value);
-  //   },
-  //   []
-  // );
-
-  // const handleSkip = useCallback(
-  //   () => {
-  //     auth.skip();
-  //     router.push('/');
-  //   },
-  //   [auth, router]
-  // );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Send a POST request to the server with the login data
       const response = await axios.post(loginUrl, { username, password });
-      // Handle the response
       if (response.status === 200) {
         const sessionUserRes = await axios.get(getSessionUser);
         const sessionUser = sessionUserRes.data.user
         localStorage.setItem('sessionUser', sessionUser);
-        // setMessage('Login successful');
         setMessage('Bienvenidx!!');
         router.push('/');
         // navigateTo(`/perfil/${sessionUser}`);
@@ -140,78 +92,34 @@ const Page = () => {
               </Typography>
             </Stack>
             <Tabs
-              // onChange={handleMethodChange}
               sx={{ mb: 3, mt: 10 }}
-              // value={method}
             >
               <Tab
                 label="Inicio de sesión"
-                // value="email"
               />
             </Tabs>
-            {/* {method === 'email' && ( */}
               <form
                 noValidate
-                // onSubmit={formik.handleSubmit}
                 onSubmit={handleSubmit}
               >
-                {/* <Stack spacing={3}>
-                  <TextField
-                    error={!!(formik.touched.email && formik.errors.email)}
-                    fullWidth
-                    helperText={formik.touched.email && formik.errors.email}
-                    label="Email Address"
-                    name="email"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="email"
-                    value={formik.values.email}
-                  />
-                  <TextField
-                    error={!!(formik.touched.password && formik.errors.password)}
-                    fullWidth
-                    helperText={formik.touched.password && formik.errors.password}
-                    label="Password"
-                    name="password"
-                    onBlur={formik.handleBlur}
-                    onChange={formik.handleChange}
-                    type="password"
-                    value={formik.values.password}
-                  />
-                </Stack> */}
                 <Stack spacing={3}>
                   <TextField
-                    // error={!!(formik.touched.email && formik.errors.email)}
                     fullWidth
-                    // helperText={formik.touched.email && formik.errors.email}
                     label="Usuario"
                     name="username"
-                    // onBlur={formik.handleBlur}
                     onChange={(e) => setUsername(e.target.value)}
                     type="text"
                     value={username}
                   />
                   <TextField
-                    // error={!!(formik.touched.password && formik.errors.password)}
                     fullWidth
-                    // helperText={formik.touched.password && formik.errors.password}
                     label="Contraseña"
                     name="password"
-                    // onBlur={formik.handleBlur}
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
                     value={password}
                   />
                 </Stack>
-                {/* {formik.errors.submit && (
-                  <Typography
-                    color="error"
-                    sx={{ mt: 3 }}
-                    variant="body2"
-                  >
-                    {formik.errors.submit}
-                  </Typography>
-                )} */}
                 <Button
                   fullWidth
                   size="large"

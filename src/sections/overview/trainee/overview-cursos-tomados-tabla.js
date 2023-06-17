@@ -19,7 +19,6 @@ import { Scrollbar } from 'src/components/scrollbar';
 import { SeverityPill } from 'src/components/severity-pill';
 
 const statusMap = {
-  // pending: 'warning',
   true: 'success',
   false: 'error'
 };
@@ -56,8 +55,7 @@ export const OverviewLatestOrders = (props) => {
               {orders.map((curso) => {
                 const createdAt = '22/09/2020'
                 const endedAt = '22/09/2020'
-                // const createdAt = format(curso.fecha.split('T')[0], 'dd/MM/yyyy');
-                // const endedAt = format(curso.fecha.split('T')[0], 'dd/MM/yyyy');
+
 
                 return (
                   <TableRow

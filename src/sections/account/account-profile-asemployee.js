@@ -28,24 +28,18 @@ export const AccountProfile = () => {
   const deleteUrl = 'http://localhost:5000/deletepeople';
   const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
   const [data, setData] = useState([]);
-  // Obtener el id el usuario de la sesion
-  //id = ...
+
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        // Make a request to the server to fetch the user profile
-        // const sessionUserRes = await axios.get(getSessionUserUrl);
-        // const sessionUser = sessionUserRes.data.user
-        const sessionUser = localStorage.getItem('sessionUser');
 
-        // const sessionUser = '1';
+        const sessionUser = localStorage.getItem('sessionUser');
         console.log(sessionUser);
         const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
         const data = response.data;
 
         console.log(response);
-        // Set the user state with the retrieved profile data
         setData(data);
         
       } catch (error) {

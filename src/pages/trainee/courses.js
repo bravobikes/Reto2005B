@@ -61,13 +61,13 @@ const Page = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(getCursosUrl);
-        setData(response.data); // Update state using the previous state
+        setData(response.data); 
         console.log('After setData:', response.data);
-        setIsLoading(false); // Update loading state
+        setIsLoading(false); 
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setIsLoading(false); // Update loading state even if an error occurs
+        setIsLoading(false); 
       }
     };
   
@@ -90,7 +90,7 @@ const Page = () => {
   );
 
   if (courses.length < 1) {
-    return <p>Loading...</p>; // Add a loading state while the data is being fetched
+    return <p>Loading...</p>; 
   }
 
 
@@ -161,7 +161,7 @@ const Page = () => {
             </Stack>
             <CustomersSearch />
             {isLoading ? (
-              <div>Loading...</div> // Replace this with your desired loading indicator
+              <div>Loading...</div> 
             ) : (
               <CoursesTable
                 count={data.length}

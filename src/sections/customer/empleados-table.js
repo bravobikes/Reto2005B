@@ -77,21 +77,17 @@ export const EmpleadosTable = (props) => {
           console.log('Employee deleted successfully:', selectedEmployeeId);
           setMessage("Empleado borrado exitosamente");
           setRefresh(!refresh);
-          // Perform any additional actions or update the UI accordingly
         } else {
           console.error('Failed to delete employee:', selectedEmployeeId);
           setMessage("Error borrando empleado");
-          // Handle the error condition, show a message, or perform any necessary actions
         }
       } catch (error) {
         console.error('Error deleting employee:', error);
         setMessage("Error borrando empleado");
-        // Handle the error condition, show a message, or perform any necessary actions
       } finally {
         setselectedEmployeeId(null);
       }
     }
-    // setOpen(false);
   };
 
    function handleClose() {
@@ -134,10 +130,8 @@ export const EmpleadosTable = (props) => {
               </TableRow>
             </TableHead>
             <TableBody>
-                {/* items es el arreglo de objetos employee */}
               {items.map((employee, index) => {
                 const isSelected = selected.includes(employee.ID_CET);
-                // const createdAt = format(employee.createdAt, 'dd/MM/yyyy');
 
                 return (
                   <TableRow
@@ -145,7 +139,6 @@ export const EmpleadosTable = (props) => {
                   key={employee.ID_CET}
                   selected={isSelected}
                   >
-                    {/* cambiar esto para el tipo de objeto que yo quiero */}
                     <TableCell>
                       <Stack
                         alignItems="center"
@@ -180,12 +173,7 @@ export const EmpleadosTable = (props) => {
                       {employee.isManager ? 'Administrador' : 'Trainee'}
                     </TableCell>
                     <TableCell sx={{minWidth:170}}>
-                      {/* aqui poner los botones de editar y eso */}
-                      {/* pioner 3 icon buttons para ver, editar y borrar */}
-                      {/* onClick={() => props.toggleEdit(index)}  */}
-                      {/* <IconButton aria-label="delete" size="small" style={{fontSize:"0.8em"}}>
-                        <VisibilityIcon/>
-                      </IconButton> */}
+
                       
                       <Link href={`detalles_empleado?id=${employee.ID_CET}`} passHref>
                         <Button 
@@ -228,7 +216,7 @@ export const EmpleadosTable = (props) => {
           </Typography>
         </DialogTitle>
         <DialogContent>
-          {/* Content of the dialog */}
+
         </DialogContent>
         <DialogActions>
           {message && <p>{message}</p>}

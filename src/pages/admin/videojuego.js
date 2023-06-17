@@ -29,7 +29,7 @@ const Page = () => {
       const frame = frameRef.current;
       if (frame) {
         const containerWidth = frame.parentNode.offsetWidth;
-        const aspectRatio = 2.2 / 1; // Adjust this value to match your iframe's aspect ratio
+        const aspectRatio = 2.2 / 1; 
         const height = containerWidth / aspectRatio;
         frame.style.height = `${height}px`;
       }

@@ -212,7 +212,7 @@ const Page = () => {
             <Select value={selectedValue} onChange={handleSelectChange}>
               {empleadosIdNombre.map((empleado, index) => (
                 <MenuItem key={index} value={empleado.ID_CET} >
-                  {empleado.nombre  }
+                  {empleado.nombre} {empleado.apellidoPat} {empleado.apellidoMat}
                 </MenuItem>
               ))}
             </Select>

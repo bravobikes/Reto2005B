@@ -79,12 +79,10 @@ const Page = () => {
 
   async function handleSubmitCrear() {
     try {
-      // Send a POST request to the server with the registration data
       console.log(crearEmpleadoForm);
       const crearEmpleadoResponse = await axios.post(postEmpleadoUrl, crearEmpleadoForm);
       console.log("PostEmpleado handle submit");
   
-      // Handle the response
       if (crearEmpleadoResponse.status === 200) {
         setMessage('Registration successful');
       } else {
@@ -109,21 +107,19 @@ const Page = () => {
   }
 
   useEffect(() => {
-    // console.log('Before fetch:', data);
   
     const fetchData = async () => {
       try {
         const response = await axios.get(getEmpleadosUrl);
-        // console.log('API response:', response);
-        // console.log('API data:', response.data);
+       
   
         setData(response.data);
-        // console.log('After setData:', data);
+
   
-        setIsLoading(false); // Update loading state
+        setIsLoading(false); 
       } catch (error) {
         console.error('Error fetching data:', error);
-        setIsLoading(false); // Update loading state even if an error occurs
+        setIsLoading(false); 
       }
     };
   
@@ -170,8 +166,6 @@ const Page = () => {
           Administración | Portal Ternium
         </title>
       </Head>
-      {/* {show && <Ver user={selectedUser} close={renderView} />} */}
-      {/* {showEdit && <Edit user={selectedUser} close={renderView} />} */}
       <Box
         component="main"
         sx={{
@@ -234,7 +228,6 @@ const Page = () => {
             <Grid item xs={6} sm={6} lg={6}>
               <p>Ingrese Trainee:</p>
               <Select
-                // value="Ingrese Trainee"
                 sx={{
                   width: '50%',
                   marginBottom: '20px',
@@ -251,11 +244,10 @@ const Page = () => {
               </Select>
             </Grid>
               {isLoading ? (
-              <div>Loading...</div> // Replace this with your desired loading indicator
+              <div>Loading...</div> 
             ) : (
               <EmpleadosTable 
                 toggle={renderView}
-                // cambiar este
                 toggleEdit={renderEdit}
                 count={data.length}
                 items={employees}

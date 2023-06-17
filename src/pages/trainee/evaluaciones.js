@@ -1,4 +1,3 @@
-// esta pagina es de cuando pense que evaluaciones y rotaciones serian diferentes creo que ya no sirve para nada
 import Head from 'next/head';
 import ArrowUpOnSquareIcon from '@heroicons/react/24/solid/ArrowUpOnSquareIcon';
 import ArrowDownOnSquareIcon from '@heroicons/react/24/solid/ArrowDownOnSquareIcon';

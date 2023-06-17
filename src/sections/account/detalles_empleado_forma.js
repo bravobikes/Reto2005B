@@ -73,7 +73,6 @@ export const AccountProfileDetails = () => {
         posIngreso,
         remuneracion,
       } = response.data;
-      // const isManagerStr = true ? 'Administrador' : 'Trainee';
 
       setFormValue({ 
         ID_CET,
@@ -127,7 +126,7 @@ export const AccountProfileDetails = () => {
   }; 
 
   if (!id) {
-    return <p>Loading...</p>; // Add a loading state while the id is undefined
+    return <p>Loading...</p>; 
   }
 
   return (
@@ -355,15 +354,6 @@ export const AccountProfileDetails = () => {
                 xs={12}
                 md={6}
               >
-                {/* <TextField
-                  fullWidth
-                  type='text'
-                  label="Puesto"
-                  name="isManagerStr"
-                  onChange={handleInput}
-                  required
-                  value={formValue.isManagerStr}
-                /> */}
               <Select
                 value={formValue.isManager}
                 onChange={handleSelectChange}

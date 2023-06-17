@@ -55,7 +55,6 @@ const Page = () => {
     setCrea(false);
   }
   function handleSubmit(){
-    // aqui poner logica de api para agregar el item
     setCrea(false);
   }
   function renderView(index = null) {
@@ -68,18 +67,17 @@ const Page = () => {
   }
 
   useEffect(() => {
-    // console.log('Before fetch:', data);
   
     const fetchData = async () => {
       try {
         const response = await axios.get(getCursosUrl);
-        setData(response.data); // Update state using the previous state
+        setData(response.data); 
         console.log('After setData:', response.data);
-        setIsLoading(false); // Update loading state
+        setIsLoading(false); 
         console.log(data);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setIsLoading(false); // Update loading state even if an error occurs
+        setIsLoading(false);
       }
     };
   
@@ -102,7 +100,7 @@ const Page = () => {
   );
 
   if (courses.length < 1) {
-    return <p>Loading...</p>; // Add a loading state while the data is being fetched
+    return <p>Loading...</p>; 
   }
 
 
@@ -175,7 +173,6 @@ const Page = () => {
             <Grid item xs={6} sm={6} lg={6}>
               <p>Ingrese curso:</p>
               <Select
-                // value="Ingrese Trainee"
                 sx={{
                   width: '50%',
                   marginBottom: '20px',
@@ -191,7 +188,7 @@ const Page = () => {
                 ))}
               </Select>
             </Grid>            {isLoading ? (
-              <div>Loading...</div> // Replace this with your desired loading indicator
+              <div>Loading...</div> 
             ) : (
               <CoursesTable
                 count={data.length}

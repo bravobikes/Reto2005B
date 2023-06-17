@@ -41,7 +41,6 @@ export const Layout = withAuthGuard((props) => {
     () => {
       handlePathnameChange();
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     [pathname]
   );
 

@@ -34,30 +34,27 @@ export const SideNav = (props) => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up('lg'));
 
   useEffect(() => {
-    // console.log('Before fetch:', data);
   
     const fetchData = async () => {
       try {
         const response = await axios.get(getEmployeeUrl);
-        setData(response.data); // Update state using the previous state
+        setData(response.data); 
         
-        setIsLoading(false); // Update loading state
+        setIsLoading(false);
         
         if(response.data.isManager){
           setItems(itemsAdmin);
         }
       } catch (error) {
         console.error('Error fetching data:', error);
-        setIsLoading(false); // Update loading state even if an error occurs
+        setIsLoading(false); 
       }
     };
   
     fetchData();
-    // console.log('After setData:', data);
   }, []);
 
   useEffect(() => {
-    // console.log('isManager: ', data.isManager);
 
   }, [data]);
 
@@ -98,7 +95,6 @@ export const SideNav = (props) => {
             <Logo />
           </Box>
         </Box>
-        {/* hasta aqui llega lo del logo y eso */}
         <Divider sx={{ borderColor: 'neutral.700' }} />
         <Box
           component="nav"
@@ -109,7 +105,7 @@ export const SideNav = (props) => {
           }}
         >
           {isLoading ? (
-              <div>Loading...</div> // Replace this with your desired loading indicator
+              <div>Loading...</div>
             ) : (
           <Stack
             component="ul"

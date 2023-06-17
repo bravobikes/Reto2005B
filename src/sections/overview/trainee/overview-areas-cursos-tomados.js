@@ -14,9 +14,12 @@ import {
   useTheme
 } from '@mui/material';
 import { Chart } from 'src/components/chart';
+import { useEffect, useState } from 'react';
+
 
 const useChartOptions = (labels) => {
   const theme = useTheme();
+
 
   return {
     chart: {
@@ -27,7 +30,7 @@ const useChartOptions = (labels) => {
       theme.palette.success.main,
       theme.palette.warning.main
     ],
-    dataLabels: {
+    data: {
       enabled: false
     },
     labels,
@@ -104,7 +107,7 @@ export const OverviewTraffic = (props) => {
             <span style={{fontWeight:"600"}}>Sueldo actual:</span>
           </Grid>
           <Grid item>
-            <span style={{fontWeight:"600", color:"green"}}>$24,000</span>
+            <span style={{fontWeight:"600", color:"green"}}>$15000</span>
           </Grid>
           <Grid item>
             <span style={{fontWeight:"600"}}>Proximo adelanto PTU: </span>
@@ -113,42 +116,7 @@ export const OverviewTraffic = (props) => {
             <span style={{fontWeight:"600", color:"green"}}>08/23/2032</span>
           </Grid>
         </Grid>
-        {/* <Stack
-          alignItems="center"
-          direction="row"
-          justifyContent="center"
-          spacing={2}
-          sx={{ mt: 2 }}
-        >
-          {chartSeries.map((item, index) => {
-            const label = labels[index];
-
-            return (
-              <Box
-                key={label}
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center'
-                }}
-              >
-                {iconMap[label]}
-                <Typography
-                  sx={{ my: 1 }}
-                  variant="h6"
-                >
-                  {label}
-                </Typography>
-                <Typography
-                  color="text.secondary"
-                  variant="subtitle2"
-                >
-                  {item}%
-                </Typography>
-              </Box>
-            );
-          })}
-        </Stack> */}
+        
       </CardContent>
     </Card>
   );

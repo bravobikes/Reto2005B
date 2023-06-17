@@ -1,5 +1,4 @@
-//Avatar es un componente MUI, incluir creo o ver si queda mejor con imagen normal
-//avatars estan en /assets/avatars
+
 import {
     Box,
     Grid,

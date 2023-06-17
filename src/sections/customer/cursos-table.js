@@ -122,19 +122,7 @@ export const CoursesTable = (props) => {
           <Table>
             <TableHead>
               <TableRow>
-                {/* <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={selectedAll}
-                    indeterminate={selectedSome}
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        onSelectAll?.();
-                      } else {
-                        onDeselectAll?.();
-                      }
-                    }}
-                  />
-                </TableCell> */}
+                
                 <TableCell>Curso</TableCell>
                 <TableCell>Encuadre</TableCell>
                 <TableCell>Modalidad</TableCell>
@@ -148,18 +136,7 @@ export const CoursesTable = (props) => {
 
                 return (
                   <TableRow hover key={course.cursoId} selected={isSelected}>
-                    {/* <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={isSelected}
-                        onChange={(event) => {
-                          if (event.target.checked) {
-                            onSelectOne?.(course.cursoId);
-                          } else {
-                            onDeselectOne?.(course.cursoId);
-                          }
-                        }}
-                      />
-                    </TableCell> */}
+                    
                     <TableCell>
                       <Stack alignItems="center" direction="row" spacing={2}>
                         <Typography variant="subtitle2">

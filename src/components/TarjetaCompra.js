@@ -29,22 +29,16 @@ import {
     const deleteUrl = 'http://localhost:5000/deletepeople';
     const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
     const [data, setData] = useState([]);
-    // Obtener el id el usuario de la sesion
-    //id = ...
-  
+
     useEffect(() => {
       const fetchProfile = async () => {
         try {
-          // Make a request to the server to fetch the user profile
           const sessionUserRes = await axios.get(getSessionUserUrl);
-          // const sessionUser = sessionUserRes.data.user
           const sessionUser = '1';
-          // console.log(sessionUser);
           const response = await axios.get(getEmployeeUrl + sessionUser, {credentials: 'include'});
           const data = response.data;
   
           console.log(response);
-          // Set the user state with the retrieved profile data
           setData(data);
           
         } catch (error) {
@@ -69,7 +63,6 @@ import {
             <Avatar
               src={user.avatar}
               sx={{
-                // alomejor cambiar height conforme cambia tamaño de pantalla
                 height: 120,
                 mb: 2,
                 width: "100%",
@@ -81,29 +74,25 @@ import {
               gutterBottom
               variant="h5"
             >
-              {/* {user.name} */}
-              {/* {data.Name} */}
+
               Nuevo Avatar
             </Typography>
             <Typography
               color="text.secondary"
               variant="body2"
             >
-              {/* {user.city} {user.country} */}
-              {/* {data.City} */}
+
             </Typography>
             <Typography
               color="text.secondary"
               variant="body2"
             >
-              {/* {user.timezone} */}
               Desbloquea este avatar para tu perfil
             </Typography>
           </Box>
         </CardContent>
         <Divider />
         <CardActions sx={{marginTop: "3%"}}>
-          {/* aqui poner el precio y comprar maybe, ene sta fila al menos */}
           <Grid container justifyContent="space-between" flexDirection="row" alignItems="center">
             <Grid item>
             <Grid container spacing={1} justifyContent="center" flexDirection="row">
@@ -120,7 +109,6 @@ import {
                                     
                                 </Grid>
                                 <Grid item style={{fontSize:"1.25em"}}>
-                                    {/* aqui cambiar la cantidad de monedas a las monedas que tiene el usuario */}
                                     
                                     <Grid container flexDirection="row" justifyContent="flex-start" alignItems="flex-start">
                                       <Grid item>

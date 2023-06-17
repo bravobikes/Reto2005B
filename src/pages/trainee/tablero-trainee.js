@@ -133,7 +133,7 @@ const Page = () => {
       }}
       >
         {isLoading ? (
-              <div>Loading...</div> // Replace this with your desired loading indicator
+              <div>Loading...</div> 
             ) : (
       <Container maxWidth="xl">
         <Grid
@@ -212,6 +212,7 @@ const Page = () => {
               chartSeries={[63, 15, 22]}
               labels={['RH', 'Portal', 'Integridad']}
               sx={{ height: '100%' }}
+              salario={formValue.remuneracion}
             />
           </Grid>
           <Grid

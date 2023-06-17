@@ -76,8 +76,7 @@ export const AccountProfileDetails = () => {
   const fetchEmployee = async () => {
     try {
       const response = await axios.get(getEmployeeUrl);
-      // console.log('response:');
-      // console.log(response);
+
       const { 
         ID_CET,
         apellidoMat,
@@ -100,8 +99,7 @@ export const AccountProfileDetails = () => {
       const datePart = fechNac.split('T')[0];
       const isManagerStr = true ? 'Administrador' : 'Trainee';
       const fechNacDia = new Date(datePart);
-      // console.log('fechNacDia:');
-      // console.log(fechNacDia);
+
       setFormValue({ 
         ID_CET,
         apellidoMat,
@@ -140,10 +138,8 @@ export const AccountProfileDetails = () => {
 
   const handleDeleteArea = async (areaId) => {
     try {
-      // Send a DELETE request to the server to delete the area
       const response = await axios.delete(deleteAreaInteresUrl + areaId);
       
-      // Check the response status
       if (response.status === 200) {
         fetchAreasInteres();
       } else {
@@ -177,25 +173,21 @@ export const AccountProfileDetails = () => {
 
   const handleAddArea = async () => {
     try {
-          // Make the POST request using Axios
           const response = await axios.post(postAreaInteresUrl, {selectedArea});
-          // Handle the response as needed
           console.log('Área added:', response.data);
           fetchAreasInteres();
           setAreaMessage("Área de interés agregada correctamente")
 
         
-      // Update the areasInteres array or refresh the component
-      // ...
+
     } catch (error) {
       setAreaMessage("Error agregando área")
-      // Handle the error
       console.error('Error adding área:', error);
     }
   };
 
   if (!id) {
-    return <p>Loading...</p>; // Add a loading state while the id is undefined
+    return <p>Loading...</p>; 
   }
 
   return (
@@ -480,26 +472,7 @@ export const AccountProfileDetails = () => {
           </Table>
         </TableContainer>
       </Grid>
-      {/* <Grid item xs={12} spacing={2}>
-        <Select>
-          {availableAreas.map((area, index) => (
-            <MenuItem key={index} value={area}>
-              {area}  
-            </MenuItem>
-          ))}
-        </Select>
-        <Button
-                  startIcon={(
-                    <SvgIcon fontSize="small">
-                      <PlusIcon />
-                    </SvgIcon>
-                  )}
-                  variant="contained"
-                  sx={{ marginLeft: '10px' }}
-                >
-                  Agregar Área
-                </Button>
-      </Grid> */}
+
     </Grid>
           </CardContent>
           <Divider />

@@ -25,7 +25,6 @@ const Page = () => (
         <Stack spacing={3}>
           <div>
             <Typography variant="h4">
-              {/* poner back button maybe atras? */}
               <Grid container flexDirection="row" alignItems="center" spacing={2}>
                 <Grid item>
                   <Link href="administracion" passHref>
@@ -38,7 +37,6 @@ const Page = () => (
                   Perfil
                 </Grid>
               </Grid>
-              {/* Perfil */}
             </Typography>
           </div>
           <div>
@@ -53,7 +51,6 @@ const Page = () => (
                 md={6}
                 lg={6}
               >
-                {/* cambiar este a algo mas personalizado */}
                 <AccountProfile />
               </Grid>
               <Grid
@@ -61,7 +58,6 @@ const Page = () => (
                 md={12}
                 lg={12}
               >
-                {/* cambiar esto a lo mismo pero con un boton de back */}
                 <AccountProfileDetails />
               </Grid>
             </Grid>

@@ -33,25 +33,15 @@ const states = [
 ];
 
 export const AccountProfileDetails = () => {
-  // const [values, setValues] = useState({
-  //   firstName: 'Anika',
-  //   lastName: 'Visser',
-  //   email: 'demo@devias.io',
-  //   phone: '',
-  //   state: 'los-angeles',
-  //   country: 'USA'
-  // });
+
   const getEmployeeUrl = 'http://localhost:5000/getEmployee/';
   const deleteUrl = 'http://localhost:5000/deletepeople';
   const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
   const [data, setData] = useState([]);
-  // Obtener el id el usuario de la sesion
-  //id = ...
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        // Make a request to the server to fetch the user profile
         const sessionUserRes = await axios.get(getSessionUserUrl);
         const sessionUserGet = sessionUserRes.data.user
         const sessionUser = '1';
@@ -60,7 +50,6 @@ export const AccountProfileDetails = () => {
         const data = response.data;
 
         console.log(response);
-        // Set the user state with the retrieved profile data
         setData(data);
         
       } catch (error) {
@@ -96,7 +85,6 @@ export const AccountProfileDetails = () => {
     >
       <Card>
         <CardHeader
-          // subheader="The information can be "
           title="Perfil"
         />
         <CardContent sx={{ pt: 0 }}>
@@ -112,7 +100,6 @@ export const AccountProfileDetails = () => {
                 <TextField
                   fullWidth
                   disabled={true}
-                  // helperText="Please specify the first name"
                   label={data.Name}
                   name="name"
                   // required
@@ -147,110 +134,12 @@ export const AccountProfileDetails = () => {
                   // value={data.City}
                 />
               </Grid>
-              {/* <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  disabled={true}
-                  fullWidth
-                  helperText="Please specify the first name"
-                  label="First name"
-                  name="firstName"
-                  onChange={handleChange}
-                  required
-                  value={values.firstName}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Last name"
-                  name="lastName"
-                  disabled={true}
-                  onChange={handleChange}
-                  required
-                  value={values.lastName}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Email Address"
-                  name="email"
-                  disabled={true}
-                  onChange={handleChange}
-                  required
-                  value={values.email}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Phone Number"
-                  name="phone"
-                  disabled={true}
-                  onChange={handleChange}
-                  type="number"
-                  value={values.phone}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Country"
-                  name="country"
-                  disabled={true}
-                  onChange={handleChange}
-                  required
-                  value={values.country}
-                />
-              </Grid>
-              <Grid
-                xs={12}
-                md={6}
-              >
-                <TextField
-                  fullWidth
-                  label="Select State"
-                  name="state"
-                  disabled={true}
-                  onChange={handleChange}
-                  required
-                  select
-                  SelectProps={{ native: true }}
-                  value={values.state}
-                >
-                  {states.map((option) => (
-                    <option
-                      key={option.value}
-                      value={option.value}
-                    >
-                      {option.label}
-                    </option>
-                  ))}
-                </TextField>
-              </Grid> */}
+              
             </Grid>
           </Box>
         </CardContent>
         <Divider />
         <CardActions sx={{ justifyContent: 'flex-end' }}>
-          {/* <Button variant="contained">
-            Save details
-          </Button> */}
         </CardActions>
       </Card>
     </form>

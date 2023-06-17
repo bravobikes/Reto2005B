@@ -32,23 +32,16 @@ export const TopNav = (props) => {
   const getSessionUserUrl = 'http://localhost:5000/getSessionUser';
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true)
-  // Obtener el id el usuario de la sesion
-  //id = ...
+
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        // Make a request to the server to fetch the user profile
-        // const sessionUserRes = await axios.get(getSessionUserUrl);
-        // const sessionUser = sessionUserRes.data.user
-        // const sessionUser = 1;
+       
         const sessionUser = localStorage.getItem('sessionUser');
-        // console.log(sessionUser);
         const response = await axios.get(getEmpleadoUrl + sessionUser, {credentials: 'include'});
         const data = response.data;
 
-        // console.log(response);
-        // Set the user state with the retrieved profile data
         setData(data);
         setIsLoading(false);
         
@@ -58,7 +51,6 @@ export const TopNav = (props) => {
     };
 
     fetchProfile();
-    // console.log(data);
   }, []);
 
   return (
@@ -104,7 +96,7 @@ export const TopNav = (props) => {
             
             <div></div>
             {isLoading ? (
-              <div>Loading...</div> // Replace this with your desired loading indicator
+              <div>Loading...</div> 
             ) : (
             <h3>{data.nombre + " " + data.apellidoPat}</h3>
             )}
@@ -115,7 +107,7 @@ export const TopNav = (props) => {
             spacing={2}
           >
             <Tooltip title="Notifications">
-              {/* Boton para notificaciones */}
+
               <IconButton
                 onClick={notifPopover.handleOpen}
                 ref={notifPopover.anchorRef}

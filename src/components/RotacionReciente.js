@@ -26,10 +26,6 @@ export default function RotacionReciente() {
     const [selectedUser, setSelectedUser] = useState(null);
     const [data, setData] = useState([]);
     const [ultimaRotacion, setUltimaRotacion] = useState([]);
-
-    // const courses = useCourses(data, page, rowsPerPage);
-    // const coursesIds = useCoursesIds(courses);
-    // const coursesSelection = useSelection(coursesIds);
   
     const [isLoading, setIsLoading] = useState(true);
   
@@ -37,19 +33,17 @@ export default function RotacionReciente() {
   
   
     useEffect(() => {
-      // console.log('Before fetch:', data);
     
       const fetchData = async () => {
         try {
           const response = await axios.get(getHistorialUrl);
-          setData(response.data); // Update state using the previous state
+            setData(response.data); 
           setUltimaRotacion(response.data[response.data.length-1]);
-          // console.log('After setData:', response.data[response.data.length-1]);
           console.log(ultimaRotacion);
-          setIsLoading(false); // Update loading state
+          setIsLoading(false); 
         } catch (error) {
           console.error('Error fetching data:', error);
-          setIsLoading(false); // Update loading state even if an error occurs
+          setIsLoading(false); 
         }
       };
     
@@ -63,7 +57,7 @@ export default function RotacionReciente() {
       }
 
     if (isLoading) {
-        return <p>Loading...</p>; // Add a loading state while the id is undefined
+        return <p>Loading...</p>; 
       }
 
     return (
@@ -98,10 +92,8 @@ export default function RotacionReciente() {
                     <Grid item>
                             <Grid container flexDirection="row" justifyContent="space-between" style={{color:"grey"}}>
                                 <Grid item>
-                                    {/* Fecha inicial: 08/09/2002 */}
                                     Fecha inicial: {calculateFechaFin(ultimaRotacion.fechaInicial, 0)}
                                 </Grid>
-                                {/* con javascript hacer que esto no se vea si no tiene fecha fin */}
                                 <Grid item>
                                     Fecha fin: {calculateFechaFin(ultimaRotacion.fechaInicial, 20)}
                                 </Grid>

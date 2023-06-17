@@ -39,9 +39,6 @@ const Page = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [data, setData] = useState([]);
   const [ultimaRotacion, setUltimaRotacion] = useState([]);
-  // const courses = useCourses(data, page, rowsPerPage);
-  // const coursesIds = useCoursesIds(courses);
-  // const coursesSelection = useSelection(coursesIds);
 
   const [isLoading, setIsLoading] = useState(true);
 
@@ -58,19 +55,18 @@ const Page = () => {
   }
 
   useEffect(() => {
-    // console.log('Before fetch:', data);
   
     const fetchData = async () => {
       try {
         const response = await axios.get(getHistorialUrl);
-        setData(response.data); // Update state using the previous state
+        setData(response.data); 
         setUltimaRotacion(response.data[response.data.length-1]);
         // console.log('After setData:', response.data[response.data.length-1]);
-        setIsLoading(false); // Update loading state
+        setIsLoading(false); 
         console.log(ultimaRotacion);
       } catch (error) {
         console.error('Error fetching data:', error);
-        setIsLoading(false); // Update loading state even if an error occurs
+        setIsLoading(false); 
       }
     };
   

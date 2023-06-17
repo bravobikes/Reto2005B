@@ -9,6 +9,7 @@ import {
   CardHeader,
   Stack,
   SvgIcon,
+  Grid,
   Typography,
   useTheme
 } from '@mui/material';
@@ -86,51 +87,32 @@ export const OverviewTraffic = (props) => {
 
   return (
     <Card sx={sx}>
-      <CardHeader title="Araeas de cursos tomados" />
+      <CardHeader title="Remuneración"/>
       <CardContent>
-        <Chart
-          height={300}
-          options={chartOptions}
-          series={chartSeries}
-          type="donut"
-          width="100%"
-        />
-        <Stack
-          alignItems="center"
-          direction="row"
-          justifyContent="center"
-          spacing={2}
-          sx={{ mt: 2 }}
-        >
-          {chartSeries.map((item, index) => {
-            const label = labels[index];
-
-            return (
-              <Box
-                key={label}
-                sx={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center'
-                }}
-              >
-                {iconMap[label]}
-                <Typography
-                  sx={{ my: 1 }}
-                  variant="h6"
-                >
-                  {label}
-                </Typography>
-                <Typography
-                  color="text.secondary"
-                  variant="subtitle2"
-                >
-                  {item}%
-                </Typography>
-              </Box>
-            );
-          })}
-        </Stack>
+        <Grid container flexDirection="column" spacing={2} style={{}}>
+          <Grid item sx={{width:"70%", marginLeft:"20%"}}>
+                <img src="/favicon-16x16.png" style={{width:"100%"}}/>
+          </Grid>
+          <Grid item>
+            {/* Nombre */}
+            <span style={{fontWeight:"600", fontSize:"1.5em"}}>Encuadre:</span>
+          </Grid>
+          <Grid item>
+            <span style={{color:"grey"}}>GT1</span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600"}}>Sueldo actual:</span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600", color:"green"}}>$24,000</span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600"}}>Proximo adelanto PTU: </span>
+          </Grid>
+          <Grid item>
+            <span style={{fontWeight:"600", color:"green"}}>08/23/2032</span>
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );

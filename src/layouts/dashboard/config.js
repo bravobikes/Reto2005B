@@ -26,8 +26,6 @@ export const itemsAdmin = [
     )
   },
   {
-    // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
-    // title: 'Administración',
     title: 'Administración',
     path: '/admin/administracion',
     icon: (
@@ -37,7 +35,6 @@ export const itemsAdmin = [
     )
   },
   {
-    // title: 'Courses',
     title: 'Cursos',
     path: '/admin/courses',
     icon: (
@@ -47,7 +44,6 @@ export const itemsAdmin = [
     )
   },
   {
-    // title: 'Profile-administrator',
     title: 'Evaluaciones',
     path: '/admin/evaluaciones',
     icon: (
@@ -57,7 +53,6 @@ export const itemsAdmin = [
     )
   },
   {
-    // title: 'Videogame',
     title: 'Videojuego',
     path: '/admin/videojuego',
     icon: (
@@ -67,7 +62,6 @@ export const itemsAdmin = [
     )
   },
   {
-    // title: 'Settings',
     title: 'Ajustes',
     path: '/settings',
     icon: (
@@ -80,7 +74,6 @@ export const itemsAdmin = [
 
 export const itemsTrainee = [
   {
-    // title: 'Dashboard',
     title: 'Tablero',
     path: '/trainee/tablero-trainee',
     icon: (
@@ -90,7 +83,6 @@ export const itemsTrainee = [
     )
   },
   {
-    // title: 'Profile-employee',
     title: 'Perfil',
     path: '/trainee/profile-astrainee',
     icon: (
@@ -100,7 +92,6 @@ export const itemsTrainee = [
     )
   },
   {
-    // title: 'Courses',
     title: 'Cursos',
     path: '/trainee/courses',
     icon: (
@@ -110,8 +101,6 @@ export const itemsTrainee = [
     )
   },
   {
-    // creo que es lo mismo que courses pero no quiero asumir asi que hice otro tab
-    // title: 'Administración',
     title: 'Historico',
     path: '/trainee/rotacionesTrainee',
     icon: (
@@ -121,7 +110,6 @@ export const itemsTrainee = [
     )
   },
   {
-    // title: 'Videogame',
     title: 'Videojuego',
     path: '/trainee/videojuego',
     icon: (
@@ -131,7 +119,6 @@ export const itemsTrainee = [
     )
   },
   {
-    // title: 'Settings',
     title: 'Ajustes',
     path: '/settings',
     icon: (
